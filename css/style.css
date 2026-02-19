@@ -35,6 +35,19 @@
     width: 100%;
   }
 
+   .photo-gallery img {
+    width: 100% !important;   /* по ширине экрана */
+    height: auto !important;  /* высота под изображение */
+    display: block;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .photo-gallery {
+    margin: 0;
+    padding: 0;
+  }
+
   .video-side,
   .text-side {
     width: 100% !important;
