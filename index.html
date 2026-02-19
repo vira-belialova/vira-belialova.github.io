@@ -1,3 +1,5 @@
+может в хтмл что-то? 
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -24,36 +26,41 @@ body {
   overflow-x: hidden;
 }
 
-/* Секции с фотками */
+/* FULLSCREEN SECTIONS */
 .section {
-  width: 100%;
-  height: auto; /* авто-высота для адаптивности */
   position: relative;
-  display: block;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
 }
 
 .section img {
   width: 100%;
-  height: auto;
+  height: 100%;
   object-fit: cover;
   display: block;
 }
 
-/* overlay */
+/* DARK OVERLAY */
 .overlay {
-  position: relative; /* больше не absolute */
-  width: 100%;
-  height: auto;
-  background: rgba(0,0,0,0.35);
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  transition: 0.5s ease;
 }
 
-/* текст */
+.section:hover .overlay {
+  background: rgba(0,0,0,0.25);
+}
+
+/* TEXT OVER IMAGE */
 .text-center {
-  position: relative;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   text-align: center;
-  padding: 20px 10px;
-  max-width: 90%;
-  margin: -100px auto 0 auto; /* немного поднимаем текст на фото */
+  max-width: 80%;
 }
 
 .text-center h1 {
@@ -68,11 +75,10 @@ body {
   font-size: 32px;
 }
 
-/* Видео + текст */
+/* VIDEO + TEXT SECTION */
 .video-text-section {
   width: 100%;
   background: #000;
-  padding: 40px 20px;
 }
 
 .video-text-container {
@@ -81,7 +87,8 @@ body {
   gap: 60px;
   max-width: 1200px;
   margin: 0 auto;
-  align-items: flex-start;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .video-side,
@@ -91,15 +98,13 @@ body {
 }
 
 .video-wrapper {
-  width: 100%;
-  padding-top: 56.25%; /* 16:9 */
   position: relative;
+  width: 100%;
+  aspect-ratio: 16/9;
 }
 
 .video-wrapper iframe {
   position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
   height: 100%;
   border: none;
@@ -115,6 +120,16 @@ body {
   line-height: 1.6;
   margin-top: 0;
   opacity: 0.8;
+}
+
+/* PHOTO GALLERY */
+.photo-gallery img {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin: 0;
+  padding: 0;
+  object-fit: cover;
 }
 
 /* FOOTER */
@@ -137,9 +152,15 @@ footer {
 
 /* MOBILE */
 @media (max-width: 768px) {
-  .text-center h1 { font-size: 28px; }
-  .text-center h2 { font-size: 20px; }
+  /* HERO TEXT */
+  .text-center h1 {
+    font-size: 28px;
+  }
+  .text-center h2 {
+    font-size: 20px;
+  }
 
+  /* VIDEO + TEXT */
   .video-text-container {
     flex-direction: column;
     gap: 20px;
@@ -152,7 +173,19 @@ footer {
   }
 
   .video-wrapper {
-    padding-top: calc(100vw * 9 / 16); /* 16:9 по ширине экрана */
+    height: auto !important;
+    width: 100% !important;
+  }
+
+  .video-wrapper iframe {
+    width: 100% !important;
+    height: calc(100vw * 9 / 16) !important; /* 16:9 по ширине экрана */
+    min-height: 200px;
+  }
+
+  .text-side {
+    margin-top: 0;
+    text-align: center;
   }
 
   .text-side h2 {
@@ -165,9 +198,13 @@ footer {
     line-height: 1.5;
   }
 
-  .text-center {
-    margin: -60px auto 0 auto; /* текст чуть выше фото */
-    padding: 15px;
+  /* Фотки */
+  .photo-gallery img {
+    width: 100% !important;
+    height: auto !important;
+    display: block;
+    margin: 0;
+    padding: 0;
   }
 }
 </style>
@@ -228,6 +265,7 @@ footer {
 
   </div>
 </section>
+
 
 <!-- FOOTER -->
 <footer>
