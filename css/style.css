@@ -35,26 +35,30 @@
     width: 100%;
   }
 
-  .video-side, .text-side {
+  .video-side,
+  .text-side {
+    width: 100% !important;
     flex: none !important;
-    width: 100% !important;
   }
 
-  /* Видео растягиваем на всю ширину, высота по контенту */
+  /* Контейнер видео без фиксированной высоты */
   .video-wrapper {
+    position: relative;
     width: 100% !important;
-    height: auto !important; /* отключаем жесткую высоту */
-    margin: 0; /* убираем отступ снизу */
+    height: auto !important; /* убираем aspect-ratio */
+    margin: 0;
   }
 
+  /* iframe подстраиваем под ширину */
   .video-wrapper iframe {
     width: 100% !important;
-    height: 56.25vw; /* 16:9 по ширине экрана */
-    min-heigh: 200px; /* минимальная высота чтобы было видно */
+    height: auto !important;
+    min-height: 200px; /* минимальная высота для видимости */
   }
 
+  /* Текст сразу под видео */
   .text-side {
+    margin-top: 0; /* почти нет отступа */
     text-align: center;
-    margin-top: 5px;
   }
 }
