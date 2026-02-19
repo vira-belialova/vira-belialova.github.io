@@ -1,27 +1,57 @@
-.video-section {
+.video-text-section {
   width: 100%;
   min-height: 100vh;
   background: #000;
+  color: white;
+  padding: 80px 40px;
+  box-sizing: border-box;
+}
+
+.video-text-container {
   display: flex;
+  flex-direction: row; /* ключевой момент */
   align-items: center;
   justify-content: center;
-  padding: 40px 20px;
-  box-sizing: border-box;
+  gap: 60px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.video-side,
+.text-side {
+  flex: 1;
 }
 
 .video-wrapper {
   position: relative;
   width: 100%;
-  max-width: 1200px; /* чтобы не растягивалось слишком широко на больших экранах */
-  aspect-ratio: 16 / 9; /* вот главное */
+  aspect-ratio: 16 / 9;
 }
 
 .video-wrapper iframe {
   position: absolute;
   width: 100%;
   height: 100%;
-  top: 0;
-  left: 0;
   border: none;
 }
 
+.text-side h2 {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+.text-side p {
+  font-size: 18px;
+  line-height: 1.6;
+  opacity: 0.8;
+}
+
+@media (max-width: 768px) {
+  .video-text-container {
+    flex-direction: column;
+  }
+
+  .text-side {
+    text-align: center;
+  }
+}
