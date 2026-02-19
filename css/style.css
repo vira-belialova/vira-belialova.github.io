@@ -8,19 +8,22 @@
 }
 
 .video-text-container {
-  display: flex;
-  flex-direction: row; /* ключевой момент */
+  display: flex !important;
+  flex-direction: row !important;
   align-items: center;
-  justify-content: center;
-  gap: 60px;
+  justify-content: space-between;
+  width: 100%;
   max-width: 1200px;
   margin: 0 auto;
+  gap: 0; /* убираем лишний зазор */
 }
 
 .video-side,
 .text-side {
-  flex: 1;
+  flex: 0 0 50%; /* фиксируем ширину 50% */
+  width: 50%;
 }
+
 
 .video-wrapper {
   position: relative;
