@@ -40,20 +40,21 @@
     width: 100% !important;
   }
 
+  /* Видео растягиваем на всю ширину, высота по контенту */
   .video-wrapper {
     width: 100% !important;
-    aspect-ratio: 16 / 9;
-    height: auto;
-    margin-bottom: 10px; /* немного пространства под видео */
+    height: auto !important; /* отключаем жесткую высоту */
+    margin: 0; /* убираем отступ снизу */
   }
 
   .video-wrapper iframe {
     width: 100% !important;
     height: 56.25vw; /* 16:9 по ширине экрана */
+    min-heigh: 200px; /* минимальная высота чтобы было видно */
   }
 
   .text-side {
     text-align: center;
-    margin-top: 10px;
+    margin-top: 5px;
   }
 }
