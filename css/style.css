@@ -36,11 +36,14 @@
   }
 
   .section img {
-    height: auto !important;  /* сохраняем пропорции */
+    width: 100%;
+    height: auto; /* сохраняем пропорции */
+    display: block;
   }
 
   .overlay {
-    height: 100%;  /* покрываем всю картинку */
+    position: absolute;
+    inset: 0;
   }
   
   .video-text-container {
