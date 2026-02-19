@@ -1,168 +1,120 @@
-/* ========================
-   Базовые стили
-======================== */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Helvetica Neue', sans-serif;
-}
-
-body {
-  background: #000;
-  color: white;
-  overflow-x: hidden;
-}
-
-/* ========================
-   Секции с фотками
-======================== */
-.section {
-  width: 100%;
-  height: auto; /* авто-высота для адаптивности */
-  position: relative;
-  display: block;
-}
-
-.section img {
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-  display: block;
-}
-
-.overlay {
-  position: relative;
-  width: 100%;
-  height: auto;
-  background: rgba(0,0,0,0.35);
-}
-
-.text-center {
-  position: relative;
-  text-align: center;
-  padding: 20px 10px;
-  max-width: 90%;
-  margin: -80px auto 0 auto; /* текст на фото */
-}
-
-.text-center h1 {
-  font-weight: 300;
-  letter-spacing: 2px;
-  font-size: 48px;
-}
-
-.text-center h2 {
-  font-weight: 300;
-  letter-spacing: 1px;
-  font-size: 32px;
-}
-
-/* ========================
-   Видео + текст
-======================== */
-.video-text-section {
-  width: 100%;
-  background: #000;
-  padding: 40px 20px;
-}
-
+/* Компьютер */
 .video-text-container {
   display: flex;
   flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
   gap: 60px;
+  width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  align-items: flex-start;
-  justify-content: space-between;
 }
 
-.video-side,
-.text-side {
+.video-side, .text-side {
   flex: 0 0 50%;
   width: 50%;
 }
 
 .video-wrapper {
-  width: 100%;
-  padding-top: 56.25%; /* 16:9 */
   position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
 }
 
 .video-wrapper iframe {
   position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
   height: 100%;
   border: none;
 }
 
-.text-side h2 {
-  font-size: 36px;
-  margin-bottom: 15px;
-}
-
-.text-side p {
-  font-size: 18px;
-  line-height: 1.6;
-  margin-top: 0;
-  opacity: 0.8;
-}
-
-/* ========================
-   Футер
-======================== */
-footer {
-  background: #000;
-  padding: 40px;
-  text-align: center;
-}
-
-.socials a {
-  color: white;
-  margin: 0 15px;
-  font-size: 22px;
-  transition: 0.3s ease;
-}
-
-.socials a:hover {
-  color: #aaa;
-}
-
-footer p {
-  margin-top: 20px;
-  font-size: 14px;
-  opacity: 0.6;
-}
-
-/* ========================
-   MOBILE
-======================== */
+/* Мобильные устройства */
 @media (max-width: 768px) {
-  .text-center h1 { font-size: 28px; }
-  .text-center h2 { font-size:20px; }
 
-  .text-center { margin: -60px auto 0 auto; padding:15px; }
-
-  .video-text-container {
-    flex-direction: column;
-    gap: 20px;
+  /* Секция подстраивается под фото */
+  .section {
+    height: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: block;
+    position: relative;
   }
 
-  .video-side,
-  .text-side {
+  /* Картинка на весь экран по ширине, сохраняем пропорции */
+  .section img {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Убираем absolute для overlay */
+  .overlay {
+    position: relative;
+    background: rgba(0,0,0,0.35); /* полупрозрачность */
+    width: 100%;
+    height: auto;
+  }
+
+  /* Текст внутри секции */
+  .text-center {
+    position: relative; /* больше не absolute */
+    top: auto;
+    left: auto;
+    transform: none;
+    text-align: center;
+    padding: 20px 10px;
+  }
+
+  .video-text-container {
+    flex-direction: column !important;
+    width: 100%;
+  }
+
+  .photo-gallery {
+    margin: 0;
+    padding: 0;
+    display: block; /* на всякий случай */
+  }
+
+  .photo-gallery img {
+    width: 100% !important;
+    height: auto !important;
+    display: block;
+    margin: 0;
+    padding: 0;
+  }
+
+  .video-side, .text-side {
     width: 100% !important;
     flex: none !important;
   }
 
+  /* Контейнер видео без фиксированной высоты */
   .video-wrapper {
-    padding-top: calc(100vw * 9 / 16); /* 16:9 */
+    position: relative;
+    width: 100% !important;
+    height: auto !important; /* убираем aspect-ratio */
+    margin: 0;
   }
 
-  .text-side h2 { font-size:28px; margin-bottom:10px; }
-  .text-side p { font-size:16px; line-height:1.5; }
+  /* iframe подстраиваем под ширину */
+  .video-wrapper iframe {
+    width: 100% !important;
+    height: auto !important;
+    min-height: 200px; /* минимальная высота для видимости */
+  }
 
-  .section img { width:100%; height:auto; display:block; }
-  .overlay { height:auto; background: rgba(0,0,0,0.35); }
+  /* Текст сразу под видео */
+  .text-side {
+    margin-top: 0; /* почти нет отступа */
+    text-align: center;
+  }
+
+  /* Заголовок видео + текст */
+  .text-side h2 {
+    font-size: 36px;
+    margin-bottom: 15px; /* добавляем пространство под заголовком */
+  }
 }
