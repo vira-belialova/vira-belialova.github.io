@@ -1,29 +1,19 @@
-.video-text-section {
-  width: 100%;
-  min-height: 100vh;
-  background: #000;
-  color: white;
-  padding: 80px 40px;
-  box-sizing: border-box;
-}
-
+/* Компьютер */
 .video-text-container {
-  display: flex !important;
-  flex-direction: row !important;
+  display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  gap: 60px;
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  gap: 0; /* убираем лишний зазор */
 }
 
-.video-side,
-.text-side {
-  flex: 0 0 50%; /* фиксируем ширину 50% */
+.video-side, .text-side {
+  flex: 0 0 50%;
   width: 50%;
 }
-
 
 .video-wrapper {
   position: relative;
@@ -38,36 +28,31 @@
   border: none;
 }
 
-.text-side h2 {
-  font-size: 36px;
-  margin-bottom: 20px;
-}
-
-.text-side p {
-  font-size: 18px;
-  line-height: 1.6;
-  opacity: 0.8;
-}
-
+/* Мобильные устройства */
 @media (max-width: 768px) {
   .video-text-container {
     flex-direction: column !important;
     width: 100%;
   }
 
-  .video-side {
+  .video-side, .text-side {
+    flex: none !important;
     width: 100% !important;
-    margin-bottom: 20px;
   }
 
   .video-wrapper {
     width: 100% !important;
-    aspect-ratio: 16 / 9;
+    aspect-ratio: auto; /* снимаем жесткую 16:9 для мобильного */
+    height: auto;
+  }
+
+  .video-wrapper iframe {
+    width: 100% !important;
+    height: 56.25vw; /* 16:9 по ширине экрана */
   }
 
   .text-side {
-    width: 100% !important;
     text-align: center;
+    margin-top: 20px;
   }
 }
-
