@@ -30,6 +30,18 @@
 
 /* Мобильные устройства */
 @media (max-width: 768px) {
+
+   .section {
+    height: auto !important;  /* контейнер подстраивается под фото */
+  }
+
+  .section img {
+    height: auto !important;  /* сохраняем пропорции */
+  }
+
+  .overlay {
+    height: 100%;  /* покрываем всю картинку */
+  }
   
   .video-text-container {
     flex-direction: column !important;
