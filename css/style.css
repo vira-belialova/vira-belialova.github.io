@@ -61,4 +61,10 @@
     margin-top: 0; /* почти нет отступа */
     text-align: center;
   }
+
+   /* Текст сразу под видео */
+  .text-side h2 {
+  font-size: 36px;
+  margin-bottom: 15px; /* добавляем пространство под заголовком */
+  }
 }
