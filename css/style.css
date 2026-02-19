@@ -31,8 +31,14 @@
 /* Мобильные устройства */
 @media (max-width: 768px) {
 
-   .section {
+  .section {
     height: auto !important;  /* контейнер подстраивается под фото */
+  }
+
+  /*new parameter to check */
+  .section {
+    position: relative;
+    width: 100%;
   }
 
   .section img {
