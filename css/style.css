@@ -73,6 +73,11 @@ body {
   font-size: 32px;
 }
 
+.text-center p {
+  margin-top: 1em;   /* расстояние сверху */
+  margin-bottom: 1em;/* расстояние снизу */
+}
+
 /* =========================
    VIDEO + TEXT SECTION
 ========================= */
