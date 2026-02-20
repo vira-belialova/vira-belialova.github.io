@@ -38,6 +38,25 @@ body {
   background: rgba(0,0,0,0.45); /* для мобильных и всех без мышки */
   transition: background 0.5s ease;
 }
+.content-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 60px;
+  padding: 100px 10%;
+}
+
+/* видео */
+.video-block iframe {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+}
+
+/* каждая ВТОРАЯ секция меняется местами */
+.content-section:nth-child(even) {
+  flex-direction: row-reverse;
+}
+
 
 /* Только для устройств с мышкой (компьютер) */
 @media (hover: hover) and (pointer: fine) {
@@ -127,6 +146,17 @@ body {
   line-height: 1.6;
   opacity: 0.8;
 }
+@media (max-width: 768px) {
+  .content-section {
+    flex-direction: column;
+    padding: 50px 20px;
+  }
+
+  .video-block {
+    order: -1;
+  }
+}
+
 
 /* =========================
    FOOTER
