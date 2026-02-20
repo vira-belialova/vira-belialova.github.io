@@ -116,6 +116,10 @@ body {
   width: 50%;
 }
 
+.video-text-section.reverse .video-text-container {
+  flex-direction: row-reverse;
+}
+
 .video-wrapper {
   position: relative;
   width: 100%;
@@ -140,17 +144,6 @@ body {
   line-height: 1.6;
   opacity: 0.8;
 }
-@media (max-width: 768px) {
-  .content-section {
-    flex-direction: column;
-    padding: 50px 20px;
-  }
-
-  .video-block {
-    order: -1;
-  }
-}
-
 
 /* =========================
    FOOTER
@@ -226,5 +219,17 @@ footer {
     object-fit: contain; /* сохраняем весь кадр */
     width: 100%;
     height: auto;       /* не обрезаем по высоте */
+  }
+
+ media (max-width: 768px) {
+  .video-text-container {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .video-side,
+  .text-side {
+    width: 100%;
+    flex: 0 0 100%;
   }
 }
