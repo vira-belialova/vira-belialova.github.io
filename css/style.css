@@ -36,12 +36,15 @@ body {
   position: absolute;
   inset: 0;
   background: rgba(0,0,0,0.8);
-  transition: 0.5s ease;
+  transition: background 0.5s ease;
 }
 
-.section:hover .overlay {
-  background: rgba(0,0,0,0.25);
-}
+/* Только для устройств с мышкой */
+@media (hover: hover) and (pointer: fine) {
+  .section:hover .overlay {
+    background: rgba(0,0,0,0.35);
+  }
+
 
 /* TEXT OVER IMAGE */
 .text-center {
