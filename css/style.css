@@ -227,13 +227,4 @@ footer {
   .photo2-section .overlay {
     height: 100%;      /* overlay на всю картинку */
   }
-
-  .photo2-section .text-center {
-    position: relative; /* текст по центру блока */
-    transform: none;
-    top: auto;
-    left: auto;
-    text-align: center;
-    padding: 10px;
-  }
 }
