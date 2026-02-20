@@ -1,5 +1,5 @@
 /* =========================
-   БАЗА
+   BASE
 ========================= */
 * {
   margin: 0;
@@ -14,8 +14,9 @@ body {
   overflow-x: hidden;
 }
 
+
 /* =========================
-   FULLSCREEN SECTIONS
+   FULLSCREEN IMAGE SECTIONS
 ========================= */
 .section {
   position: relative;
@@ -31,40 +32,29 @@ body {
   display: block;
 }
 
-/* каждая ВТОРАЯ секция меняется местами */
-.content-section:nth-child(even) {
-  flex-direction: row-reverse;
-}
-
-/* Базовое overlay */
+/* Overlay */
 .overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0,0,0,0.45); /* для мобильных и всех без мышки */
+  background: rgba(0,0,0,0.45); /* мобильная база */
   transition: background 0.5s ease;
 }
-.content-section {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 60px;
-  padding: 100px 10%;
-}
 
-
-/* Только для устройств с мышкой (компьютер) */
+/* Hover только на устройствах с мышкой */
 @media (hover: hover) and (pointer: fine) {
   .overlay {
-    background: rgba(0,0,0,0.8); /* базовая тьма на компе */
+    background: rgba(0,0,0,0.8);
   }
 
   .section:hover .overlay {
-    background: rgba(0,0,0,0.35); /* осветление при hover */
+    background: rgba(0,0,0,0.35);
   }
 }
 
 
-/* TEXT OVER IMAGE */
+/* =========================
+   TEXT OVER IMAGE
+========================= */
 .text-center {
   position: absolute;
   top: 50%;
@@ -72,6 +62,7 @@ body {
   transform: translate(-50%, -50%);
   text-align: center;
   max-width: 80%;
+  z-index: 2;
 }
 
 .text-center h1 {
@@ -87,9 +78,10 @@ body {
 }
 
 .text-center p {
-  margin-top: 1em;   /* расстояние сверху */
-  margin-bottom: 1em;/* расстояние снизу */
+  margin: 1em 0;
+  line-height: 1.6;
 }
+
 
 /* =========================
    VIDEO + TEXT SECTION
@@ -97,12 +89,11 @@ body {
 .video-text-section {
   width: 100%;
   background: #000;
-  padding: 60px 20px;
+  padding: 100px 10%;
 }
 
 .video-text-container {
   display: flex;
-  flex-direction: row;
   gap: 60px;
   max-width: 1200px;
   margin: 0 auto;
@@ -116,10 +107,12 @@ body {
   width: 50%;
 }
 
+/* Зеркальная версия */
 .video-text-section.reverse .video-text-container {
   flex-direction: row-reverse;
 }
 
+/* Видео */
 .video-wrapper {
   position: relative;
   width: 100%;
@@ -134,16 +127,18 @@ body {
   border: none;
 }
 
+/* Текст */
 .text-side h2 {
   font-size: 36px;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 }
 
 .text-side p {
   font-size: 18px;
   line-height: 1.6;
-  opacity: 0.8;
+  opacity: 0.85;
 }
+
 
 /* =========================
    FOOTER
@@ -165,10 +160,18 @@ footer {
   color: #aaa;
 }
 
+
 /* =========================
    MOBILE
 ========================= */
 @media (max-width: 768px) {
+
+  /* Текст поверх фото */
+  .text-center {
+    width: 95%;
+    max-width: 95%;
+    padding: 0 10px;
+  }
 
   .text-center h1 {
     font-size: 28px;
@@ -178,19 +181,20 @@ footer {
     font-size: 20px;
   }
 
+  .text-center p {
+    font-size: 16px;
+  }
+
+  /* Видео + текст вертикально */
   .video-text-container {
     flex-direction: column;
-    gap: 30px;
+    gap: 40px;
   }
 
   .video-side,
   .text-side {
-    width: 100% !important;
-    flex: none !important;
-  }
-
-  .video-wrapper {
-    aspect-ratio: 16 / 9;
+    width: 100%;
+    flex: 0 0 100%;
   }
 
   .text-side {
@@ -204,32 +208,12 @@ footer {
   .text-side p {
     font-size: 16px;
   }
-   
- @media (max-width: 768px) {
-  .text-center {
-    width: 95%;       /* чуть шире, чтобы слова не ломались */
-    max-width: 95%;   /* не обрезаем текст по ширине */
-    padding: 0 10px;  /* немного отступа от краёв экрана */
-    font-size: 16px;  /* можно чуть меньше для длинных абзацев */
-    line-height: 1.6; /* чтобы строки не слипались */
-  }
 
- @media (max-width: 768px) {
+  /* Фото2 показываем полностью */
   .photo2-section img {
-    object-fit: contain; /* сохраняем весь кадр */
+    object-fit: contain;
     width: 100%;
-    height: auto;       /* не обрезаем по высоте */
+    height: auto;
   }
 
- media (max-width: 768px) {
-  .video-text-container {
-    flex-direction: column;
-    gap: 30px;
-  }
-
-  .video-side,
-  .text-side {
-    width: 100%;
-    flex: 0 0 100%;
-  }
 }
