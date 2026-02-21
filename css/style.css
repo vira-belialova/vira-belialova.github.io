@@ -343,10 +343,27 @@ body {
 }
 
 /* анимация с задержкой */
-.slice1.visible { transition-delay: 0s; }
-.slice2.visible { transition-delay: 0.2s; }
-.slice3.visible { transition-delay: 0.4s; }
-.slice4.visible { transition-delay: 0.6s; }
+/* когда появляется — полосы разъезжаются */
+.slice1.visible { 
+  transform: translateY(-100%);
+  opacity: 0;
+}
+
+.slice2.visible { 
+  transform: translateY(-100%);
+  opacity: 0;
+}
+
+.slice3.visible { 
+  transform: translateY(100%);
+  opacity: 0;
+}
+
+.slice4.visible { 
+  transform: translateY(100%);
+  opacity: 0;
+}
+
 
 
 
