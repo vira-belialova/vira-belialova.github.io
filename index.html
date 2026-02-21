@@ -319,7 +319,7 @@ We leave this place alive  so that we can return — and continue living.
 </section>
 
 <!-- DONATION BUTTON -->
-  <section class="support-section fade-in">
+<section class="support-section fade-in">
   <div class="support-content">
     <h2>Support the Project</h2>
     <p>
@@ -328,11 +328,31 @@ We leave this place alive  so that we can return — and continue living.
       19 women. Hundreds of lives held together.
       This exhibition continues because people choose to care.
     </p>
-    <a href="ТВОЯ_ССЫЛКА_НА_ДОНАТ" target="_blank" class="donate-button">
+
+    <!-- Кнопка -->
+    <button id="donateBtn" class="donate-button">
       Support / Donate
-    </a>
+    </button>
   </div>
 </section>
+
+<!-- MODAL -->
+<div id="donateModal" class="donate-modal">
+  <div class="donate-modal-content">
+    <span id="closeModal" class="close-modal">&times;</span>
+
+    <h2>Donate</h2>
+
+    <p>Monobank (UA)</p>
+    <img src="images/qr-monobank.png" alt="Monobank QR" class="donation-qr">
+
+    <p class="donation-note">
+      Card: 0000 0000 0000 0000<br>
+      Name: Your Name
+    </p>
+  </div>
+</div>
+
 
 
 <!-- FOOTER -->
@@ -385,6 +405,27 @@ We leave this place alive  so that we can return — and continue living.
 
     observer.observe(splitSection);
   }
+</script>
+
+<!-- JS for 12th photo - split section --> 
+<script>
+      const modal = document.getElementById('donateModal');
+      const btn = document.getElementById('donateBtn');
+      const close = document.getElementById('closeModal');
+      
+      btn.onclick = () => {
+        modal.style.display = 'flex';
+      };
+      
+      close.onclick = () => {
+        modal.style.display = 'none';
+      };
+      
+      window.onclick = (e) => {
+        if (e.target === modal) {
+          modal.style.display = 'none';
+        }
+      };
 </script>
 
 
