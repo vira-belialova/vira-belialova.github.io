@@ -367,5 +367,23 @@ We leave this place alive  so that we can return — and continue living.
   });
 </script>
 
+<!-- JS for 12th photo - split section -->  
+<script>
+  const slices = document.querySelectorAll('.slice');
+  const splitSection = document.querySelector('.split-photo');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        slices.forEach(slice => {
+          slice.classList.add('visible');
+        });
+      }
+    });
+  }, { threshold: 0.3 });
+
+  observer.observe(splitSection);
+</script>
+
 </body>
 </html>
