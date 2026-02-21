@@ -388,8 +388,9 @@ footer {
 @media (max-width: 768px) {
 
   .text-center {
-    max-width: 88%;
-    padding: 0;
+    with: 95%
+    max-width: 95%;
+    padding: 0 10px;
   }
 
   .text-center h1 { font-size: 28px; }
