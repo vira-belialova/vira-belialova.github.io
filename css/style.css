@@ -76,8 +76,10 @@ body {
 
 /* Overlay */
 .overlay {
-  background: rgba(0,0,0,0.8);
-  transition: background 0.5s ease;
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  transition: 0.5s ease;
 }
 
 .section:hover .overlay {
