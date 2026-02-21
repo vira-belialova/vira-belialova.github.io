@@ -376,16 +376,15 @@ We leave this place alive  so that we can return — and continue living.
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          slices.forEach(slice => {
-            slice.classList.add('visible');
-          });
+          slices.forEach(slice => slice.classList.add('visible'));
         }
       });
-    }, { threshold: 0.3 });
+    }, { threshold: 0.25 });
 
     observer.observe(splitSection);
   }
 </script>
+
 
 
 </body>
