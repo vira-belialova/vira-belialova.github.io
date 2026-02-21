@@ -276,9 +276,9 @@ body {
 
 /* Каждая полоса */
 .slice1 { top: 0; background-position: center 0%; }
-.slice2 { top: 25%; background-position: center 33%; }
-.slice3 { top: 50%; background-position: center 66%; }
-.slice4 { top: 75%; background-position: center 100%; }
+.slice2 { top: 24.8%; background-position: center 33%; }
+.slice3 { top: 49.6%; background-position: center 66%; }
+.slice4 { top: 74.4%; background-position: center 100%; }
 
 /* Анимация */
 .slice.visible {
