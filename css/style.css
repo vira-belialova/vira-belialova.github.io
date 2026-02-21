@@ -278,9 +278,9 @@ body {
 }
 
 .slice1 { top: 0; }
-.slice2 { top: 25%; }
-.slice3 { top: 50%; }
-.slice4 { top: 75%; }
+.slice2 { top: 24.9%; }
+.slice3 { top: 49.9%; }
+.slice4 { top: 74.9%; }
 
 /* когда появляется */
 .slice.visible {
