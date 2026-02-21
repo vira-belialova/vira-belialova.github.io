@@ -13,8 +13,9 @@ body {
   color: #fff;
   overflow-x: hidden;
 }
+
 /* =========================
-   DONATION BUTTON
+   DONATION SECTION
 ========================= */
 .support-section {
   padding: 140px 10%;
@@ -56,9 +57,8 @@ body {
   color: #000;
 }
 
-
 /* =========================
-   FULLSCREEN IMAGE SECTIONS
+   FULLSCREEN SECTIONS
 ========================= */
 .section {
   position: relative;
@@ -78,12 +78,23 @@ body {
 .overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0,0,0,0.45); /* мобильная база */
-  transition: background 0.5s ease;
+  background: rgba(0,0,0,0.35);
+  transition: opacity 0.8s ease;
+}
+
+/* Hover (только для мышки) */
+@media (hover: hover) and (pointer: fine) {
+  .overlay {
+    background: rgba(0,0,0,0.8);
+  }
+
+  .section:hover .overlay {
+    background: rgba(0,0,0,0.35);
+  }
 }
 
 /* =========================
-  FADE-IN
+   FADE-IN
 ========================= */
 .fade-in {
   opacity: 0;
@@ -95,7 +106,6 @@ body {
   opacity: 1;
   transform: translateY(0);
 }
-
 
 /* =========================
    TEXT OVER IMAGE
@@ -151,9 +161,9 @@ body {
   width: 50%;
 }
 
-/* Зеркальная версия */
+/* Зеркальная версия (ПК) */
 .video-text-section.reverse .video-text-container {
-  flex-direction: row-reverse; /* ПК: видео справа, текст слева */
+  flex-direction: row-reverse;
 }
 
 /* Видео */
@@ -195,26 +205,21 @@ body {
   background: #000;
 }
 
-.photo3-section .photo3-side {
-  flex: 0 0 50%;
-  width: 50%;
-}
-
+.photo3-section .photo3-side,
 .photo3-section .text3-side {
   flex: 0 0 50%;
   width: 50%;
-  color: #fff;
 }
 
 .photo3-section img {
   width: 100%;
-  max-height: 600px; /* ограничиваем высоту */
-  display: block;
+  max-height: 600px;
   object-fit: cover;
+  display: block;
 }
 
 /* =========================
-   PHOTO 4 SECTION 3х3
+   PHOTO 4 SECTION (contain)
 ========================= */
 .photo4-section {
   display: flex;
@@ -229,13 +234,12 @@ body {
   max-height: 100vh;
   width: auto;
   height: auto;
-  object-fit: contain; /* ключевое */
+  object-fit: contain;
 }
 
 /* =========================
-   SPLIT PHOTO EFFECT (Photo 12)
+   SPLIT PHOTO (Photo 12)
 ========================= */
-
 .split-photo-section {
   height: 100vh;
   background: #000;
@@ -251,13 +255,12 @@ body {
   height: 100%;
 }
 
-/* Общие стили для полос */
 .slice {
   position: absolute;
   left: 0;
   width: 100%;
   height: 25%;
-  background-image: url("images/photo12.JPG");
+  background-image: url("../images/photo12.JPG");
   background-size: cover;
   background-position: center;
   opacity: 0;
@@ -265,40 +268,22 @@ body {
   transition: opacity 1.2s ease, transform 1.2s ease;
 }
 
-/* Каждая полоса показывает свою часть фото */
-.slice1 {
-  top: 0;
-  background-position: center 0%;
-}
+/* Каждая полоса */
+.slice1 { top: 0; background-position: center 0%; }
+.slice2 { top: 25%; background-position: center 33%; }
+.slice3 { top: 50%; background-position: center 66%; }
+.slice4 { top: 75%; background-position: center 100%; }
 
-.slice2 {
-  top: 25%;
-  background-position: center 33%;
-}
-
-.slice3 {
-  top: 50%;
-  background-position: center 66%;
-}
-
-.slice4 {
-  top: 75%;
-  background-position: center 100%;
-}
-
-/* Анимация появления */
+/* Анимация */
 .slice.visible {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* Задержка для кинематографичного эффекта */
 .slice1.visible { transition-delay: 0s; }
 .slice2.visible { transition-delay: 0.2s; }
 .slice3.visible { transition-delay: 0.4s; }
 .slice4.visible { transition-delay: 0.6s; }
-
-
 
 /* =========================
    FULLSCREEN VIDEO
@@ -306,7 +291,7 @@ body {
 .video-full-section {
   width: 100%;
   background: #000;
-  padding: 0; /* без отступов, чтобы заняло весь экран */
+  padding: 0;
 }
 
 .video-full-section .video-wrapper {
@@ -323,45 +308,6 @@ body {
   border: none;
 }
 
-/* Мобильная версия — iframe растягиваем полностью по ширине */
-@media (max-width: 768px) {
-  .video-full-section .video-wrapper {
-    width: 100%;
-    aspect-ratio: 16 / 9;
-  }
-}
-
-
-/* Hover только на устройствах с мышкой */
-@media (hover: hover) and (pointer: fine) {
-  .overlay {
-    background: rgba(0,0,0,0.8);
-  }
-
-  .section:hover .overlay {
-    background: rgba(0,0,0,0.35);
-  }
-}
-
-/* =========================
-   FOOTER
-========================= */
-footer {
-  background: #000;
-  padding: 40px;
-  text-align: center;
-}
-
-.socials a {
-  color: #fff;
-  margin: 0 15px;
-  font-size: 22px;
-  transition: 0.3s ease;
-}
-
-.socials a:hover {
-  color: #aaa;
-}
 /* =========================
    TWO VIDEOS SIDE BY SIDE
 ========================= */
@@ -399,50 +345,43 @@ footer {
 }
 
 /* =========================
-   MOBILE
+   FOOTER
 ========================= */
-@media (max-width: 768px) {
-  .video-two-container {
-    flex-direction: column;
-    gap: 30px;
-  }
-
-  .video-two-container .video-side {
-    width: 100%;
-    flex: none;
-  }
+footer {
+  background: #000;
+  padding: 40px;
+  text-align: center;
 }
 
+.socials a {
+  color: #fff;
+  margin: 0 15px;
+  font-size: 22px;
+  transition: 0.3s ease;
+}
+
+.socials a:hover {
+  color: #aaa;
+}
 
 /* =========================
    MOBILE
 ========================= */
 @media (max-width: 768px) {
 
-  /* Текст поверх фото */
   .text-center {
     width: 95%;
     max-width: 95%;
     padding: 0 10px;
   }
 
-  .text-center h1 {
-    font-size: 28px;
-  }
+  .text-center h1 { font-size: 28px; }
+  .text-center h2 { font-size: 20px; }
+  .text-center p  { font-size: 16px; }
 
-  .text-center h2 {
-    font-size: 20px;
-  }
-
-  .text-center p {
-    font-size: 16px;
-  }
-}
-
-  /* Видео + текст вертикально */
- @media (max-width: 768px) {
+  /* Видео + текст */
   .video-text-container {
-    flex-direction: column !important; /* видео сверху, текст снизу */
+    flex-direction: column !important;
     gap: 30px;
   }
 
@@ -456,35 +395,25 @@ footer {
     text-align: center;
   }
 
-  .text-side h2 {
-    font-size: 28px;
-  }
+  .text-side h2 { font-size: 28px; }
+  .text-side p  { font-size: 16px; }
 
-  .text-side p {
-    font-size: 16px;
-  }
-
-  /* Фото2 показываем полностью */   
+  /* Фото2 */
   .photo2-section img {
     width: 100%;
-    height: 100%;
+    height: auto;
     display: block;
-    margin: 0;
-    padding: 0;
   }
 
   .photo2-section {
     height: auto;
-    margin: 0;
-    padding: 0;
   }
 
   .photo2-section .overlay {
     height: 100%;
   }
- 
 
-  /* PHOTO 3 SECTION на мобилке */
+  /* Фото3 */
   .photo3-section {
     flex-direction: column;
     padding: 30px 5%;
@@ -500,12 +429,18 @@ footer {
     text-align: center;
     margin-top: 20px;
   }
- }
-@media (max-width: 768px) {
+
+  /* Фото4 */
   .photo4-section img {
     max-height: 85vh;
   }
-}
 
-    
+  /* Видео два */
+  .video-two-container {
+    flex-direction: column;
+  }
+
+  .video-two-container .video-side {
+    width: 100%;
+  }
 }
