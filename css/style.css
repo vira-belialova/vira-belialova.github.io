@@ -25,26 +25,24 @@ body {
 
 
 /* =========================
-   NAVIGATION
+  NAVIGATION
 ========================= */
-/* бургер (виден только на мобиле) */
-.burger {
-  display: none;
-  background: transparent;
-  border: 1px solid #fff;
-  color: #fff;
-  padding: 8px 14px;
-  border-radius: 20px;
-  font-size: 18px;
-  cursor: pointer;
+.main-nav {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  text-align: center;
 }
 
 /* контейнер ссылок */
 .nav-links {
-  background: rgba(0, 0, 0, 0.4);
-  padding: 8px 14px;
-  border-radius: 30px;
   display: inline-flex;
+  padding: 8px 14px;
+  border: 1px solid #fff;           /* рамка как у кнопки */
+  border-radius: 30px;
+  background: transparent;         /* прозрачный фон */
 }
 
 /* кнопки */
@@ -67,15 +65,26 @@ body {
   color: #000;
 }
 
+/* бургер */
+.burger {
+  display: none;
+  background: transparent;
+  border: 1px solid #fff;
+  color: #fff;
+  padding: 8px 14px;
+  border-radius: 20px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
 /* ===== АДАПТИВ ===== */
 @media (max-width: 768px) {
   .nav-links {
     display: none;
     flex-direction: column;
-    background: rgba(0, 0, 0, 0.9);
     border-radius: 12px;
     padding: 12px;
-    margin-top: 8px;
+    background: rgba(0, 0, 0, 0.9);
   }
 
   .nav-links a {
@@ -90,6 +99,7 @@ body {
     display: flex;
   }
 }
+
 
 
 
