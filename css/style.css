@@ -305,29 +305,17 @@ body {
   position: relative;
   width: 90vw;
   max-width: 900px;
-  aspect-ratio: 1 / 1;   /* квадрат 3605x3605 */
+  aspect-ratio: 1 / 1;
+  overflow: hidden; /* важно */
 }
 
 .split-photo img {
+  position: relative;
   width: 100%;
   height: 100%;
   object-fit: contain;
   display: block;
-}
-
-.split-photo {
-  position: relative;
-  overflow: hidden;
-}
-
-.split-photo img {
-  position: relative;
   z-index: 1;
-}
-
-.slice {
-  position: absolute;
-  z-index: 2;
 }
 
 /* Чёрные маски */
@@ -339,8 +327,8 @@ body {
   background: #000;
   pointer-events: none;
 
-  /* анимация */
-  transition: transform 1s ease;
+  transition: transform 1s ease, opacity 1s ease;
+  z-index: 2;
 }
 
 .slice1 { top: 0%; }
@@ -348,9 +336,10 @@ body {
 .slice3 { top: 50%; }
 .slice4 { top: 75%; }
 
-/* когда добавляется класс visible — уезжаем вверх */
+/* когда JS добавляет visible — маска уезжает вверх */
 .slice.visible {
   transform: translateY(-100%);
+  opacity: 0;
 }
 
 
