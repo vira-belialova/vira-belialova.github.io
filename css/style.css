@@ -505,8 +505,9 @@ footer {
   margin: 0 15px;
   font-size: 22px;
   transition: 0.3s ease;
-}
 
+  text-decoration: none; /* <--- убирает подчёркивание */
+}
 .socials a:hover {
   color: #aaa;
 }
