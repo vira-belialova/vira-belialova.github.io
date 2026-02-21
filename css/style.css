@@ -53,8 +53,7 @@ body {
 }
 
 .donate-button:hover {
-  background: #fff;
-  color: #000;
+  opacity: 0.8;
 }
 
 /* MODAL BACKDROP */
