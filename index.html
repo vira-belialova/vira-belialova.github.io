@@ -445,25 +445,41 @@ window.onclick = (e) => {
 
  <!-- JS FOR BURGER LOGIC --> 
 <script>
-let lastScroll = 0;
 const nav = document.querySelector('.main-nav');
+const burger = document.getElementById('burgerBtn');
+const links = document.getElementById('navLinks');
 
+let lastScroll = 0;
+
+// hide on scroll
 window.addEventListener('scroll', () => {
   const current = window.pageYOffset;
 
   if (current > lastScroll + 10) {
-    // скроллим вниз → прячем
     nav.style.transform = 'translate(-50%, -120%)';
     nav.style.opacity = '0';
   } else {
-    // вверх → показываем
     nav.style.transform = 'translate(-50%, 0)';
     nav.style.opacity = '1';
   }
 
   lastScroll = current;
 });
+
+// burger open/close
+burger.onclick = (e) => {
+  e.stopPropagation();
+  links.classList.toggle('open');
+};
+
+// close on click outside
+document.addEventListener('click', (e) => {
+  if (!links.contains(e.target) && e.target !== burger) {
+    links.classList.remove('open');
+  }
+});
 </script>
+
 
 
   
