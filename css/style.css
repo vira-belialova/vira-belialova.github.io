@@ -59,15 +59,25 @@ body {
 }
 
 /* бургер */
-.burger {
+burger {
   display: none;
-  background: transparent;
-  border: 1px solid #fff;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.35);
   color: #fff;
-  padding: 8px 14px;
-  border-radius: 20px;
+  padding: 8px 16px;
+  border-radius: 24px;
   font-size: 18px;
   cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.burger:active {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.7);
+}
+
+.burger {
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
 }
 
 /* кнопки (только кнопки, без контейнера) */
