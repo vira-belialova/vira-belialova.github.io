@@ -137,7 +137,7 @@ body {
 /* Hover (только для мышки) */
 @media (hover: hover) and (pointer: fine) {
   .overlay {
-    background: rgba(0,0,0,0.6);
+    background: rgba(0,0,0,0.5);
   }
 
   .section:hover .overlay {
