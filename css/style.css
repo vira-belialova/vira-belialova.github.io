@@ -59,8 +59,16 @@ body {
 }
 
 @media (max-width: 768px){
+  .main-nav {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    gap: 12px;
+  }
+
   .lang-switch{
-    right: 60px; /* burger control */
+    position: static;
+    transform: none;
     font-size: 11px;
   }
 }
