@@ -33,7 +33,7 @@ body {
     language support
 ========================= */
 .lang-switch{
-  position:fixed;/possible fix needed - 
+  position:relative;
   right:20px;
   top:50%;
   transform:translateY(-50%);
