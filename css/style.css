@@ -30,6 +30,40 @@ body {
 
 
 /* =========================
+    language support
+========================= */
+.lang-switch{
+  position:absolute;/possible fix needed - 
+  right:20px;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:12px;
+  letter-spacing:1.5px;
+}
+
+.lang-switch span{
+  cursor:pointer;
+  opacity:0.35;
+  transition:opacity 0.4s ease;
+}
+
+.lang-switch span:hover{
+  opacity:0.7;
+}
+
+.lang-switch .active{
+  opacity:1;
+}
+
+@media (max-width: 768px){
+  .lang-switch{
+    right: 60px; /* burger control */
+    font-size: 11px;
+  }
+}
+
+
+/* =========================
    SHE SUPPORT
 ========================= */
 .she-support{
