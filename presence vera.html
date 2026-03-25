@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Presence — Vira Belialova</title>
+<meta name="description" content="Movement, somatic practice and visual storytelling.">
+
+<link rel="apple-touch-icon" href="images/favicon.png">
+<link rel="icon" type="image/png" href="images/favicon.png">
+
+<link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<!-- NAV -->
+<nav class="main-nav">
+  <button class="burger" id="burgerBtn" aria-label="Open menu">☰</button>
+  <div class="nav-links" id="navLinks">
+    <a href="index.html"         data-i18n="nav_exhibition">Exhibition</a>
+    <a href="presence.html"      data-i18n="nav_presence">Presence</a>
+    <a href="index.html#donate"  data-i18n="nav_donate">Donate</a>
+    <a href="index.html#contacts" data-i18n="nav_contacts">Contacts</a>
+  </div>
+
+  <div class="lang-switch">
+    <span data-lang-btn="en" class="active">EN</span>
+    <span>/</span>
+    <span data-lang-btn="ua">UA</span>
+    <span>/</span>
+    <span data-lang-btn="fi">FI</span>
+  </div>
+</nav>
+
+<!-- PRESENCE CONTENT -->
+<div class="presence-content">
+  <div style="max-width: 900px; margin: 0 auto; padding: 120px 10% 80px; text-align: left; color: #fff;">
+
+    <h2 data-i18n="s1_heading">01 — Who I Am</h2>
+    <p data-i18n="s1_text">
+      I explore movement as a form of language.<br><br>
+      Through hip-hop, somatic practice and visual storytelling<br>
+      I work with the body as a space of memory, power and expression.<br><br>
+      For me, movement is not choreography.<br>
+      It is awareness in motion.
+    </p>
+
+    <section class="presence-visual">
+      <img
+        src="images/photo13.JPG"
+        alt="Portrait in calm water at sunset with blue and pink tones, face on the left looking sideways"
+        loading="lazy">
+    </section>
+
+    <h2 data-i18n="s2_heading">02 — The Practice</h2>
+    <p data-i18n="s2_text1">
+      My background in hip-hop — years of training, cyphers and stage work — shaped my relationship with rhythm, strength and raw expression.<br><br>
+      Somatic work deepened that connection — teaching me to listen to the body beyond performance.<br><br>
+      Visual storytelling became a way to capture presence — not just aesthetics, but energy.
+    </p>
+
+    <video
+      class="presence-video"
+      autoplay muted loop playsinline
+      id="forestVideo">
+      <source src="videos/video.MP4" type="video/mp4">
+    </video>
+
+    <p data-i18n="s2_text2">
+      I work at the intersection of movement and meaning — but without reducing identity to labels.<br>
+      It is about presence.
+    </p>
+
+    <div class="presence-grid">
+      <div class="presence-content">
+        <video class="presence-video" autoplay muted loop playsinline>
+          <source src="videos/video2.MP4" type="video/mp4">
+        </video>
+      </div>
+      <br><br>
+      <div class="presence-video">
+        <video class="presence-video" autoplay muted loop playsinline>
+          <source src="videos/ video3.MP4" type="video/mp4">
+        </video>
+      </div>
+    </div>
+
+    <h2 data-i18n="s3_heading">03 — Why It Matters</h2>
+    <p data-i18n="s3_text">
+      In a world that constantly pulls attention outward,<br>
+      I create spaces that bring it back to the body.<br><br>
+      Whether on stage, in session or behind the camera —<br>
+      the intention is the same:<br>
+      to reconnect people with their presence.
+    </p>
+
+    <h2 data-i18n="s4_heading">04 — Sessions & Creative Work</h2>
+    <p data-i18n="s4_text">
+      I offer body-based sessions and energy practices rooted in somatic therapy.<br>
+      I am also open to collaborations as a dancer, choreographer, and visual artist.<br>
+      If you would like to work with me individually, you can contact me here:<br><br>
+    </p>
+
+    <a href="mailto:veramandarin@gmail.com" class="donate-button" aria-label="Contact" data-i18n="contact_btn">
+      Contact
+    </a>
+
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer id="contacts">
+  <div class="socials">
+    <a href="https://www.instagram.com/veramandarin" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+    <a href="https://www.youtube.com/@verabelialova" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+    <a href="mailto:veramandarin@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+  </div>
+  <p style="margin-top:20px; font-size:14px; opacity:0.6;">© 2026 Vira Belialova</p>
+</footer>
+
+
+<!-- ===== TRANSLATIONS ===== -->
+<script>
+const translations = {
+  en: {
+    nav_exhibition: "Exhibition",
+    nav_presence:   "Presence",
+    nav_donate:     "Donate",
+    nav_contacts:   "Contacts",
+    s1_heading: "01 — Who I Am",
+    s1_text: "I explore movement as a form of language.<br><br>Through hip-hop, somatic practice and visual storytelling<br>I work with the body as a space of memory, power and expression.<br><br>For me, movement is not choreography.<br>It is awareness in motion.",
+    s2_heading: "02 — The Practice",
+    s2_text1: "My background in hip-hop — years of training, cyphers and stage work — shaped my relationship with rhythm, strength and raw expression.<br><br>Somatic work deepened that connection — teaching me to listen to the body beyond performance.<br><br>Visual storytelling became a way to capture presence — not just aesthetics, but energy.",
+    s2_text2: "I work at the intersection of movement and meaning — but without reducing identity to labels.<br>It is about presence.",
+    s3_heading: "03 — Why It Matters",
+    s3_text: "In a world that constantly pulls attention outward,<br>I create spaces that bring it back to the body.<br><br>Whether on stage, in session or behind the camera —<br>the intention is the same:<br>to reconnect people with their presence.",
+    s4_heading: "04 — Sessions & Creative Work",
+    s4_text: "I offer body-based sessions and energy practices rooted in somatic therapy.<br>I am also open to collaborations as a dancer, choreographer, and visual artist.<br>If you would like to work with me individually, you can contact me here:<br><br>",
+    contact_btn: "Contact",
+  },
+
+  ua: {
+    nav_exhibition: "Виставка",
+    nav_presence:   "Присутність",
+    nav_donate:     "Підтримати",
+    nav_contacts:   "Контакти",
+    s1_heading: "01 — Хто я",
+    s1_text: "Я досліджую рух як форму мови.<br><br>Через хіп-хоп, соматичні практики та візуальне оповідання<br>я працюю з тілом як простором пам'яті, сили та вираження.<br><br>Для мене рух — це не хореографія.<br>Це усвідомленість у дії.",
+    s2_heading: "02 — Практика",
+    s2_text1: "Мій досвід у хіп-хопі — роки тренувань, сайфери та виступи на сцені — сформували моє ставлення до ритму, сили та щирого вираження.<br><br>Соматична робота поглибила цей зв'язок — навчивши мене слухати тіло поза межами перформансу.<br><br>Візуальне оповідання стало способом зафіксувати присутність — не лише естетику, а енергію.",
+    s2_text2: "Я працюю на перетині руху і смислу — але не зводячи ідентичність до ярликів.<br>Йдеться про присутність.",
+    s3_heading: "03 — Чому це важливо",
+    s3_text: "У світі, що постійно тягне увагу назовні,<br>я створюю простори, які повертають її до тіла.<br><br>Чи то на сцені, чи на сесії, чи за камерою —<br>намір завжди той самий:<br>відновити зв'язок людини з її власною присутністю.",
+    s4_heading: "04 — Сесії та творча співпраця",
+    s4_text: "Я пропоную тілесно-орієнтовані сесії та енергетичні практики, засновані на соматичній терапії.<br>Також відкрита до співпраці як танцівниця, хореограф та візуальна художниця.<br>Якщо ви хочете попрацювати зі мною індивідуально, можете написати мені тут:<br><br>",
+    contact_btn: "Написати",
+  },
+
+  fi: {
+    nav_exhibition: "Näyttely",
+    nav_presence:   "Läsnäolo",
+    nav_donate:     "Lahjoita",
+    nav_contacts:   "Yhteystiedot",
+    s1_heading: "01 — Kuka olen",
+    s1_text: "Tutkin liikettä kielen muotona.<br><br>Hip-hopin, somaattisen harjoituksen ja visuaalisen tarinankerronnan kautta<br>työskentelen kehon kanssa muistin, voiman ja ilmaisun tilana.<br><br>Minulle liike ei ole koreografiaa.<br>Se on tietoisuutta liikkeessä.",
+    s2_heading: "02 — Käytäntö",
+    s2_text1: "Taustani hip-hopissa — vuodet harjoittelua, syphereita ja lavalla esiintymistä — muovasivat suhdettani rytmiin, voimaan ja raakaan ilmaisuun.<br><br>Somaattinen työ syvensi tuota yhteyttä — opettaen minua kuuntelemaan kehoa suorituksen tuolla puolen.<br><br>Visuaalisesta tarinankerronnasta tuli tapa tallentaa läsnäoloa — ei pelkästään estetiikkaa, vaan energiaa.",
+    s2_text2: "Työskentelen liikkeen ja merkityksen leikkauspisteessä — ilman että pelkistän identiteetin etiketeiksi.<br>Kyse on läsnäolosta.",
+    s3_heading: "03 — Miksi se on tärkeää",
+    s3_text: "Maailmassa, joka jatkuvasti vetää huomiota ulospäin,<br>luon tiloja, jotka tuovat sen takaisin kehoon.<br><br>Olipa kyse lavasta, sessiosta tai kameran takana olemisesta —<br>intentio on sama:<br>yhdistää ihmiset uudelleen omaan läsnäoloonsa.",
+    s4_heading: "04 — Sessiot ja luova yhteistyö",
+    s4_text: "Tarjoan kehopohjaisia sessioita ja energiakäytäntöjä, jotka juurtuvat somaattiseen terapiaan.<br>Olen myös avoin yhteistyölle tanssijana, koreografina ja visuaalisena taiteilijana.<br>Jos haluat työskennellä kanssani yksilöllisesti, voit ottaa yhteyttä tästä:<br><br>",
+    contact_btn: "Ota yhteyttä",
+  }
+};
+</script>
+
+<!-- ===== BURGER ===== -->
+<script>
+const nav    = document.querySelector('.main-nav');
+const burger = document.getElementById('burgerBtn');
+const links  = document.getElementById('navLinks');
+let lastScroll = 0;
+
+window.addEventListener('scroll', () => {
+  const current = window.pageYOffset;
+  if (current > lastScroll + 10) {
+    nav.style.transform = 'translate(-50%, -120%)';
+    nav.style.opacity   = '0';
+  } else {
+    nav.style.transform = 'translate(-50%, 0)';
+    nav.style.opacity   = '1';
+  }
+  lastScroll = current;
+});
+
+burger.onclick = (e) => { e.stopPropagation(); links.classList.toggle('open'); };
+document.addEventListener('click', (e) => {
+  if (!links.contains(e.target) && e.target !== burger) links.classList.remove('open');
+});
+</script>
+
+<!-- ===== VIDEO MUTE TOGGLE ===== -->
+<script>
+const video = document.getElementById("forestVideo");
+video.addEventListener("click", () => { video.muted = !video.muted; });
+</script>
+
+<!-- ===== PRESENCE ITEMS ===== -->
+<script>
+document.querySelectorAll('.presence-item').forEach(item => {
+  item.addEventListener('click', () => {
+    item.nextElementSibling.classList.toggle('active');
+  });
+});
+</script>
+
+<!-- ===== LANGUAGE SWITCHER ===== -->
+<script>
+let currentLang = 'en';
+const langButtons = document.querySelectorAll('[data-lang-btn]');
+
+function setLanguage(lang) {
+  if (!translations[lang]) return;
+  currentLang = lang;
+
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.dataset.i18n;
+    if (translations[lang][key] !== undefined) {
+      el.innerHTML = translations[lang][key];
+    }
+  });
+
+  document.documentElement.lang = lang === 'ua' ? 'uk' : lang;
+  localStorage.setItem('lang', lang);
+
+  langButtons.forEach(b => b.classList.remove('active'));
+  const activeBtn = document.querySelector(`[data-lang-btn="${lang}"]`);
+  if (activeBtn) activeBtn.classList.add('active');
+}
+
+langButtons.forEach(btn => btn.addEventListener('click', () => setLanguage(btn.dataset.langBtn)));
+
+// Pick up saved language from index.html (shared localStorage)
+let savedLang = localStorage.getItem('lang') || null;
+if (!savedLang) {
+  const browserLang = navigator.language || '';
+  if (browserLang.startsWith('uk')) savedLang = 'ua';
+  else if (browserLang.startsWith('fi')) savedLang = 'fi';
+  else savedLang = 'en';
+}
+setLanguage(savedLang);
+</script>
+
+</body>
+</html>
