@@ -22,6 +22,9 @@ body {
   transform: translateX(-50%);
   z-index: 1000;
   text-align: center;
+
+  display: flex;
+  align-items: center; 
 }
 
 .support-section {
@@ -385,7 +388,6 @@ body {
   color: #000;
 }
 
-/* убираем фокус-бордер */
 .nav-links a,
 .burger {
   outline: none;
