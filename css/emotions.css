@@ -984,3 +984,54 @@
   }
 
 }
+
+
+/* =========================================================
+   EMOTIONS NAVIGATION
+========================================================= */
+
+.emotions-nav {
+  transition:
+    transform 0.4s ease,
+    opacity 0.4s ease;
+}
+
+.emotions-nav.nav-hidden {
+  transform: translateY(-120%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   EMOTIONS HOME BUTTON
+========================================================= */
+
+.emotions-home-button {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  text-decoration: none;
+}
+
+
+/* =========================================================
+   DONATION MODAL
+========================================================= */
+
+.donate-modal {
+  display: none;
+}
+
+.donate-modal.active {
+  display: flex;
+}
+
+body.modal-open {
+  overflow: hidden;
+}
