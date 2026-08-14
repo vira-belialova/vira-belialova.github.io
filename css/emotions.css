@@ -1404,3 +1404,11 @@ body.modal-open {
   }
 
 }
+
+@media (max-width: 800px) {
+  .emotions-home-button {
+    padding: 7px 12px;
+    font-size: 11px;
+    letter-spacing: 0.8px;
+  }
+}
