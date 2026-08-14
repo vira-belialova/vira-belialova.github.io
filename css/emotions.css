@@ -33,21 +33,26 @@
    ========================================================= */
 
 .emotions-home-button {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: auto;
+  min-width: 0;
+  height: auto;
+
+  padding: 8px 16px;
 
   color: #fff !important;
-
   font-size: 13px;
+  line-height: 1.2;
   letter-spacing: 1px;
-
-  padding: 8px 18px;
+  white-space: nowrap;
 
   border: 1px solid rgba(255,255,255,0.7);
-
   background: transparent;
 
   text-decoration: none;
-
   border-radius: 20px;
 
   transition:
