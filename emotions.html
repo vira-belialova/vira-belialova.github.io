@@ -1,838 +1,1496 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uk">
 
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>How to Live Through Emotions — Vira Belialova</title>
+  <title>Як проживати емоції — To Stay Alive</title>
 
-<meta name="description"
-content="A gentle video journey through emotions — fear, anger, shame, grief and joy.">
+  <!-- MAIN SITE CSS -->
+  <link rel="stylesheet" href="css/style.css">
 
-<link rel="stylesheet" href="css/emotions.css">
+  <!-- EMOTIONS PAGE CSS -->
+  <link rel="stylesheet" href="css/emotions.css">
 
-<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
-<link rel="icon" href="/images/favicon.ico">
-
+  <!-- Font Awesome (если уже подключен в основном сайте — можно убрать) -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+  >
 </head>
 
 
-<body>
+<body class="emotions-page">
 
-<!-- =========================
+<!-- =========================================================
      NAVIGATION
-========================= -->
+========================================================= -->
 
-<nav class="emotion-nav">
+<nav class="main-nav emotions-nav">
 
-  <a href="index.html" class="emotion-logo">
-    VIRA BELIALOVA
-  </a>
+  <div class="lang-switch">
 
-  <div class="emotion-lang">
-    <button data-lang="en" class="active">EN</button>
-    <span>/</span>
-    <button data-lang="ua">UA</button>
+    <span
+      class="active"
+      data-lang="uk"
+      onclick="setLanguage('uk')">
+      UA
+    </span>
+
+    <span>·</span>
+
+    <span
+      data-lang="en"
+      onclick="setLanguage('en')">
+      EN
+    </span>
+
   </div>
 
 </nav>
 
 
-<!-- =========================
-     HERO
-========================= -->
 
-<section class="emotion-hero">
+<!-- =========================================================
+     UKRAINIAN VERSION
+========================================================= -->
 
-  <div class="emotion-hero-inner">
-
-    <p class="eyebrow"
-       data-i18n="eyebrow">
-      A gentle space for feeling
-    </p>
-
-    <h1 data-i18n="heroTitle">
-      How to Live Through Emotions
-    </h1>
-
-    <p class="hero-description"
-       data-i18n="heroDescription">
-      A video journey through fear, anger, shame, grief and joy —
-      learning not to fight what we feel, but to stay with ourselves.
-    </p>
-
-    <a href="#intro"
-       class="primary-button"
-       data-i18n="startButton">
-      Begin the journey
-    </a>
-
-  </div>
-
-</section>
+<main id="page-uk" class="language-page active">
 
 
-<!-- =========================
-     INTRO
-========================= -->
+  <!-- =====================================================
+       HERO
+  ====================================================== -->
 
-<section class="emotion-section intro-section" id="intro">
+  <section class="emotion-hero">
 
-  <div class="section-inner">
+    <div class="emotion-hero-image">
 
-    <p class="eyebrow"
-       data-i18n="introEyebrow">
-      Before you begin
-    </p>
-
-    <h2 data-i18n="introTitle">
-      Start here.
-    </h2>
-
-    <p class="section-lead"
-       data-i18n="introText">
-      This short introduction will help you understand how to use
-      the course and how to approach the practices gently.
-    </p>
-
-
-    <div class="language-video">
-
-      <!-- EN INTRO -->
-
-      <div class="video-card language-en">
-
-        <div class="video-wrapper">
-
-          <iframe
-            src="https://www.youtube.com/embed/UP9PacoLeMQ"
-            title="How to Live Through Emotions — Introduction"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen>
-          </iframe>
-
-        </div>
-
-        <p class="video-language">
-          English
-        </p>
-
-      </div>
-
-
-      <!-- UA INTRO -->
-
-      <div class="video-card language-ua">
-
-        <div class="video-wrapper">
-
-          <iframe
-            src="https://www.youtube.com/embed/qaJovHBHa5g"
-            title="Як проживати емоції — вступ"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen>
-          </iframe>
-
-        </div>
-
-        <p class="video-language">
-          Українська
-        </p>
-
-      </div>
+      <!-- ЗАМЕНИТЬ НА ФОТО HERO -->
+      <img
+        src="images/emotions-hero.jpg"
+        alt="Emotions"
+      >
 
     </div>
 
-  </div>
-
-</section>
+    <div class="emotion-hero-overlay"></div>
 
 
-<!-- =========================
-     HOW TO USE
-========================= -->
+    <div class="emotion-hero-content fade-in">
 
-<section class="emotion-section soft-section">
+      <span class="emotion-eyebrow">
+        To Stay Alive
+      </span>
 
-  <div class="section-inner narrow">
+      <h1>
+        Як проживати<br>
+        емоції
+      </h1>
 
-    <p class="eyebrow"
-       data-i18n="howEyebrow">
-      A little guidance
-    </p>
-
-    <h2 data-i18n="howTitle">
-      There is no right way to feel.
-    </h2>
-
-    <div class="text-block">
-
-      <p data-i18n="howText1">
-        You don't have to complete everything at once.
-        You don't have to force yourself to feel anything.
+      <p>
+        Простір, у якому можна зупинитися,
+        відчути те, що відбувається всередині,
+        і побути поруч із собою.
       </p>
 
-      <p data-i18n="howText2">
-        Find a quiet moment. Watch one video.
-        Notice what happens inside you.
-        Give yourself time.
-      </p>
-
-      <p data-i18n="howText3">
-        You can pause. You can come back later.
-        Your experience does not need to look like anyone else's.
-      </p>
+      <a
+        href="#intro-uk"
+        class="emotion-button">
+        Почати
+      </a>
 
     </div>
 
-  </div>
+  </section>
 
-</section>
 
 
-<!-- =========================
-     EMOTIONS
-========================= -->
+  <!-- =====================================================
+       INTRO VIDEO
+  ====================================================== -->
 
-<section class="emotion-section courses-section">
+  <section
+    class="emotion-video-section"
+    id="intro-uk">
 
-  <div class="section-inner">
+    <div class="emotion-video-container visible">
 
-    <p class="eyebrow"
-       data-i18n="courseEyebrow">
-      The journey
-    </p>
-
-    <h2 data-i18n="courseTitle">
-      Five emotions.
-      One journey back to yourself.
-    </h2>
-
-    <p class="section-lead"
-       data-i18n="courseDescription">
-      Move through the emotions one by one.
-      Or choose the one that feels closest to you today.
-    </p>
-
-
-    <div class="emotion-grid">
-
-
-      <!-- FEAR -->
-
-      <article class="emotion-card">
-
-        <span class="emotion-number">
-          01
-        </span>
-
-        <h3 data-i18n="fearTitle">
-          Fear
-        </h3>
-
-        <p data-i18n="fearText">
-          Meeting fear without running away from yourself.
-        </p>
-
-        <div class="video-wrapper">
-
-          <iframe
-            src="https://www.youtube.com/embed/xGLEsts89uA"
-            title="Fear"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen>
-          </iframe>
-
-        </div>
-
-        <span class="duration">
-          11:11
-        </span>
-
-      </article>
-
-
-      <!-- ANGER -->
-
-      <article class="emotion-card">
-
-        <span class="emotion-number">
-          02
-        </span>
-
-        <h3 data-i18n="angerTitle">
-          Anger
-        </h3>
-
-        <p data-i18n="angerText">
-          Allowing anger to be felt, understood and heard.
-        </p>
-
-        <div class="video-wrapper">
-
-          <iframe
-            src="https://www.youtube.com/embed/i1LCmdo0Qpw"
-            title="Anger"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen>
-          </iframe>
-
-        </div>
-
-        <span class="duration">
-          09:03
-        </span>
-
-      </article>
-
-
-      <!-- SHAME -->
-
-      <article class="emotion-card">
-
-        <span class="emotion-number">
-          03
-        </span>
-
-        <h3 data-i18n="shameTitle">
-          Shame
-        </h3>
-
-        <p data-i18n="shameText">
-          Looking at shame with gentleness instead of turning away.
-        </p>
-
-        <div class="video-wrapper">
-
-          <iframe
-            src="https://www.youtube.com/embed/QT0Ize2L8UE"
-            title="Shame"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen>
-          </iframe>
-
-        </div>
-
-        <span class="duration">
-          13:42
-        </span>
-
-      </article>
-
-
-      <!-- GRIEF -->
-
-      <article class="emotion-card">
-
-        <span class="emotion-number">
-          04
-        </span>
-
-        <h3 data-i18n="griefTitle">
-          Grief
-        </h3>
-
-        <p data-i18n="griefText">
-          Making space for what has been lost and what still needs to be felt.
-        </p>
-
-        <div class="video-wrapper">
-
-          <iframe
-            src="https://www.youtube.com/embed/eyhvzRlIT9U"
-            title="Grief"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen>
-          </iframe>
-
-        </div>
-
-        <span class="duration">
-          09:49
-        </span>
-
-      </article>
-
-
-      <!-- JOY -->
-
-      <article class="emotion-card">
-
-        <span class="emotion-number">
-          05
-        </span>
-
-        <h3 data-i18n="joyTitle">
-          Joy
-        </h3>
-
-        <p data-i18n="joyText">
-          Letting yourself notice pleasure, warmth and aliveness.
-        </p>
-
-        <div class="video-wrapper">
-
-          <iframe
-            src="https://www.youtube.com/embed/jTDl2qSixjk"
-            title="Joy"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen>
-          </iframe>
-
-        </div>
-
-        <span class="duration">
-          09:50
-        </span>
-
-      </article>
-
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =========================
-     COMBINED PRACTICE
-========================= -->
-
-<section class="emotion-section combined-section">
-
-  <div class="section-inner">
-
-    <p class="eyebrow"
-       data-i18n="combinedEyebrow">
-      When you're ready
-    </p>
-
-    <h2 data-i18n="combinedTitle">
-      Fear. Anger. Shame.
-    </h2>
-
-    <p class="section-lead"
-       data-i18n="combinedText">
-      A longer practice bringing three emotions together.
-      Give yourself enough time and space for this one.
-    </p>
-
-
-    <div class="combined-video">
-
-      <div class="video-wrapper">
+      <div class="emotion-video">
 
         <iframe
-          src="https://www.youtube.com/embed/d5rJlG49yBM"
-          title="Fear, Anger and Shame"
-          frameborder="0"
+          src="https://www.youtube.com/embed/qaJovHBHa5g"
+          title="Вступ — Як проживати емоції"
+          loading="lazy"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           allowfullscreen>
         </iframe>
 
       </div>
 
-      <div class="combined-meta">
 
-        <span data-i18n="combinedLabel">
-          Extended practice
+      <div class="emotion-video-info">
+
+        <span class="emotion-number">
+          ПЕРЕД ПОЧАТКОМ
         </span>
 
-        <span>
-          30:00
-        </span>
+        <h2>
+          Почни із себе
+        </h2>
+
+        <p>
+          Подивись це коротке відео перед початком.
+          Тут Віра розповідає, як працювати з цим простором
+          і як проходити практики.
+        </p>
 
       </div>
 
     </div>
 
-  </div>
-
-</section>
+  </section>
 
 
-<!-- =========================
-     CLOSING
-========================= -->
 
-<section class="emotion-section closing-section">
+  <!-- =====================================================
+       INTRO TEXT
+  ====================================================== -->
 
-  <div class="section-inner narrow">
+  <section class="emotion-intro">
 
-    <p class="eyebrow"
-       data-i18n="closingEyebrow">
-      A final thought
-    </p>
+    <div class="emotion-narrow">
 
-    <h2 data-i18n="closingTitle">
-      You don't have to become someone else.
-    </h2>
+      <span class="emotion-number">
+        01
+      </span>
 
-    <p class="closing-text"
-       data-i18n="closingText">
-      Sometimes the way back to yourself begins
-      with allowing yourself to feel what is already here.
-    </p>
+      <h2>
+        Тобі не потрібно
+        нічого виправляти.
+      </h2>
 
-  </div>
+      <div class="emotion-line"></div>
 
-</section>
+      <p>
+        Емоції не потрібно перемагати,
+        придушувати або робити зручними.
+      </p>
 
+      <p>
+        Їх можна помітити.
+        Відчути.
+        Дозволити їм бути.
+      </p>
 
-<!-- =========================
-     SUPPORT
-========================= -->
+    </div>
 
-<section class="emotion-support">
-
-  <div class="section-inner narrow">
-
-    <h2 data-i18n="supportTitle">
-      If this journey was meaningful to you
-    </h2>
-
-    <p data-i18n="supportText">
-      You can support Vira's work and help make future projects
-      about women, emotions and human connection possible.
-    </p>
-
-    <a href="index.html#donate"
-       class="primary-button"
-       data-i18n="supportButton">
-      Support the work
-    </a>
-
-  </div>
-
-</section>
+  </section>
 
 
-<!-- =========================
-     FOOTER
-========================= -->
 
-<footer class="emotion-footer">
+  <!-- =====================================================
+       HOW IT WORKS
+  ====================================================== -->
 
-  <p>
-    VIRA BELIALOVA
-  </p>
+  <section class="emotion-journey">
 
-  <span>
-    © 2026
-  </span>
+    <div class="emotion-section-heading">
 
-</footer>
+      <span class="emotion-number">
+        ЯК ЦЕ ПРАЦЮЄ
+      </span>
+
+      <h2>
+        Просто побудь тут.
+      </h2>
+
+      <p>
+        Обери емоцію, яка зараз найближча до тебе.
+        Не поспішай проходити все одразу.
+      </p>
+
+    </div>
 
 
-<!-- =========================
-     TRANSLATIONS
-========================= -->
+    <div class="emotion-steps">
+
+
+      <article class="emotion-step visible">
+
+        <div class="emotion-step-number">
+          01
+        </div>
+
+        <div class="emotion-step-content">
+
+          <span>
+            Зупинись
+          </span>
+
+          <h3>
+            Знайди кілька хвилин для себе.
+          </h3>
+
+          <p>
+            Вимкни зайві повідомлення.
+            Сядь або ляж так, як тобі комфортно.
+          </p>
+
+        </div>
+
+      </article>
+
+
+
+      <article class="emotion-step visible">
+
+        <div class="emotion-step-number">
+          02
+        </div>
+
+        <div class="emotion-step-content">
+
+          <span>
+            Відчуй
+          </span>
+
+          <h3>
+            Дозволь собі помітити емоцію.
+          </h3>
+
+          <p>
+            Не потрібно одразу розуміти,
+            чому вона з'явилася.
+          </p>
+
+        </div>
+
+      </article>
+
+
+
+      <article class="emotion-step visible">
+
+        <div class="emotion-step-number">
+          03
+        </div>
+
+        <div class="emotion-step-content">
+
+          <span>
+            Побудь
+          </span>
+
+          <h3>
+            Дай собі трохи часу.
+          </h3>
+
+          <p>
+            Ти можеш зупинити відео,
+            повернутися до нього пізніше
+            або просто залишитися в тиші.
+          </p>
+
+        </div>
+
+      </article>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- =====================================================
+       FEAR
+  ====================================================== -->
+
+  <section class="emotion-video-section">
+
+    <div class="emotion-video-container">
+
+      <div class="emotion-video">
+
+        <iframe
+          src="https://www.youtube.com/embed/xGLEsts89uA"
+          title="Страх"
+          loading="lazy"
+          allowfullscreen>
+        </iframe>
+
+      </div>
+
+
+      <div class="emotion-video-info">
+
+        <span class="emotion-number">
+          01 · ЕМОЦІЯ
+        </span>
+
+        <h2>
+          Страх
+        </h2>
+
+        <p>
+          Залишся з цією емоцією на деякий час.
+          Не потрібно її змінювати.
+        </p>
+
+
+        <button
+          class="reflection-toggle"
+          onclick="toggleReflection(this)">
+          Зупинитися і записати
+        </button>
+
+        <div class="reflection-box">
+
+          <p>
+            Що ти помічаєш у собі зараз?
+          </p>
+
+          <textarea
+            placeholder="Кілька слів для себе..."></textarea>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- =====================================================
+       ANGER
+  ====================================================== -->
+
+  <section class="emotion-video-section emotion-video-dark">
+
+    <div class="emotion-video-container reverse">
+
+      <div class="emotion-video">
+
+        <iframe
+          src="https://www.youtube.com/embed/i1LCmdo0Qpw"
+          title="Гнів"
+          loading="lazy"
+          allowfullscreen>
+        </iframe>
+
+      </div>
+
+
+      <div class="emotion-video-info">
+
+        <span class="emotion-number">
+          02 · ЕМОЦІЯ
+        </span>
+
+        <h2>
+          Гнів
+        </h2>
+
+        <p>
+          Дозволь собі помітити,
+          що стоїть за цією енергією.
+        </p>
+
+
+        <button
+          class="reflection-toggle"
+          onclick="toggleReflection(this)">
+          Зупинитися і записати
+        </button>
+
+        <div class="reflection-box">
+
+          <p>
+            Що хоче сказати твій гнів?
+          </p>
+
+          <textarea
+            placeholder="Кілька слів для себе..."></textarea>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- =====================================================
+       SHAME
+  ====================================================== -->
+
+  <section class="emotion-video-section">
+
+    <div class="emotion-video-container">
+
+      <div class="emotion-video">
+
+        <iframe
+          src="https://www.youtube.com/embed/QT0Ize2L8UE"
+          title="Сором"
+          loading="lazy"
+          allowfullscreen>
+        </iframe>
+
+      </div>
+
+
+      <div class="emotion-video-info">
+
+        <span class="emotion-number">
+          03 · ЕМОЦІЯ
+        </span>
+
+        <h2>
+          Сором
+        </h2>
+
+        <p>
+          Побудь із собою без оцінки.
+          Тут не потрібно бути ідеальною.
+        </p>
+
+
+        <button
+          class="reflection-toggle"
+          onclick="toggleReflection(this)">
+          Зупинитися і записати
+        </button>
+
+        <div class="reflection-box">
+
+          <p>
+            Що відбувається всередині тебе?
+          </p>
+
+          <textarea
+            placeholder="Кілька слів для себе..."></textarea>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- =====================================================
+       GRIEF
+  ====================================================== -->
+
+  <section class="emotion-video-section emotion-video-dark">
+
+    <div class="emotion-video-container reverse">
+
+      <div class="emotion-video">
+
+        <iframe
+          src="https://www.youtube.com/embed/eyhvzRlIT9U"
+          title="Горе"
+          loading="lazy"
+          allowfullscreen>
+        </iframe>
+
+      </div>
+
+
+      <div class="emotion-video-info">
+
+        <span class="emotion-number">
+          04 · ЕМОЦІЯ
+        </span>
+
+        <h2>
+          Горе
+        </h2>
+
+        <p>
+          Іноді немає нічого, що потрібно зробити.
+          Можна просто побути поруч із тим, що болить.
+        </p>
+
+
+        <button
+          class="reflection-toggle"
+          onclick="toggleReflection(this)">
+          Зупинитися і записати
+        </button>
+
+        <div class="reflection-box">
+
+          <p>
+            Що ти хочеш дозволити собі прожити?
+          </p>
+
+          <textarea
+            placeholder="Кілька слів для себе..."></textarea>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- =====================================================
+       JOY
+  ====================================================== -->
+
+  <section class="emotion-video-section">
+
+    <div class="emotion-video-container">
+
+      <div class="emotion-video">
+
+        <iframe
+          src="https://www.youtube.com/embed/jTDl2qSixjk"
+          title="Радість"
+          loading="lazy"
+          allowfullscreen>
+        </iframe>
+
+      </div>
+
+
+      <div class="emotion-video-info">
+
+        <span class="emotion-number">
+          05 · ЕМОЦІЯ
+        </span>
+
+        <h2>
+          Радість
+        </h2>
+
+        <p>
+          Радість теж можна проживати повністю.
+          Не поспішай від неї відмовлятися.
+        </p>
+
+
+        <button
+          class="reflection-toggle"
+          onclick="toggleReflection(this)">
+          Зупинитися і записати
+        </button>
+
+        <div class="reflection-box">
+
+          <p>
+            Де ти відчуваєш радість у своєму тілі?
+          </p>
+
+          <textarea
+            placeholder="Кілька слів для себе..."></textarea>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- =====================================================
+       PAUSE
+  ====================================================== -->
+
+  <section class="emotion-pause">
+
+    <div class="emotion-pause-content">
+
+      <span>
+        ♡
+      </span>
+
+      <h2>
+        Зараз нічого<br>
+        не потрібно робити.
+      </h2>
+
+      <p>
+        Зроби паузу.
+        Випий води.
+        Подивись у вікно.
+        Побудь із собою.
+      </p>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- =====================================================
+       COMBINED PRACTICE
+  ====================================================== -->
+
+  <section class="emotion-video-full">
+
+    <div class="emotion-video-full-wrapper">
+
+      <iframe
+        src="https://www.youtube.com/embed/d5rJlG49yBM"
+        title="Страх · Гнів · Сором — практика"
+        loading="lazy"
+        allowfullscreen>
+      </iframe>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- =====================================================
+       ENDING
+  ====================================================== -->
+
+  <section class="emotion-ending">
+
+    <div class="emotion-ending-content">
+
+      <span class="emotion-number">
+        НА ЗАВЕРШЕННЯ
+      </span>
+
+      <h2>
+        Ти можеш<br>
+        повертатися сюди.
+      </h2>
+
+      <p>
+        Не тоді, коли все добре.
+        А саме тоді, коли тобі потрібно
+        трохи більше простору для себе.
+      </p>
+
+      <p class="emotion-ending-small">
+        Бережи себе.
+      </p>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- =====================================================
+       SUPPORT
+  ====================================================== -->
+
+  <section class="emotion-support">
+
+    <div class="emotion-support-content">
+
+      <span class="emotion-number">
+        TO STAY ALIVE
+      </span>
+
+      <h2>
+        Якщо цей простір<br>
+        був тобі корисним
+      </h2>
+
+      <p>
+        Ти можеш підтримати цей проєкт,
+        щоб він залишався доступним
+        для інших жінок.
+      </p>
+
+      <a
+        href="#support"
+        class="emotion-button">
+        Підтримати
+      </a>
+
+    </div>
+
+  </section>
+
+
+</main>
+
+
+
+
+
+<!-- =========================================================
+     ENGLISH VERSION
+========================================================= -->
+
+<main id="page-en" class="language-page">
+
+
+  <!-- HERO -->
+
+  <section class="emotion-hero">
+
+    <div class="emotion-hero-image">
+
+      <img
+        src="images/emotions-hero.jpg"
+        alt="Emotions">
+
+    </div>
+
+    <div class="emotion-hero-overlay"></div>
+
+
+    <div class="emotion-hero-content">
+
+      <span class="emotion-eyebrow">
+        To Stay Alive
+      </span>
+
+      <h1>
+        How to live<br>
+        through emotions
+      </h1>
+
+      <p>
+        A quiet space to slow down,
+        notice what is happening inside,
+        and stay with yourself.
+      </p>
+
+      <a
+        href="#intro-en"
+        class="emotion-button">
+        Begin
+      </a>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- INTRO -->
+
+  <section
+    class="emotion-video-section"
+    id="intro-en">
+
+    <div class="emotion-video-container visible">
+
+      <div class="emotion-video">
+
+        <iframe
+          src="https://www.youtube.com/embed/UP9PacoLeMQ"
+          title="Introduction — How to live through emotions"
+          loading="lazy"
+          allowfullscreen>
+        </iframe>
+
+      </div>
+
+
+      <div class="emotion-video-info">
+
+        <span class="emotion-number">
+          BEFORE YOU BEGIN
+        </span>
+
+        <h2>
+          Start with yourself
+        </h2>
+
+        <p>
+          Watch this short introduction before you begin.
+          Vera will guide you through the space
+          and explain how to work with the practices.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- INTRO TEXT -->
+
+  <section class="emotion-intro">
+
+    <div class="emotion-narrow">
+
+      <span class="emotion-number">
+        01
+      </span>
+
+      <h2>
+        You don't have<br>
+        to fix anything.
+      </h2>
+
+      <div class="emotion-line"></div>
+
+      <p>
+        Emotions don't need to be defeated,
+        suppressed, or made convenient.
+      </p>
+
+      <p>
+        You can notice them.
+        Feel them.
+        Let them be.
+      </p>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- HOW IT WORKS -->
+
+  <section class="emotion-journey">
+
+    <div class="emotion-section-heading">
+
+      <span class="emotion-number">
+        HOW IT WORKS
+      </span>
+
+      <h2>
+        Simply be here.
+      </h2>
+
+      <p>
+        Choose the emotion that feels closest to you right now.
+        You don't have to go through everything at once.
+      </p>
+
+    </div>
+
+
+    <div class="emotion-steps">
+
+
+      <article class="emotion-step visible">
+
+        <div class="emotion-step-number">
+          01
+        </div>
+
+        <div class="emotion-step-content">
+
+          <span>
+            Pause
+          </span>
+
+          <h3>
+            Give yourself a few minutes.
+          </h3>
+
+          <p>
+            Put away unnecessary notifications.
+            Sit or lie down in whatever way feels comfortable.
+          </p>
+
+        </div>
+
+      </article>
+
+
+
+      <article class="emotion-step visible">
+
+        <div class="emotion-step-number">
+          02
+        </div>
+
+        <div class="emotion-step-content">
+
+          <span>
+            Feel
+          </span>
+
+          <h3>
+            Notice what is here.
+          </h3>
+
+          <p>
+            You don't need to understand
+            where the emotion came from right away.
+          </p>
+
+        </div>
+
+      </article>
+
+
+
+      <article class="emotion-step visible">
+
+        <div class="emotion-step-number">
+          03
+        </div>
+
+        <div class="emotion-step-content">
+
+          <span>
+            Stay
+          </span>
+
+          <h3>
+            Give yourself some time.
+          </h3>
+
+          <p>
+            You can pause the video,
+            return later,
+            or simply stay in silence.
+          </p>
+
+        </div>
+
+      </article>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- FEAR -->
+
+  <section class="emotion-video-section">
+
+    <div class="emotion-video-container">
+
+      <div class="emotion-video">
+
+        <iframe
+          src="https://www.youtube.com/embed/5UyP_F-0yXs"
+          title="Fear"
+          loading="lazy"
+          allowfullscreen>
+        </iframe>
+
+      </div>
+
+
+      <div class="emotion-video-info">
+
+        <span class="emotion-number">
+          01 · EMOTION
+        </span>
+
+        <h2>
+          Fear
+        </h2>
+
+        <p>
+          Stay with this emotion for a while.
+          You don't have to change it.
+        </p>
+
+        <button
+          class="reflection-toggle"
+          onclick="toggleReflection(this)">
+          Pause & reflect
+        </button>
+
+        <div class="reflection-box">
+
+          <p>
+            What do you notice in yourself right now?
+          </p>
+
+          <textarea
+            placeholder="A few words for yourself..."></textarea>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- ANGER -->
+
+  <section class="emotion-video-section emotion-video-dark">
+
+    <div class="emotion-video-container reverse">
+
+      <div class="emotion-video">
+
+        <iframe
+          src="https://www.youtube.com/embed/i1LCmdo0Qpw"
+          title="Anger"
+          loading="lazy"
+          allowfullscreen>
+        </iframe>
+
+      </div>
+
+
+      <div class="emotion-video-info">
+
+        <span class="emotion-number">
+          02 · EMOTION
+        </span>
+
+        <h2>
+          Anger
+        </h2>
+
+        <p>
+          Allow yourself to notice
+          what lies beneath this energy.
+        </p>
+
+        <button
+          class="reflection-toggle"
+          onclick="toggleReflection(this)">
+          Pause & reflect
+        </button>
+
+        <div class="reflection-box">
+
+          <p>
+            What does your anger want to say?
+          </p>
+
+          <textarea
+            placeholder="A few words for yourself..."></textarea>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- SHAME -->
+
+  <section class="emotion-video-section">
+
+    <div class="emotion-video-container">
+
+      <div class="emotion-video">
+
+        <iframe
+          src="https://www.youtube.com/embed/zcDHckG3BnA"
+          title="Shame"
+          loading="lazy"
+          allowfullscreen>
+        </iframe>
+
+      </div>
+
+
+      <div class="emotion-video-info">
+
+        <span class="emotion-number">
+          03 · EMOTION
+        </span>
+
+        <h2>
+          Shame
+        </h2>
+
+        <p>
+          Stay with yourself without judgment.
+          You don't have to be perfect here.
+        </p>
+
+        <button
+          class="reflection-toggle"
+          onclick="toggleReflection(this)">
+          Pause & reflect
+        </button>
+
+        <div class="reflection-box">
+
+          <p>
+            What is happening inside you?
+          </p>
+
+          <textarea
+            placeholder="A few words for yourself..."></textarea>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- GRIEF -->
+
+  <section class="emotion-video-section emotion-video-dark">
+
+    <div class="emotion-video-container reverse">
+
+      <div class="emotion-video">
+
+        <iframe
+          src="https://www.youtube.com/embed/Dup5n1ddhPY"
+          title="Grief"
+          loading="lazy"
+          allowfullscreen>
+        </iframe>
+
+      </div>
+
+
+      <div class="emotion-video-info">
+
+        <span class="emotion-number">
+          04 · EMOTION
+        </span>
+
+        <h2>
+          Grief
+        </h2>
+
+        <p>
+          Sometimes there is nothing you need to do.
+          You can simply stay close to what hurts.
+        </p>
+
+        <button
+          class="reflection-toggle"
+          onclick="toggleReflection(this)">
+          Pause & reflect
+        </button>
+
+        <div class="reflection-box">
+
+          <p>
+            What would you like to allow yourself to feel?
+          </p>
+
+          <textarea
+            placeholder="A few words for yourself..."></textarea>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- JOY -->
+
+  <section class="emotion-video-section">
+
+    <div class="emotion-video-container">
+
+      <div class="emotion-video">
+
+        <iframe
+          src="https://www.youtube.com/embed/8VbHXGXDVm8"
+          title="Joy"
+          loading="lazy"
+          allowfullscreen>
+        </iframe>
+
+      </div>
+
+
+      <div class="emotion-video-info">
+
+        <span class="emotion-number">
+          05 · EMOTION
+        </span>
+
+        <h2>
+          Joy
+        </h2>
+
+        <p>
+          Joy can be experienced fully too.
+          You don't have to rush away from it.
+        </p>
+
+        <button
+          class="reflection-toggle"
+          onclick="toggleReflection(this)">
+          Pause & reflect
+        </button>
+
+        <div class="reflection-box">
+
+          <p>
+            Where do you feel joy in your body?
+          </p>
+
+          <textarea
+            placeholder="A few words for yourself..."></textarea>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- PAUSE -->
+
+  <section class="emotion-pause">
+
+    <div class="emotion-pause-content">
+
+      <span>♡</span>
+
+      <h2>
+        Nothing needs<br>
+        to happen right now.
+      </h2>
+
+      <p>
+        Take a pause.
+        Drink some water.
+        Look out the window.
+        Stay with yourself.
+      </p>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- COMBINED PRACTICE -->
+
+  <section class="emotion-video-full">
+
+    <div class="emotion-video-full-wrapper">
+
+      <iframe
+        src="https://www.youtube.com/embed/d5rJlG49yBM"
+        title="Fear · Anger · Shame — practice"
+        loading="lazy"
+        allowfullscreen>
+      </iframe>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- END -->
+
+  <section class="emotion-ending">
+
+    <div class="emotion-ending-content">
+
+      <span class="emotion-number">
+        TO FINISH
+      </span>
+
+      <h2>
+        You can<br>
+        come back here.
+      </h2>
+
+      <p>
+        Not only when everything is fine.
+        But whenever you need a little more
+        space for yourself.
+      </p>
+
+      <p class="emotion-ending-small">
+        Take care of yourself.
+      </p>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- SUPPORT -->
+
+  <section class="emotion-support">
+
+    <div class="emotion-support-content">
+
+      <span class="emotion-number">
+        TO STAY ALIVE
+      </span>
+
+      <h2>
+        If this space<br>
+        was helpful to you
+      </h2>
+
+      <p>
+        You can support this project
+        and help keep it available
+        for other women.
+      </p>
+
+      <a
+        href="#support"
+        class="emotion-button">
+        Support
+      </a>
+
+    </div>
+
+  </section>
+
+
+</main>
+
+
+
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
 
 <script>
 
-const translations = {
 
-  en: {
-
-    eyebrow:
-      "A gentle space for feeling",
-
-    heroTitle:
-      "How to Live Through Emotions",
-
-    heroDescription:
-      "A video journey through fear, anger, shame, grief and joy — learning not to fight what we feel, but to stay with ourselves.",
-
-    startButton:
-      "Begin the journey",
-
-
-    introEyebrow:
-      "Before you begin",
-
-    introTitle:
-      "Start here.",
-
-    introText:
-      "This short introduction will help you understand how to use the course and how to approach the practices gently.",
-
-
-    howEyebrow:
-      "A little guidance",
-
-    howTitle:
-      "There is no right way to feel.",
-
-    howText1:
-      "You don't have to complete everything at once. You don't have to force yourself to feel anything.",
-
-    howText2:
-      "Find a quiet moment. Watch one video. Notice what happens inside you. Give yourself time.",
-
-    howText3:
-      "You can pause. You can come back later. Your experience does not need to look like anyone else's.",
-
-
-    courseEyebrow:
-      "The journey",
-
-    courseTitle:
-      "Five emotions. One journey back to yourself.",
-
-    courseDescription:
-      "Move through the emotions one by one. Or choose the one that feels closest to you today.",
-
-
-    fearTitle:
-      "Fear",
-
-    fearText:
-      "Meeting fear without running away from yourself.",
-
-
-    angerTitle:
-      "Anger",
-
-    angerText:
-      "Allowing anger to be felt, understood and heard.",
-
-
-    shameTitle:
-      "Shame",
-
-    shameText:
-      "Looking at shame with gentleness instead of turning away.",
-
-
-    griefTitle:
-      "Grief",
-
-    griefText:
-      "Making space for what has been lost and what still needs to be felt.",
-
-
-    joyTitle:
-      "Joy",
-
-    joyText:
-      "Letting yourself notice pleasure, warmth and aliveness.",
-
-
-    combinedEyebrow:
-      "When you're ready",
-
-    combinedTitle:
-      "Fear. Anger. Shame.",
-
-    combinedText:
-      "A longer practice bringing three emotions together. Give yourself enough time and space for this one.",
-
-    combinedLabel:
-      "Extended practice",
-
-
-    closingEyebrow:
-      "A final thought",
-
-    closingTitle:
-      "You don't have to become someone else.",
-
-    closingText:
-      "Sometimes the way back to yourself begins with allowing yourself to feel what is already here.",
-
-
-    supportTitle:
-      "If this journey was meaningful to you",
-
-    supportText:
-      "You can support Vira's work and help make future projects about women, emotions and human connection possible.",
-
-    supportButton:
-      "Support the work"
-
-  },
-
-
-  ua: {
-
-    eyebrow:
-      "Дбайливий простір для проживання",
-
-    heroTitle:
-      "Як проживати емоції",
-
-    heroDescription:
-      "Відеомандрівка крізь страх, гнів, сором, горе та радість — вчимося не боротися з тим, що відчуваємо, а залишатися поруч із собою.",
-
-    startButton:
-      "Почати шлях",
-
-
-    introEyebrow:
-      "Перш ніж почати",
-
-    introTitle:
-      "Почніть звідси.",
-
-    introText:
-      "Це коротке вступне відео допоможе зрозуміти, як користуватися курсом і як дбайливо підходити до практик.",
-
-
-    howEyebrow:
-      "Невелика підказка",
-
-    howTitle:
-      "Не існує правильного способу відчувати.",
-
-    howText1:
-      "Вам не потрібно проходити все одразу. Вам не потрібно змушувати себе щось відчувати.",
-
-    howText2:
-      "Знайдіть тихий момент. Подивіться одне відео. Зверніть увагу на те, що відбувається всередині. Дайте собі час.",
-
-    howText3:
-      "Ви можете поставити відео на паузу. Ви можете повернутися пізніше. Ваш досвід не має бути схожим на досвід когось іншого.",
-
-
-    courseEyebrow:
-      "Подорож",
-
-    courseTitle:
-      "П'ять емоцій. Один шлях назад до себе.",
-
-    courseDescription:
-      "Рухайтеся крізь емоції одну за одною. Або оберіть ту, яка сьогодні найближча до вас.",
-
-
-    fearTitle:
-      "Страх",
-
-    fearText:
-      "Зустрітися зі страхом, не тікаючи від себе.",
-
-
-    angerTitle:
-      "Гнів",
-
-    angerText:
-      "Дозволити гніву бути відчутим, почутим і зрозумілим.",
-
-
-    shameTitle:
-      "Сором",
-
-    shameText:
-      "Подивитися на сором із дбайливістю, замість того щоб відвертатися від нього.",
-
-
-    griefTitle:
-      "Горе",
-
-    griefText:
-      "Створити простір для того, що було втрачено і що досі потребує проживання.",
-
-
-    joyTitle:
-      "Радість",
-
-    joyText:
-      "Дозволити собі помічати задоволення, тепло та живість.",
-
-
-    combinedEyebrow:
-      "Коли будете готові",
-
-    combinedTitle:
-      "Страх. Гнів. Сором.",
-
-    combinedText:
-      "Довша практика, яка поєднує три емоції. Дайте собі достатньо часу та простору для цієї практики.",
-
-    combinedLabel:
-      "Розширена практика",
-
-
-    closingEyebrow:
-      "На завершення",
-
-    closingTitle:
-      "Вам не потрібно ставати кимось іншим.",
-
-    closingText:
-      "Іноді шлях назад до себе починається з дозволу відчути те, що вже є всередині.",
-
-
-    supportTitle:
-      "Якщо ця подорож була для вас важливою",
-
-    supportText:
-      "Ви можете підтримати роботу Віри та допомогти створювати майбутні проєкти про жінок, емоції та людський зв'язок.",
-
-    supportButton:
-      "Підтримати роботу"
-
-  }
-
-};
-
+/* =========================================================
+   LANGUAGE SWITCH
+========================================================= */
 
 function setLanguage(lang) {
 
-  document.documentElement.lang = lang;
+  const uk = document.getElementById('page-uk');
+  const en = document.getElementById('page-en');
 
-  document.querySelectorAll("[data-i18n]").forEach(element => {
-
-    const key = element.dataset.i18n;
-
-    if (translations[lang][key]) {
-      element.textContent = translations[lang][key];
-    }
-
-  });
+  const buttons = document.querySelectorAll('.lang-switch span[data-lang]');
 
 
-  document.querySelectorAll("[data-lang]").forEach(button => {
+  if (lang === 'uk') {
+
+    uk.style.display = 'block';
+    en.style.display = 'none';
+
+    document.documentElement.lang = 'uk';
+
+  } else {
+
+    uk.style.display = 'none';
+    en.style.display = 'block';
+
+    document.documentElement.lang = 'en';
+
+  }
+
+
+  buttons.forEach(button => {
 
     button.classList.toggle(
-      "active",
+      'active',
       button.dataset.lang === lang
     );
 
   });
 
 
-  localStorage.setItem("emotionCourseLanguage", lang);
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
 
 }
 
 
-document.querySelectorAll("[data-lang]").forEach(button => {
 
-  button.addEventListener("click", () => {
+/* =========================================================
+   REFLECTION
+========================================================= */
 
-    setLanguage(button.dataset.lang);
+function toggleReflection(button) {
 
-  });
+  const box = button.nextElementSibling;
+
+  if (!box) return;
+
+  box.classList.toggle('open');
+
+}
+
+
+
+/* =========================================================
+   FADE IN
+========================================================= */
+
+const fadeElements = document.querySelectorAll(
+  '.fade-in, .emotion-step, .emotion-video-container, .emotion-ending-content, .emotion-support-content'
+);
+
+
+const observer = new IntersectionObserver(
+  entries => {
+
+    entries.forEach(entry => {
+
+      if (entry.isIntersecting) {
+
+        entry.target.classList.add('visible');
+
+        observer.unobserve(entry.target);
+
+      }
+
+    });
+
+  },
+  {
+    threshold: 0.15
+  }
+);
+
+
+fadeElements.forEach(element => {
+
+  observer.observe(element);
 
 });
 
 
-const savedLanguage =
-  localStorage.getItem("emotionCourseLanguage") || "en";
 
+/* =========================================================
+   DEFAULT LANGUAGE
+========================================================= */
 
-setLanguage(savedLanguage);
+document.getElementById('page-en').style.display = 'none';
+document.getElementById('page-uk').style.display = 'block';
+
 
 </script>
 
