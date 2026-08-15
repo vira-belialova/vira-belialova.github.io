@@ -2215,6 +2215,101 @@ if (
 }
 
 
+  /* =========================================================
+   COPY WISE
+========================================================= */
+
+const copyWise =
+  document.getElementById('copyWise');
+
+if (copyWise) {
+
+  copyWise.addEventListener(
+    'click',
+    async () => {
+
+      const wiseDetails =
+        'BE82 9053 0838 8568';
+
+      try {
+
+        await navigator.clipboard.writeText(
+          wiseDetails
+        );
+
+        copyWise.textContent =
+          'Copied ✓';
+
+        setTimeout(() => {
+
+          copyWise.textContent =
+            'Copy Wise details';
+
+        }, 2000);
+
+      } catch (error) {
+
+        alert(
+          'Copy Wise details manually: ' +
+          wiseDetails
+        );
+
+      }
+
+    }
+  );
+
+}
+
+
+
+/* =========================================================
+   COPY A-BANK CARD
+========================================================= */
+
+const copyCard =
+  document.getElementById('copyCard');
+
+if (copyCard) {
+
+  copyCard.addEventListener(
+    'click',
+    async () => {
+
+      const cardNumber =
+        '4323 3450 5365 5222';
+
+      try {
+
+        await navigator.clipboard.writeText(
+          cardNumber
+        );
+
+        copyCard.textContent =
+          'Copied ✓';
+
+        setTimeout(() => {
+
+          copyCard.textContent =
+            'Copy card number';
+
+        }, 2000);
+
+      } catch (error) {
+
+        alert(
+          'Copy the card number manually: ' +
+          cardNumber
+        );
+
+      }
+
+    }
+  );
+
+}
+
+
 
 /* =========================================================
    SHOW / HIDE WALLET
