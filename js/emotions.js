@@ -18,13 +18,29 @@ document.addEventListener("DOMContentLoaded", () => {
     const switches =
       document.querySelectorAll(".lang-switch [data-lang]");
 
+
+    /* Fallback */
+
+    if (lang !== "uk" && lang !== "en") {
+      lang = "uk";
+    }
+
+
+    /* Show only selected language */
+
     Object.entries(pages).forEach(([key, page]) => {
 
       if (!page) return;
 
-      page.classList.toggle("active", key === lang);
+      page.classList.toggle(
+        "active",
+        key === lang
+      );
 
     });
+
+
+    /* Update language switch */
 
     switches.forEach(button => {
 
@@ -35,10 +51,37 @@ document.addEventListener("DOMContentLoaded", () => {
 
     });
 
+
+    /* Update HTML language */
+
     document.documentElement.lang =
-      lang === "en" ? "en" : "uk";
+      lang === "en"
+        ? "en"
+        : "uk";
+
+
+    /* Remember language */
+
+    localStorage.setItem(
+      "emotions-language",
+      lang
+    );
 
   };
+
+
+  /* =======================================================
+     INITIAL LANGUAGE
+     ======================================================= */
+
+  const savedLanguage =
+    localStorage.getItem("emotions-language");
+
+  window.setLanguage(
+    savedLanguage === "en"
+      ? "en"
+      : "uk"
+  );
 
 
   /* =======================================================
@@ -74,16 +117,9 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 
-  /*
-   * Support buttons
-   *
-   * Supports:
-   * - #emotionsDonateBtn
-   * - #emotionsDonateBtnEn
-   * - [data-donate]
-   * - .donate-button
-   * - .open-donate
-   */
+  /* =======================================================
+     SUPPORT BUTTONS
+     ======================================================= */
 
   document.querySelectorAll(
     "#emotionsDonateBtn, " +
@@ -184,6 +220,8 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!target) return;
 
 
+      /* Deactivate all buttons */
+
       tabButtons.forEach(btn => {
 
         btn.classList.remove("active");
@@ -191,12 +229,16 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
 
+      /* Hide all contents */
+
       tabContents.forEach(content => {
 
         content.classList.remove("active");
 
       });
 
+
+      /* Activate selected */
 
       button.classList.add("active");
 
@@ -227,11 +269,9 @@ document.addEventListener("DOMContentLoaded", () => {
       let text = "";
 
 
-      /*
-       * Preferred:
-       *
-       * <button data-copy="#someElement">
-       */
+      /* ---------------------------------------------------
+         Generic data-copy
+      --------------------------------------------------- */
 
       const targetSelector =
         button.dataset.copy;
@@ -252,9 +292,9 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
 
-      /*
-       * Special IDs
-       */
+      /* ---------------------------------------------------
+         USDT wallet
+      --------------------------------------------------- */
 
       if (!text && button.id === "copyWallet") {
 
@@ -270,6 +310,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
       }
 
+
+      /* ---------------------------------------------------
+         Wise
+      --------------------------------------------------- */
 
       if (!text && button.id === "copyWise") {
 
@@ -287,6 +331,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
       }
 
+
+      /* ---------------------------------------------------
+         A-Bank
+      --------------------------------------------------- */
 
       if (!text && button.id === "copyCard") {
 
@@ -368,7 +416,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
         walletAddress.style.display =
-          isHidden ? "block" : "none";
+          isHidden
+            ? "block"
+            : "none";
 
 
         showWalletButton.textContent =
@@ -409,14 +459,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
         /*
-         * Preserve language of the button.
+         * Detect language from the actual page.
          */
 
+        const activePage =
+          document.querySelector(
+            ".language-page.active"
+          );
+
+
         const isEnglish =
-          document.documentElement.lang === "en" ||
-          button.textContent
-            .toLowerCase()
-            .includes("reflect");
+          activePage?.id === "page-en";
 
 
         button.textContent =
@@ -523,9 +576,7 @@ document.addEventListener("DOMContentLoaded", () => {
           window.scrollY;
 
 
-        /*
-         * Always show navigation near top.
-         */
+        /* Always show near top */
 
         if (currentScrollY <= 100) {
 
@@ -536,9 +587,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
 
-        /*
-         * Scrolling down → hide.
-         */
+        /* Scrolling down */
 
         else if (
           currentScrollY > lastScrollY
@@ -551,9 +600,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
 
-        /*
-         * Scrolling up → show.
-         */
+        /* Scrolling up */
 
         else {
 
@@ -673,6 +720,8 @@ document.addEventListener("DOMContentLoaded", () => {
           )?.value.trim();
 
 
+        /* Validation */
+
         if (
           !name ||
           !contact ||
@@ -694,14 +743,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
 
-        /*
-         * Temporary front-end handling.
-         *
-         * IMPORTANT:
-         * This does not send data anywhere yet.
-         * Backend / Formspree / Apps Script /
-         * Supabase integration can be connected here.
-         */
+        /* Temporary front-end handling */
 
         console.log(
           "Access request:",
