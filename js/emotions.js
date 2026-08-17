@@ -1,715 +1,1455 @@
 /* =========================================================
-   EMOTIONS PAGE — JS
+   EMOTIONS PAGE
    ========================================================= */
 
-document.addEventListener("DOMContentLoaded", () => {
+.emotions-page {
+  background: #111;
+  color: #f1eee8;
+  overflow-x: hidden;
+}
+
+.emotions-page * {
+  box-sizing: border-box;
+}
 
 
-  /* =======================================================
-     LANGUAGE SWITCH
-     ======================================================= */
+/* =========================================================
+   NAVIGATION
+   IMPORTANT:
+   DO NOT POSITION NAV HERE.
+   The site's existing navigation layout controls it.
+   ========================================================= */
 
-  const pageUK =
-    document.getElementById("page-uk");
+.emotions-nav {
+  z-index: 1000;
 
-  const pageEN =
-    document.getElementById("page-en");
+  transition:
+    transform 0.4s ease,
+    opacity 0.4s ease;
+}
 
-  const languageButtons =
-    document.querySelectorAll(
-      ".lang-switch span[data-lang]"
+.emotions-nav.nav-hidden {
+  transform: translateY(-120%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   LANGUAGE SWITCH
+   ========================================================= */
+
+.emotions-nav .lang-switch {
+  position: relative;
+  z-index: 1002;
+}
+
+.emotions-nav .lang-switch span {
+  color: #fff !important;
+  cursor: pointer;
+}
+
+.emotions-nav .lang-switch span.active {
+  color: #fff !important;
+  opacity: 1 !important;
+}
+
+
+/* =========================================================
+   HOME / TO STAY ALIVE BUTTON
+   ========================================================= */
+
+.emotions-home-button {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: auto;
+  min-width: max-content;
+  height: auto;
+
+  padding: 8px 16px;
+
+  color: #fff !important;
+
+  background: transparent !important;
+
+  border: 1px solid rgba(255,255,255,0.75);
+  border-radius: 20px;
+
+  text-decoration: none;
+
+  font-size: 13px;
+  line-height: 1.2;
+  letter-spacing: 1px;
+
+  white-space: nowrap;
+
+  opacity: 1 !important;
+
+  cursor: pointer;
+
+  transition:
+    background 0.25s ease,
+    color 0.25s ease,
+    border-color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.emotions-home-button:hover {
+  background: #fff !important;
+  color: #111 !important;
+  border-color: #fff;
+
+  transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   LANGUAGE PAGES
+   ========================================================= */
+
+.language-page {
+  width: 100%;
+}
+
+#page-uk {
+  display: block;
+}
+
+#page-en {
+  display: none;
+}
+
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+.emotion-hero {
+  position: relative;
+
+  min-height: 100svh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+}
+
+.emotion-hero-image {
+  position: absolute;
+  inset: 0;
+
+  z-index: 0;
+}
+
+.emotion-hero-image img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  display: block;
+
+  animation:
+    emotionHeroZoom 18s ease-in-out infinite alternate;
+}
+
+@keyframes emotionHeroZoom {
+  from {
+    transform: scale(1);
+  }
+
+  to {
+    transform: scale(1.05);
+  }
+}
+
+.emotion-hero-overlay {
+  position: absolute;
+  inset: 0;
+
+  z-index: 1;
+
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(0,0,0,0.15),
+      rgba(0,0,0,0.58)
     );
+}
+
+.emotion-hero-content {
+  position: relative;
+  z-index: 2;
+
+  width: min(850px, 88%);
+
+  padding: 120px 0 80px;
+
+  text-align: center;
+
+  color: #fff !important;
+}
+
+.emotion-hero-content * {
+  color: #fff !important;
+}
+
+.emotion-eyebrow {
+  display: block;
+
+  margin-bottom: 28px;
+
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+
+  opacity: 0.8;
+}
+
+.emotion-hero h1 {
+  margin: 0;
+
+  color: #fff !important;
+
+  font-size: clamp(48px, 8vw, 105px);
+  line-height: 0.96;
+
+  font-weight: 400;
+
+  letter-spacing: -0.045em;
+}
+
+.emotion-hero p {
+  max-width: 560px;
+
+  margin: 35px auto 42px;
+
+  color: #fff !important;
+
+  font-size: clamp(17px, 2vw, 21px);
+  line-height: 1.65;
+
+  opacity: 0.9;
+}
 
 
-  function setLanguage(lang) {
+/* =========================================================
+   GENERAL BUTTON
+   ========================================================= */
 
-    if (!pageUK || !pageEN) return;
+.emotion-button {
+  position: relative;
+  z-index: 5;
+
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  min-width: 150px;
+
+  padding: 14px 28px;
+
+  border: 1px solid rgba(255,255,255,0.65);
+
+  color: #fff !important;
+  background: transparent !important;
+
+  text-decoration: none;
+
+  font-family: inherit;
+  font-size: 13px;
+  line-height: 1.2;
+
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+
+  cursor: pointer;
+
+  opacity: 1 !important;
+
+  pointer-events: auto;
+
+  transition:
+    background 0.25s ease,
+    color 0.25s ease,
+    border-color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.emotion-button:hover {
+  background: #f1eee8 !important;
+  color: #111 !important;
+
+  border-color: #f1eee8;
+
+  transform: translateY(-2px);
+}
 
 
-    if (lang === "en") {
+/* =========================================================
+   INTRO
+   ========================================================= */
 
-      pageUK.classList.remove("active");
-      pageEN.classList.add("active");
+.emotion-intro {
+  min-height: 85vh;
 
-      pageUK.style.display = "none";
-      pageEN.style.display = "block";
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-      document.documentElement.lang = "en";
+  padding: 120px 20px;
+}
 
-    } else {
+.emotion-narrow {
+  width: min(720px, 90%);
 
-      pageEN.classList.remove("active");
-      pageUK.classList.add("active");
+  text-align: center;
+}
 
-      pageEN.style.display = "none";
-      pageUK.style.display = "block";
+.emotion-number {
+  display: block;
 
-      document.documentElement.lang = "uk";
+  margin-bottom: 28px;
 
-    }
+  font-size: 11px;
+  letter-spacing: 0.2em;
+
+  opacity: 0.45;
+}
+
+.emotion-narrow h2,
+.emotion-section-heading h2,
+.emotion-ending h2,
+.emotion-support h2 {
+  margin: 0;
+
+  font-weight: 400;
+
+  letter-spacing: -0.025em;
+}
+
+.emotion-narrow h2 {
+  font-size: clamp(34px, 5vw, 62px);
+  line-height: 1.05;
+}
+
+.emotion-line {
+  width: 45px;
+  height: 1px;
+
+  margin: 45px auto;
+
+  background: currentColor;
+
+  opacity: 0.35;
+}
+
+.emotion-narrow p {
+  margin: 20px auto;
+
+  max-width: 620px;
+
+  font-size: 17px;
+  line-height: 1.8;
+
+  opacity: 0.7;
+}
 
 
-    languageButtons.forEach(button => {
+/* =========================================================
+   FOR WHO
+   ========================================================= */
 
-      button.classList.toggle(
-        "active",
-        button.dataset.lang === lang
-      );
+.emotion-for-who {
+  display: grid;
 
-    });
+  grid-template-columns: 1fr 1fr;
+
+  min-height: 90vh;
+
+  background: #181818;
+}
+
+.emotion-for-image {
+  min-height: 650px;
+
+  overflow: hidden;
+}
+
+.emotion-for-image img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  display: block;
+
+  filter: saturate(0.75);
+}
+
+.emotion-for-text {
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+
+  padding: 12%;
+}
+
+.emotion-for-text h2 {
+  margin: 0 0 45px;
+
+  font-size: clamp(38px, 5vw, 65px);
+
+  font-weight: 400;
+
+  line-height: 1;
+
+  letter-spacing: -0.04em;
+}
+
+.emotion-for-text p {
+  margin: 7px 0;
+
+  font-size: 19px;
+  line-height: 1.6;
+
+  opacity: 0.72;
+}
 
 
-    window.scrollTo({
-      top: 0,
-      behavior: "auto"
-    });
+/* =========================================================
+   JOURNEY
+   ========================================================= */
 
+.emotion-journey {
+  padding: 150px 7%;
+
+  background: #111;
+  color: #f1eee8;
+}
+
+.emotion-section-heading {
+  max-width: 700px;
+
+  margin: 0 auto 100px;
+
+  text-align: center;
+}
+
+.emotion-section-heading h2 {
+  font-size: clamp(42px, 6vw, 75px);
+}
+
+.emotion-section-heading p {
+  max-width: 500px;
+
+  margin: 30px auto 0;
+
+  line-height: 1.7;
+
+  opacity: 0.6;
+}
+
+.emotion-steps {
+  max-width: 1000px;
+
+  margin: auto;
+}
+
+.emotion-step {
+  display: grid;
+
+  grid-template-columns: 100px 1fr;
+
+  gap: 45px;
+
+  padding: 55px 0;
+
+  border-top: 1px solid rgba(255,255,255,0.14);
+
+  opacity: 1;
+
+  transform: translateY(0);
+}
+
+.emotion-step.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.emotion-step-number {
+  font-size: 13px;
+  opacity: 0.4;
+}
+
+.emotion-step-content > span {
+  display: block;
+
+  margin-bottom: 13px;
+
+  font-size: 11px;
+
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+
+  opacity: 0.5;
+}
+
+.emotion-step h3 {
+  margin: 0 0 16px;
+
+  font-size: clamp(27px, 3vw, 40px);
+
+  font-weight: 400;
+
+  letter-spacing: -0.025em;
+}
+
+.emotion-step p {
+  max-width: 600px;
+
+  margin: 0 0 25px;
+
+  font-size: 17px;
+  line-height: 1.75;
+
+  opacity: 0.65;
+}
+
+
+/* =========================================================
+   VIDEO SECTIONS
+   ========================================================= */
+
+.emotion-video-section {
+  padding: 120px 6%;
+
+  background: #e8e4dc;
+  color: #171717;
+}
+
+.emotion-video-dark {
+  background: #151515;
+  color: #f1eee8;
+}
+
+.emotion-video-container,
+.emotion-video-container.reverse {
+  max-width: 1250px;
+
+  margin: auto;
+
+  display: grid;
+
+  grid-template-columns: 1.4fr 0.8fr;
+
+  gap: 7vw;
+
+  align-items: center;
+
+  opacity: 1;
+
+  transform: none;
+}
+
+.emotion-video-container.reverse {
+  grid-template-columns: 0.8fr 1.4fr;
+}
+
+.emotion-video-container.visible {
+  opacity: 1;
+  transform: none;
+}
+
+.emotion-video {
+  position: relative;
+
+  width: 100%;
+
+  aspect-ratio: 16 / 9;
+
+  overflow: hidden;
+
+  background: #000;
+}
+
+.emotion-video iframe {
+  width: 100%;
+  height: 100%;
+
+  border: 0;
+
+  display: block;
+}
+
+.emotion-video-info {
+  padding: 20px 0;
+}
+
+.emotion-video-info h2 {
+  margin: 0 0 25px;
+
+  font-size: clamp(38px, 5vw, 65px);
+
+  font-weight: 400;
+
+  letter-spacing: -0.04em;
+}
+
+.emotion-video-info > p {
+  max-width: 470px;
+
+  margin-bottom: 20px;
+
+  font-size: 17px;
+  line-height: 1.75;
+
+  opacity: 0.7;
+}
+
+
+/* =========================================================
+   REFLECTION
+   ========================================================= */
+
+.reflection-toggle {
+  position: relative;
+  z-index: 5;
+
+  margin-top: 28px;
+
+  padding: 0 0 5px;
+
+  background: none !important;
+
+  border: 0;
+  border-bottom: 1px solid currentColor;
+
+  color: inherit !important;
+
+  font-family: inherit;
+
+  font-size: 12px;
+
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+
+  cursor: pointer;
+
+  opacity: 0.65;
+}
+
+.reflection-box {
+  max-height: 0;
+
+  overflow: hidden;
+
+  opacity: 0;
+
+  transition:
+    max-height 0.7s ease,
+    opacity 0.5s ease;
+}
+
+.reflection-box.open {
+  max-height: 300px;
+
+  margin-top: 30px;
+
+  opacity: 1;
+}
+
+.reflection-box p {
+  font-size: 15px;
+  line-height: 1.6;
+
+  opacity: 0.65;
+}
+
+.reflection-box textarea {
+  width: 100%;
+
+  min-height: 100px;
+
+  padding: 15px;
+
+  margin-top: 10px;
+
+  resize: vertical;
+
+  background: transparent;
+
+  border: 1px solid currentColor;
+
+  color: inherit;
+
+  font-family: inherit;
+
+  font-size: 14px;
+
+  opacity: 0.6;
+
+  outline: none;
+}
+
+.reflection-box textarea:focus {
+  opacity: 1;
+}
+
+
+/* =========================================================
+   FULL VIDEO
+   ========================================================= */
+
+.emotion-video-full {
+  background: #000;
+
+  padding: 0;
+}
+
+.emotion-video-full-wrapper {
+  width: 100%;
+
+  aspect-ratio: 16 / 9;
+
+  max-height: 100vh;
+}
+
+.emotion-video-full iframe {
+  width: 100%;
+  height: 100%;
+
+  border: 0;
+}
+
+
+/* =========================================================
+   ENDING
+   ========================================================= */
+
+.emotion-ending {
+  min-height: 90vh;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+
+  padding: 120px 20px;
+
+  background: #e8e4dc;
+  color: #171717;
+}
+
+.emotion-ending-content {
+  max-width: 800px;
+
+  opacity: 1;
+  transform: none;
+}
+
+.emotion-ending-content.visible {
+  opacity: 1;
+  transform: none;
+}
+
+.emotion-ending h2 {
+  font-size: clamp(43px, 6vw, 78px);
+
+  line-height: 0.98;
+}
+
+.emotion-ending p {
+  margin: 35px auto 0;
+
+  max-width: 500px;
+
+  font-size: 20px;
+
+  line-height: 1.7;
+
+  opacity: 0.65;
+}
+
+.emotion-ending-small {
+  font-size: 15px !important;
+  opacity: 0.45 !important;
+}
+
+
+/* =========================================================
+   SUPPORT
+   ========================================================= */
+
+.emotion-support {
+  position: relative;
+
+  z-index: 2;
+
+  min-height: 70vh;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+
+  padding: 100px 20px;
+
+  background: #111 !important;
+  color: #f1eee8 !important;
+}
+
+.emotion-support-content {
+  position: relative;
+  z-index: 3;
+
+  max-width: 650px;
+
+  opacity: 1 !important;
+  transform: none !important;
+
+  pointer-events: auto !important;
+}
+
+.emotion-support-content.visible {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+.emotion-support h2 {
+  margin: 0;
+
+  color: #f1eee8 !important;
+
+  font-size: clamp(38px, 5vw, 65px);
+
+  line-height: 1;
+}
+
+.emotion-support p {
+  max-width: 520px;
+
+  margin: 30px auto 40px;
+
+  color: #f1eee8 !important;
+
+  line-height: 1.8;
+
+  opacity: 0.6;
+}
+
+.emotion-support .emotion-number {
+  color: #f1eee8 !important;
+}
+
+
+/* =========================================================
+   DONATION MODAL
+   ONE VERSION ONLY
+   ========================================================= */
+
+.donate-modal {
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 99999;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+
+  background: rgba(0,0,0,0.72);
+
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  transition:
+    opacity 0.25s ease,
+    visibility 0.25s ease;
+}
+
+.donate-modal.active {
+  opacity: 1;
+
+  visibility: visible;
+
+  pointer-events: auto;
+}
+
+.donate-modal-content {
+  position: relative;
+
+  z-index: 100000;
+
+  width: min(500px, 100%);
+
+  max-height: 90vh;
+
+  overflow-y: auto;
+
+  padding: 40px;
+
+  background: #f7f4ef !important;
+
+  color: #222 !important;
+
+  border-radius: 18px;
+
+  box-shadow:
+    0 30px 100px rgba(0,0,0,0.45);
+
+  transform: translateY(20px) scale(0.98);
+
+  transition:
+    transform 0.25s ease;
+}
+
+.donate-modal.active .donate-modal-content {
+  transform: translateY(0) scale(1);
+}
+
+.donate-modal-content h2 {
+  margin: 0 45px 28px 0;
+
+  color: #222 !important;
+
+  font-size: clamp(30px, 5vw, 48px);
+
+  line-height: 1.05;
+
+  font-weight: 400;
+
+  letter-spacing: -0.035em;
+}
+
+
+/* =========================================================
+   CLOSE
+   ========================================================= */
+
+.close-modal {
+  position: absolute;
+
+  top: 16px;
+  right: 20px;
+
+  z-index: 100001;
+
+  width: 36px;
+  height: 36px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border: 0;
+
+  background: transparent !important;
+
+  color: #222 !important;
+
+  font-size: 28px;
+  line-height: 1;
+
+  cursor: pointer;
+
+  opacity: 0.55;
+
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+}
+
+.close-modal:hover {
+  opacity: 1;
+
+  transform: rotate(90deg);
+}
+
+
+/* =========================================================
+   DONATION TABS
+   ========================================================= */
+
+.donate-tabs {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 8px;
+
+  margin-bottom: 24px;
+}
+
+.donate-tabs .tab-btn {
+  position: relative;
+
+  z-index: 2;
+
+  padding: 10px 16px;
+
+  border: 0;
+
+  border-radius: 999px;
+
+  background: rgba(0,0,0,0.07) !important;
+
+  color: #222 !important;
+
+  font-family: inherit;
+
+  font-size: 12px;
+
+  letter-spacing: 0.08em;
+
+  text-transform: uppercase;
+
+  cursor: pointer;
+
+  opacity: 0.65;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.donate-tabs .tab-btn:hover {
+  background: rgba(0,0,0,0.12) !important;
+
+  opacity: 1;
+}
+
+.donate-tabs .tab-btn.active {
+  background: #222 !important;
+
+  color: #fff !important;
+
+  opacity: 1;
+}
+
+
+/* =========================================================
+   TAB CONTENT
+   ========================================================= */
+
+.donate-modal .tab-content {
+  display: none;
+}
+
+.donate-modal .tab-content.active {
+  display: block;
+}
+
+.donate-modal .tab-content p {
+  color: #222 !important;
+}
+
+.donation-note {
+  margin-top: 16px;
+
+  font-size: 14px;
+
+  line-height: 1.6;
+
+  opacity: 0.7;
+}
+
+
+/* =========================================================
+   DONATION LINKS
+   ========================================================= */
+
+.donate-link {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  min-width: 200px;
+
+  padding: 14px 22px;
+
+  border: 0;
+
+  border-radius: 10px;
+
+  background: #222 !important;
+
+  color: #fff !important;
+
+  text-decoration: none;
+
+  font-size: 13px;
+
+  letter-spacing: 0.08em;
+
+  text-transform: uppercase;
+
+  cursor: pointer;
+
+  transition:
+    background 0.25s ease,
+    color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.donate-link:hover {
+  background: #333 !important;
+
+  color: #fff !important;
+
+  transform: translateY(-2px);
+}
+
+.donate-link.minimal {
+  margin-top: 12px;
+}
+
+
+/* =========================================================
+   BANK DETAILS
+   ========================================================= */
+
+.bank-details {
+  margin: 15px 0;
+
+  padding: 20px;
+
+  border-radius: 12px;
+
+  background: rgba(0,0,0,0.05);
+}
+
+.bank-details p {
+  margin: 8px 0;
+
+  color: #222 !important;
+}
+
+.card-number {
+  font-family: monospace;
+
+  font-size: 15px;
+
+  letter-spacing: 0.04em;
+
+  word-break: break-all;
+}
+
+
+/* =========================================================
+   USDT
+   ========================================================= */
+
+.qr-copy {
+  display: flex;
+
+  justify-content: center;
+
+  margin-bottom: 20px;
+}
+
+.donation-qr {
+  width: min(280px, 100%);
+
+  height: auto;
+
+  display: block;
+
+  margin: 0 auto 20px;
+
+  border-radius: 12px;
+}
+
+.wallet-address {
+  word-break: break-all;
+
+  padding: 12px;
+
+  border: 1px solid rgba(23,23,23,0.18);
+
+  border-radius: 8px;
+
+  background: rgba(0,0,0,0.05);
+
+  font-family: monospace;
+
+  font-size: 12px;
+}
+
+.donate-actions {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 10px;
+
+  margin-top: 15px;
+}
+
+.copy-btn,
+.show-wallet {
+  position: relative;
+
+  z-index: 3;
+
+  padding: 10px 14px;
+
+  border: 0;
+
+  border-radius: 8px;
+
+  background: #222 !important;
+
+  color: #fff !important;
+
+  font-family: inherit;
+
+  font-size: 12px;
+
+  letter-spacing: 0.06em;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.copy-btn:hover,
+.show-wallet:hover {
+  background: #333 !important;
+
+  color: #fff !important;
+
+  opacity: 0.9;
+}
+
+
+/* =========================================================
+   MODAL BODY LOCK
+   ========================================================= */
+
+body.modal-open {
+  overflow: hidden;
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.emotions-page footer {
+  position: relative;
+
+  z-index: 2;
+
+  background: #111;
+
+  color: #f1eee8;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 800px) {
+
+  .emotions-home-button {
+    min-height: 42px;
+
+    padding: 7px 12px;
+
+    font-size: 11px;
+
+    letter-spacing: 0.8px;
   }
 
+  .emotion-hero-content {
+    width: 88%;
 
-  languageButtons.forEach(button => {
-
-    button.addEventListener("click", (event) => {
-
-      event.preventDefault();
-
-      const lang =
-        button.dataset.lang;
-
-      if (!lang) return;
-
-      setLanguage(lang);
-
-    });
-
-  });
-
-
-  /* DEFAULT LANGUAGE */
-
-  setLanguage("uk");
-
-
-  /* =======================================================
-     DONATION MODAL
-     ======================================================= */
-
-  const modal = document.querySelector(".donate-modal");
-  const closeButton = document.querySelector(".close-modal");
-
-  if (modal) {
-
-    /* -------------------------------------------------------
-       OPEN MODAL
-       ------------------------------------------------------- */
-
-    document.querySelectorAll(
-      '[data-donate], .donate-button, .open-donate'
-    ).forEach(button => {
-
-      button.addEventListener("click", (event) => {
-
-        event.preventDefault();
-
-        modal.classList.add("active");
-
-        document.body.classList.add("modal-open");
-
-      });
-
-    });
-
-
-    /* -------------------------------------------------------
-       CLOSE MODAL
-       ------------------------------------------------------- */
-
-    if (closeButton) {
-
-      closeButton.addEventListener("click", () => {
-
-        closeDonationModal();
-
-      });
-
-    }
-
-
-    /* -------------------------------------------------------
-       CLICK OUTSIDE
-       ------------------------------------------------------- */
-
-    modal.addEventListener("click", (event) => {
-
-      if (event.target === modal) {
-
-        closeDonationModal();
-
-      }
-
-    });
-
-
-    /* -------------------------------------------------------
-       ESC
-       ------------------------------------------------------- */
-
-    document.addEventListener("keydown", (event) => {
-
-      if (
-        event.key === "Escape" &&
-        modal.classList.contains("active")
-      ) {
-
-        closeDonationModal();
-
-      }
-
-    });
-
+    padding-top: 100px;
   }
 
-
-  function closeDonationModal() {
-
-    if (!modal) return;
-
-    modal.classList.remove("active");
-
-    document.body.classList.remove("modal-open");
-
+  .emotion-hero h1 {
+    font-size: clamp(48px, 13vw, 75px);
   }
 
+  .emotion-intro {
+    min-height: auto;
 
-  /* =======================================================
-     DONATION TABS
-     ======================================================= */
-
-  const tabButtons =
-    document.querySelectorAll(".donate-tabs .tab-btn");
-
-  const tabContents =
-    document.querySelectorAll(".donate-modal .tab-content");
-
-
-  tabButtons.forEach(button => {
-
-    button.addEventListener("click", () => {
-
-      const target =
-        button.dataset.tab ||
-        button.getAttribute("data-target");
-
-
-      if (!target) return;
-
-
-      /* deactivate buttons */
-
-      tabButtons.forEach(btn => {
-
-        btn.classList.remove("active");
-
-      });
-
-
-      /* hide contents */
-
-      tabContents.forEach(content => {
-
-        content.classList.remove("active");
-
-      });
-
-
-      /* activate selected */
-
-      button.classList.add("active");
-
-
-      const targetElement =
-        document.getElementById(target);
-
-
-      if (targetElement) {
-
-        targetElement.classList.add("active");
-
-      }
-
-    });
-
-  });
-
-
-  /* =======================================================
-     COPY BUTTON
-     ======================================================= */
-
-  document.querySelectorAll(".copy-btn").forEach(button => {
-
-    button.addEventListener("click", async () => {
-
-      const targetSelector =
-        button.dataset.copy;
-
-      let text = "";
-
-
-      if (targetSelector) {
-
-        const element =
-          document.querySelector(targetSelector);
-
-        if (element) {
-
-          text =
-            element.textContent.trim();
-
-        }
-
-      } else {
-
-        const wallet =
-          document.querySelector(".wallet-address");
-
-        if (wallet) {
-
-          text =
-            wallet.textContent.trim();
-
-        }
-
-      }
-
-
-      if (!text) return;
-
-
-      try {
-
-        await navigator.clipboard.writeText(text);
-
-        const originalText =
-          button.textContent;
-
-        button.textContent =
-          "Copied ✓";
-
-
-        setTimeout(() => {
-
-          button.textContent =
-            originalText;
-
-        }, 1800);
-
-
-      } catch (error) {
-
-        console.error(
-          "Copy failed:",
-          error
-        );
-
-      }
-
-    });
-
-  });
-
-
-  /* =======================================================
-     SHOW / HIDE WALLET
-     ======================================================= */
-
-  document.querySelectorAll(".show-wallet").forEach(button => {
-
-    button.addEventListener("click", () => {
-
-      const wallet =
-        document.querySelector(".wallet-address");
-
-      if (!wallet) return;
-
-
-      wallet.hidden =
-        !wallet.hidden;
-
-
-      button.textContent =
-        wallet.hidden
-          ? "Show wallet"
-          : "Hide wallet";
-
-    });
-
-  });
-
-
-  /* =======================================================
-     REFLECTION BOXES
-     ======================================================= */
-
-  document.querySelectorAll(".reflection-toggle").forEach(button => {
-
-    button.addEventListener("click", () => {
-
-      const box =
-        button.nextElementSibling;
-
-      if (!box) return;
-
-
-      box.classList.toggle("open");
-
-
-      const isOpen =
-        box.classList.contains("open");
-
-
-      button.textContent =
-        isOpen
-          ? "Close reflection"
-          : "Write a reflection";
-
-    });
-
-  });
-
-
-  /* =======================================================
-     SCROLL ANIMATIONS
-     ======================================================= */
-
-  const animatedElements =
-    document.querySelectorAll(
-      ".emotion-step, " +
-      ".emotion-video-container, " +
-      ".emotion-ending-content, " +
-      ".emotion-support-content"
-    );
-
-
-  if (
-    "IntersectionObserver" in window
-  ) {
-
-    const observer =
-      new IntersectionObserver(
-        (entries) => {
-
-          entries.forEach(entry => {
-
-            if (entry.isIntersecting) {
-
-              entry.target.classList.add(
-                "visible"
-              );
-
-              observer.unobserve(
-                entry.target
-              );
-
-            }
-
-          });
-
-        },
-        {
-          threshold: 0.15
-        }
-      );
-
-
-    animatedElements.forEach(element => {
-
-      observer.observe(element);
-
-    });
-
-  } else {
-
-    animatedElements.forEach(element => {
-
-      element.classList.add("visible");
-
-    });
-
+    padding: 120px 20px;
   }
 
-
-  /* =======================================================
-     NAVIGATION HIDE ON SCROLL
-     ======================================================= */
-
-  const nav =
-    document.querySelector(".emotions-nav");
-
-
-  if (nav) {
-
-    let lastScrollY =
-      window.scrollY;
-
-
-    window.addEventListener(
-      "scroll",
-      () => {
-
-        const currentScrollY =
-          window.scrollY;
-
-
-        if (
-          currentScrollY > lastScrollY &&
-          currentScrollY > 100
-        ) {
-
-          nav.classList.add(
-            "nav-hidden"
-          );
-
-        } else {
-
-          nav.classList.remove(
-            "nav-hidden"
-          );
-
-        }
-
-
-        lastScrollY =
-          currentScrollY;
-
-      },
-      {
-        passive: true
-      }
-    );
-
+  .emotion-for-who {
+    grid-template-columns: 1fr;
   }
 
-
-  /* =======================================================
-     SMOOTH ANCHOR SCROLL
-     ======================================================= */
-
-  document.querySelectorAll(
-    'a[href^="#"]'
-  ).forEach(link => {
-
-    link.addEventListener("click", (event) => {
-
-      const targetId =
-        link.getAttribute("href");
-
-
-      if (
-        !targetId ||
-        targetId === "#"
-      ) return;
-
-
-      const target =
-        document.querySelector(targetId);
-
-
-      if (!target) return;
-
-
-      event.preventDefault();
-
-
-      target.scrollIntoView({
-        behavior: "smooth",
-        block: "start"
-      });
-
-    });
-
-  });
-  /* =======================================================
-     ACCESS REQUEST FORM
-     ======================================================= */
-
-  const accessRequestForm =
-    document.getElementById("accessRequestForm");
-
-  const requestStatus =
-    document.getElementById("requestStatus");
-
-
-  if (accessRequestForm) {
-
-    accessRequestForm.addEventListener(
-      "submit",
-      async (event) => {
-
-        event.preventDefault();
-
-
-        const name =
-          document.getElementById("requestName")?.value.trim() || "";
-
-        const contact =
-          document.getElementById("requestContact")?.value.trim() || "";
-
-        const paymentMethod =
-          document.getElementById("requestPayment")?.value || "";
-
-        const message =
-          document.getElementById("requestMessage")?.value.trim() || "";
-
-
-        if (!name || !contact || !paymentMethod) {
-
-          if (requestStatus) {
-
-            requestStatus.style.display = "block";
-
-            requestStatus.textContent =
-              "Будь ласка, заповни всі обов'язкові поля.";
-
-          }
-
-          return;
-
-        }
-
-
-        /* ---------------------------------------------------
-           LOADING
-        --------------------------------------------------- */
-
-        const submitButton =
-          accessRequestForm.querySelector(
-            'button[type="submit"]'
-          );
-
-
-        if (submitButton) {
-
-          submitButton.disabled = true;
-
-          submitButton.textContent =
-            "Надсилаємо...";
-
-        }
-
-
-        if (requestStatus) {
-
-          requestStatus.style.display = "block";
-
-          requestStatus.textContent =
-            "Надсилаємо запит...";
-
-        }
-
-
-        try {
-
-          const response =
-            await fetch(
-              "https://pttolejekzkqbingzzwj.supabase.co/functions/v1/smart-task",
-              {
-
-                method: "POST",
-
-                headers: {
-                  "Content-Type": "application/json"
-                },
-
-                body: JSON.stringify({
-
-                  access_request: {
-
-                    name,
-                    contact,
-                    payment_method: paymentMethod,
-                    message
-
-                  }
-
-                })
-
-              }
-            );
-
-
-          const result =
-            await response.json();
-
-
-          if (!response.ok || result.ok === false) {
-
-            throw new Error(
-              result.error ||
-              "Request failed"
-            );
-
-          }
-
-
-          /* -------------------------------------------------
-             SUCCESS
-          ------------------------------------------------- */
-
-          if (requestStatus) {
-
-            requestStatus.style.display = "block";
-
-            requestStatus.textContent =
-              "Запит надіслано 🤍 Ми зв'яжемося з тобою.";
-
-          }
-
-
-          accessRequestForm.reset();
-
-
-          if (submitButton) {
-
-            submitButton.disabled = false;
-
-            submitButton.textContent =
-              "Надіслати запит";
-
-          }
-
-
-        } catch (error) {
-
-          console.error(
-            "Access request failed:",
-            error
-          );
-
-
-          if (requestStatus) {
-
-            requestStatus.style.display = "block";
-
-            requestStatus.textContent =
-              "Не вдалося надіслати запит. Спробуй ще раз.";
-
-          }
-
-
-          if (submitButton) {
-
-            submitButton.disabled = false;
-
-            submitButton.textContent =
-              "Надіслати запит";
-
-          }
-
-        }
-
-      }
-    );
-
+  .emotion-for-image {
+    min-height: 65vh;
   }
-});
+
+  .emotion-for-text {
+    padding: 90px 10%;
+  }
+
+  .emotion-for-text h2 {
+    font-size: 48px;
+
+    margin-bottom: 35px;
+  }
+
+  .emotion-journey {
+    padding: 110px 8%;
+  }
+
+  .emotion-section-heading {
+    margin-bottom: 60px;
+  }
+
+  .emotion-step {
+    grid-template-columns: 45px 1fr;
+
+    gap: 20px;
+
+    padding: 40px 0;
+  }
+
+  .emotion-video-section {
+    padding: 80px 7%;
+  }
+
+  .emotion-video-container,
+  .emotion-video-container.reverse {
+    grid-template-columns: 1fr;
+
+    gap: 45px;
+  }
+
+  .emotion-video-info h2 {
+    font-size: 48px;
+  }
+
+  .emotion-video-full-wrapper {
+    aspect-ratio: 16 / 10;
+  }
+
+  .emotion-ending {
+    min-height: 70vh;
+  }
+
+  .donate-modal {
+    padding: 12px;
+  }
+
+  .donate-modal-content {
+    padding: 32px 22px;
+
+    max-height: 92vh;
+
+    border-radius: 14px;
+  }
+
+  .donate-tabs {
+    overflow-x: auto;
+
+    flex-wrap: nowrap;
+  }
+
+  .donate-tabs .tab-btn {
+    white-space: nowrap;
+  }
+
+}
+
+
+/* =========================================================
+   SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+  .emotions-home-button {
+    min-height: 40px;
+
+    padding: 7px 11px;
+
+    font-size: 10px;
+  }
+
+  .emotion-hero-content {
+    width: 88%;
+  }
+
+  .emotion-hero p {
+    font-size: 16px;
+  }
+
+  .emotion-for-image {
+    min-height: 55vh;
+  }
+
+  .emotion-for-text {
+    padding: 80px 8%;
+  }
+
+  .emotion-for-text h2 {
+    font-size: 42px;
+  }
+
+  .emotion-step h3 {
+    font-size: 29px;
+  }
+
+  .emotion-video-info h2 {
+    font-size: 42px;
+  }
+
+  .donate-modal-content {
+    padding: 30px 20px;
+  }
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+
+    animation-duration: 0.01ms !important;
+
+    animation-iteration-count: 1 !important;
+
+    scroll-behavior: auto !important;
+
+    transition-duration: 0.01ms !important;
+  }
+
+}
