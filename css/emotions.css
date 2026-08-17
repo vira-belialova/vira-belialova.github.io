@@ -3,10 +3,12 @@
    ========================================================= */
 
 .emotions-page {
+  margin: 0;
   background: #111;
   color: #f1eee8;
   overflow-x: hidden;
 }
+
 
 /* =========================================================
    LANGUAGE PAGES
@@ -28,7 +30,18 @@
    ========================================================= */
 
 .emotions-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+
   z-index: 1000;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 22px 30px;
 
   transition:
     transform 0.4s ease,
@@ -43,31 +56,98 @@
 
 
 /* =========================================================
+   LANGUAGE SWITCH
+   ========================================================= */
+
+.emotions-nav .lang-switch {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  margin: 0;
+  padding: 0;
+
+  color: #fff;
+
+  font-family: inherit;
+}
+
+.emotions-nav .lang-switch button {
+  appearance: none;
+  -webkit-appearance: none;
+
+  border: 0;
+  outline: 0;
+
+  margin: 0;
+  padding: 6px 2px;
+
+  background: transparent !important;
+  color: rgba(255,255,255,0.55) !important;
+
+  font-family: inherit;
+  font-size: 12px;
+  line-height: 1;
+
+  letter-spacing: 0.12em;
+
+  cursor: pointer;
+
+  box-shadow: none !important;
+
+  transition:
+    color 0.25s ease,
+    opacity 0.25s ease;
+}
+
+.emotions-nav .lang-switch button:hover {
+  color: #fff !important;
+}
+
+.emotions-nav .lang-switch button.active {
+  color: #fff !important;
+  opacity: 1;
+}
+
+.emotions-nav .lang-switch span {
+  color: rgba(255,255,255,0.35);
+  font-size: 12px;
+}
+
+
+/* =========================================================
    HOME / TO STAY ALIVE BUTTON
    ========================================================= */
 
 .emotions-home-button {
   display: inline-flex;
+
   align-items: center;
   justify-content: center;
 
   width: auto;
   min-width: 0;
-  height: auto;
 
   padding: 8px 16px;
 
   color: #fff !important;
-  font-size: 13px;
-  line-height: 1.2;
-  letter-spacing: 1px;
-  white-space: nowrap;
+
+  background: transparent !important;
 
   border: 1px solid rgba(255,255,255,0.7);
-  background: transparent;
-
-  text-decoration: none;
   border-radius: 20px;
+
+  text-decoration: none !important;
+
+  font-family: inherit;
+  font-size: 13px;
+  line-height: 1.2;
+
+  letter-spacing: 1px;
+
+  white-space: nowrap;
+
+  box-shadow: none !important;
 
   transition:
     background 0.4s ease,
@@ -77,8 +157,9 @@
 }
 
 .emotions-home-button:hover {
-  background: #fff;
+  background: #fff !important;
   color: #111 !important;
+
   border-color: #fff;
 
   transform: translateY(-1px);
@@ -99,26 +180,36 @@
   justify-content: center;
 
   overflow: hidden;
+
+  isolation: isolate;
+
+  color: #fff;
 }
 
+
+/* HERO IMAGE */
 
 .emotion-hero-image {
   position: absolute;
-  inset: 0;
-}
 
+  inset: 0;
+
+  z-index: 0;
+
+  overflow: hidden;
+}
 
 .emotion-hero-image img {
   width: 100%;
   height: 100%;
 
-  object-fit: cover;
   display: block;
+
+  object-fit: cover;
 
   animation:
     emotionHeroZoom 18s ease-in-out infinite alternate;
 }
-
 
 @keyframes emotionHeroZoom {
 
@@ -133,28 +224,56 @@
 }
 
 
+/* HERO OVERLAY */
+
 .emotion-hero-overlay {
   position: absolute;
+
   inset: 0;
+
+  z-index: 1;
+
+  pointer-events: none;
 
   background:
     linear-gradient(
       to bottom,
-      rgba(0,0,0,0.15),
-      rgba(0,0,0,0.58)
+      rgba(0,0,0,0.20),
+      rgba(0,0,0,0.62)
     );
 }
 
 
+/* =========================================================
+   HERO CONTENT
+   ========================================================= */
+
 .emotion-hero-content {
   position: relative;
-  z-index: 2;
+
+  z-index: 5;
 
   width: min(850px, 88%);
 
+  margin: 0 auto;
+
   text-align: center;
 
+  color: #fff !important;
+
   padding: 120px 0 80px;
+}
+
+
+/* FORCE HERO TEXT VISIBILITY */
+
+.emotion-hero-content,
+.emotion-hero-content *,
+.emotion-hero-content h1,
+.emotion-hero-content p,
+.emotion-hero-content span,
+.emotion-hero-content a {
+  color: #fff !important;
 }
 
 
@@ -163,18 +282,22 @@
 
   margin-bottom: 28px;
 
+  color: rgba(255,255,255,0.78) !important;
+
   font-size: 12px;
   letter-spacing: 0.18em;
-  text-transform: uppercase;
 
-  opacity: 0.75;
+  text-transform: uppercase;
 }
 
 
 .emotion-hero h1 {
   margin: 0;
 
+  color: #fff !important;
+
   font-size: clamp(48px, 8vw, 105px);
+
   line-height: 0.96;
 
   font-weight: 400;
@@ -188,10 +311,11 @@
 
   margin: 35px auto 42px;
 
-  font-size: clamp(17px, 2vw, 21px);
-  line-height: 1.65;
+  color: rgba(255,255,255,0.88) !important;
 
-  opacity: 0.85;
+  font-size: clamp(17px, 2vw, 21px);
+
+  line-height: 1.65;
 }
 
 
@@ -209,22 +333,28 @@
 
   padding: 14px 28px;
 
-  border: 1px solid rgba(255,255,255,0.45);
+  border: 1px solid rgba(255,255,255,0.65);
 
-  color: inherit;
+  border-radius: 0;
 
-  background: transparent;
+  color: #fff !important;
 
-  text-decoration: none;
+  background: transparent !important;
+
+  text-decoration: none !important;
 
   font-family: inherit;
+
   font-size: 13px;
   line-height: 1.2;
 
   letter-spacing: 0.12em;
+
   text-transform: uppercase;
 
   cursor: pointer;
+
+  box-shadow: none !important;
 
   transition:
     background 0.4s ease,
@@ -233,10 +363,10 @@
     transform 0.4s ease;
 }
 
-
 .emotion-button:hover {
-  background: #f1eee8;
-  color: #111;
+  background: #f1eee8 !important;
+
+  color: #111 !important;
 
   border-color: #f1eee8;
 
@@ -252,12 +382,12 @@
   min-height: 85vh;
 
   display: flex;
+
   align-items: center;
   justify-content: center;
 
   padding: 120px 20px;
 }
-
 
 .emotion-narrow {
   width: min(720px, 90%);
@@ -265,18 +395,17 @@
   text-align: center;
 }
 
-
 .emotion-number {
   display: block;
 
   margin-bottom: 28px;
 
   font-size: 11px;
+
   letter-spacing: 0.2em;
 
   opacity: 0.45;
 }
-
 
 .emotion-narrow h2,
 .emotion-section-heading h2,
@@ -289,12 +418,11 @@
   letter-spacing: -0.025em;
 }
 
-
 .emotion-narrow h2 {
   font-size: clamp(34px, 5vw, 62px);
+
   line-height: 1.05;
 }
-
 
 .emotion-line {
   width: 45px;
@@ -307,13 +435,13 @@
   opacity: 0.35;
 }
 
-
 .emotion-narrow p {
   margin: 20px auto;
 
   max-width: 620px;
 
   font-size: 17px;
+
   line-height: 1.8;
 
   opacity: 0.7;
@@ -334,13 +462,11 @@
   background: #181818;
 }
 
-
 .emotion-for-image {
   min-height: 650px;
 
   overflow: hidden;
 }
-
 
 .emotion-for-image img {
   width: 100%;
@@ -353,16 +479,15 @@
   filter: saturate(0.75);
 }
 
-
 .emotion-for-text {
   display: flex;
+
   flex-direction: column;
 
   justify-content: center;
 
   padding: 12%;
 }
-
 
 .emotion-for-text h2 {
   margin: 0 0 45px;
@@ -376,11 +501,11 @@
   letter-spacing: -0.04em;
 }
 
-
 .emotion-for-text p {
   margin: 7px 0;
 
   font-size: 19px;
+
   line-height: 1.6;
 
   opacity: 0.72;
@@ -395,7 +520,6 @@
   padding: 150px 7%;
 }
 
-
 .emotion-section-heading {
   max-width: 700px;
 
@@ -404,11 +528,9 @@
   text-align: center;
 }
 
-
 .emotion-section-heading h2 {
   font-size: clamp(42px, 6vw, 75px);
 }
-
 
 .emotion-section-heading p {
   max-width: 500px;
@@ -420,13 +542,11 @@
   opacity: 0.6;
 }
 
-
 .emotion-steps {
   max-width: 1000px;
 
   margin: auto;
 }
-
 
 .emotion-step {
   display: grid;
@@ -448,20 +568,17 @@
     transform 1s ease;
 }
 
-
 .emotion-step.visible {
   opacity: 1;
 
   transform: translateY(0);
 }
 
-
 .emotion-step-number {
   font-size: 13px;
 
   opacity: 0.4;
 }
-
 
 .emotion-step-content > span {
   display: block;
@@ -471,11 +588,11 @@
   font-size: 11px;
 
   letter-spacing: 0.18em;
+
   text-transform: uppercase;
 
   opacity: 0.5;
 }
-
 
 .emotion-step h3 {
   margin: 0 0 16px;
@@ -487,13 +604,13 @@
   letter-spacing: -0.025em;
 }
 
-
 .emotion-step p {
   max-width: 600px;
 
   margin: 0;
 
   font-size: 17px;
+
   line-height: 1.75;
 
   opacity: 0.65;
@@ -508,15 +625,15 @@
   padding: 120px 6%;
 
   background: #e8e4dc;
+
   color: #171717;
 }
 
-
 .emotion-video-dark {
   background: #151515;
+
   color: #f1eee8;
 }
-
 
 .emotion-video-container {
   max-width: 1250px;
@@ -540,18 +657,15 @@
     transform 1.1s ease;
 }
 
-
 .emotion-video-container.reverse {
   grid-template-columns: 0.8fr 1.4fr;
 }
-
 
 .emotion-video-container.visible {
   opacity: 1;
 
   transform: translateY(0);
 }
-
 
 .emotion-video {
   position: relative;
@@ -565,7 +679,6 @@
   background: #000;
 }
 
-
 .emotion-video iframe {
   width: 100%;
   height: 100%;
@@ -575,11 +688,9 @@
   display: block;
 }
 
-
 .emotion-video-info {
   padding: 20px 0;
 }
-
 
 .emotion-video-info h2 {
   margin: 0 0 25px;
@@ -591,11 +702,11 @@
   letter-spacing: -0.04em;
 }
 
-
 .emotion-video-info > p {
   max-width: 470px;
 
   font-size: 17px;
+
   line-height: 1.75;
 
   opacity: 0.7;
@@ -614,6 +725,7 @@
   background: none;
 
   border: 0;
+
   border-bottom: 1px solid currentColor;
 
   color: inherit;
@@ -623,13 +735,13 @@
   font-size: 12px;
 
   letter-spacing: 0.12em;
+
   text-transform: uppercase;
 
   cursor: pointer;
 
   opacity: 0.65;
 }
-
 
 .reflection-box {
   max-height: 0;
@@ -643,7 +755,6 @@
     opacity 0.5s ease;
 }
 
-
 .reflection-box.open {
   max-height: 300px;
 
@@ -652,7 +763,6 @@
   opacity: 1;
 }
 
-
 .reflection-box p {
   font-size: 15px;
 
@@ -660,7 +770,6 @@
 
   opacity: 0.65;
 }
-
 
 .reflection-box textarea {
   width: 100%;
@@ -688,7 +797,6 @@
   outline: none;
 }
 
-
 .reflection-box textarea:focus {
   opacity: 1;
 }
@@ -713,11 +821,9 @@
   background: #101010;
 }
 
-
 .emotion-pause-content {
   max-width: 650px;
 }
-
 
 .emotion-pause-content > span {
   display: block;
@@ -728,7 +834,6 @@
 
   opacity: 0.5;
 }
-
 
 .emotion-pause h2 {
   margin: 0;
@@ -741,7 +846,6 @@
 
   letter-spacing: -0.04em;
 }
-
 
 .emotion-pause p {
   margin: 35px auto 0;
@@ -764,7 +868,6 @@
   padding: 0;
 }
 
-
 .emotion-video-full-wrapper {
   width: 100%;
 
@@ -772,7 +875,6 @@
 
   max-height: 100vh;
 }
-
 
 .emotion-video-full iframe {
   width: 100%;
@@ -803,7 +905,6 @@
   color: #171717;
 }
 
-
 .emotion-ending-content {
   max-width: 800px;
 
@@ -816,20 +917,17 @@
     transform 1s ease;
 }
 
-
 .emotion-ending-content.visible {
   opacity: 1;
 
   transform: translateY(0);
 }
 
-
 .emotion-ending h2 {
   font-size: clamp(43px, 6vw, 78px);
 
   line-height: 0.98;
 }
-
 
 .emotion-ending p {
   margin: 35px auto 0;
@@ -842,7 +940,6 @@
 
   opacity: 0.65;
 }
-
 
 .emotion-ending-small {
   font-size: 15px !important;
@@ -872,7 +969,6 @@
   color: #f1eee8;
 }
 
-
 .emotion-support-content {
   max-width: 650px;
 
@@ -885,20 +981,17 @@
     transform 1s ease;
 }
 
-
 .emotion-support-content.visible {
   opacity: 1;
 
   transform: translateY(0);
 }
 
-
 .emotion-support h2 {
   font-size: clamp(38px, 5vw, 65px);
 
   line-height: 1;
 }
-
 
 .emotion-support p {
   max-width: 520px;
@@ -910,30 +1003,591 @@
   opacity: 0.6;
 }
 
+
+/* =========================================================
+   DONATION MODAL
+   ========================================================= */
+
+.donate-modal {
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 99999;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 24px;
+
+  background: rgba(0,0,0,0.68);
+
+  backdrop-filter: blur(9px);
+  -webkit-backdrop-filter: blur(9px);
+
+  opacity: 0;
+
+  visibility: hidden;
+
+  pointer-events: none;
+
+  transition:
+    opacity 0.25s ease,
+    visibility 0.25s ease;
+}
+
+.donate-modal.active {
+  opacity: 1;
+
+  visibility: visible;
+
+  pointer-events: auto;
+}
+
+
+/* =========================================================
+   DONATION WINDOW
+   ========================================================= */
+
+.donate-modal-content {
+  position: relative;
+
+  width: min(520px, 100%);
+
+  max-height: 90vh;
+
+  overflow-y: auto;
+
+  padding: 40px;
+
+  background: #f7f4ef;
+
+  color: #222;
+
+  border-radius: 18px;
+
+  box-shadow:
+    0 25px 80px rgba(0,0,0,0.3);
+
+  transform:
+    translateY(20px)
+    scale(0.98);
+
+  transition:
+    transform 0.25s ease;
+}
+
+.donate-modal.active .donate-modal-content {
+  transform:
+    translateY(0)
+    scale(1);
+}
+
+
+/* =========================================================
+   MODAL TITLE
+   ========================================================= */
+
+.donate-modal-content h2 {
+  margin: 0 45px 28px 0;
+
+  color: #222;
+
+  font-size: clamp(30px, 5vw, 42px);
+
+  line-height: 1.1;
+
+  font-weight: 400;
+
+  letter-spacing: -0.035em;
+}
+
+
+/* =========================================================
+   CLOSE
+   ========================================================= */
+
+.close-modal {
+  position: absolute;
+
+  top: 16px;
+  right: 20px;
+
+  width: 36px;
+  height: 36px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+
+  border: 0 !important;
+
+  background: transparent !important;
+
+  color: #222 !important;
+
+  font-family: inherit;
+
+  font-size: 28px;
+
+  line-height: 1;
+
+  cursor: pointer;
+
+  opacity: 0.55;
+
+  box-shadow: none !important;
+
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+}
+
+.close-modal:hover {
+  opacity: 1;
+
+  transform: rotate(90deg);
+}
+
+
+/* =========================================================
+   DONATION TABS
+   ========================================================= */
+
+.donate-tabs {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 8px;
+
+  margin-bottom: 24px;
+
+  border: 0;
+}
+
+.donate-tabs .tab-btn {
+  appearance: none;
+  -webkit-appearance: none;
+
+  border: 0 !important;
+
+  padding: 10px 16px;
+
+  border-radius: 999px;
+
+  background: rgba(0,0,0,0.07) !important;
+
+  color: #222 !important;
+
+  font-family: inherit;
+
+  font-size: 12px;
+
+  line-height: 1.2;
+
+  letter-spacing: 0.08em;
+
+  text-transform: uppercase;
+
+  cursor: pointer;
+
+  opacity: 1;
+
+  box-shadow: none !important;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+.donate-tabs .tab-btn:hover {
+  background: rgba(0,0,0,0.12) !important;
+}
+
+.donate-tabs .tab-btn.active {
+  background: #222 !important;
+
+  color: #fff !important;
+
+  border: 0 !important;
+
+  opacity: 1;
+}
+
+
+/* =========================================================
+   TAB CONTENT
+   ========================================================= */
+
+.donate-modal .tab-content {
+  display: none;
+}
+
+.donate-modal .tab-content.active {
+  display: block;
+}
+
+
+/* =========================================================
+   DONATION LINK
+   ========================================================= */
+
+.donate-link {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 14px 20px;
+
+  border-radius: 10px;
+
+  background: #222;
+
+  color: #fff !important;
+
+  text-decoration: none !important;
+
+  font-size: 13px;
+
+  line-height: 1.2;
+
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+}
+
+.donate-link:hover {
+  opacity: 0.8;
+
+  transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   DONATION NOTES
+   ========================================================= */
+
+.donation-note {
+  margin-top: 16px;
+
+  color: #222;
+
+  font-size: 14px;
+
+  line-height: 1.6;
+
+  opacity: 0.7;
+}
+
+
+/* =========================================================
+   BANK DETAILS
+   ========================================================= */
+
+.bank-details {
+  padding: 20px;
+
+  border-radius: 12px;
+
+  background: rgba(0,0,0,0.05);
+}
+
+.bank-details p {
+  color: #222;
+}
+
+.card-number {
+  font-family: monospace;
+
+  font-size: 18px;
+
+  letter-spacing: 0.05em;
+
+  word-break: break-word;
+}
+
+
+/* =========================================================
+   COPY / SHOW BUTTONS
+   ========================================================= */
+
+.copy-btn,
+.show-wallet {
+  appearance: none;
+  -webkit-appearance: none;
+
+  border: 0 !important;
+
+  padding: 10px 14px;
+
+  border-radius: 8px;
+
+  background: #222 !important;
+
+  color: #fff !important;
+
+  font-family: inherit;
+
+  font-size: 12px;
+
+  line-height: 1.2;
+
+  cursor: pointer;
+
+  box-shadow: none !important;
+
+  transition:
+    opacity 0.2s ease;
+}
+
+.copy-btn:hover,
+.show-wallet:hover {
+  opacity: 0.8;
+}
+
+
+/* =========================================================
+   USDT QR
+   ========================================================= */
+
+.qr-copy {
+  display: flex;
+
+  justify-content: center;
+
+  margin-bottom: 20px;
+}
+
+.donation-qr {
+  display: block;
+
+  width: min(280px, 100%);
+
+  height: auto;
+
+  margin: 0 auto;
+
+  border-radius: 12px;
+}
+
+.wallet-address {
+  word-break: break-all;
+
+  font-family: monospace;
+
+  padding: 12px;
+
+  background: rgba(0,0,0,0.05);
+
+  border-radius: 8px;
+}
+
+
+/* =========================================================
+   DONATION ACTIONS
+   ========================================================= */
+
+.donate-actions {
+  display: flex;
+
+  gap: 10px;
+
+  flex-wrap: wrap;
+
+  margin-top: 15px;
+}
+
+
+/* =========================================================
+   ACCESS REQUEST
+   ========================================================= */
+
+.access-request {
+  margin-top: 35px;
+
+  padding-top: 30px;
+
+  border-top: 1px solid rgba(0,0,0,0.12);
+}
+
+.access-request h3 {
+  margin: 12px 0 10px;
+
+  color: #222;
+
+  font-size: 24px;
+
+  line-height: 1.2;
+
+  font-weight: 400;
+}
+
+.access-request p {
+  color: #222;
+
+  font-size: 14px;
+
+  line-height: 1.6;
+
+  opacity: 0.7;
+}
+
+
+/* FORM */
+
+#accessRequestForm {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 12px;
+
+  margin-top: 20px;
+}
+
+#accessRequestForm input,
+#accessRequestForm select,
+#accessRequestForm textarea {
+  width: 100%;
+
+  box-sizing: border-box;
+
+  padding: 13px 14px;
+
+  border: 1px solid rgba(0,0,0,0.16);
+
+  border-radius: 8px;
+
+  background: rgba(255,255,255,0.5);
+
+  color: #222;
+
+  font-family: inherit;
+
+  font-size: 14px;
+
+  outline: none;
+}
+
+#accessRequestForm textarea {
+  min-height: 100px;
+
+  resize: vertical;
+}
+
+#accessRequestForm input:focus,
+#accessRequestForm select:focus,
+#accessRequestForm textarea:focus {
+  border-color: #222;
+
+  background: #fff;
+}
+
+
+/* MODAL FORM BUTTON */
+
+#accessRequestForm .emotion-button {
+  width: 100%;
+
+  margin-top: 5px;
+
+  border-color: #222;
+
+  background: #222 !important;
+
+  color: #fff !important;
+}
+
+#accessRequestForm .emotion-button:hover {
+  background: #444 !important;
+
+  color: #fff !important;
+}
+
+
+/* REQUEST STATUS */
+
+#requestStatus {
+  margin: 5px 0 0;
+
+  padding: 10px;
+
+  border-radius: 8px;
+
+  background: rgba(0,0,0,0.05);
+
+  color: #222;
+
+  font-size: 13px;
+
+  opacity: 1;
+}
+
+
+/* =========================================================
+   MODAL BODY LOCK
+   ========================================================= */
+
+body.modal-open {
+  overflow: hidden;
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.emotions-page footer {
+  background: #111;
+
+  color: #f1eee8;
+}
+
+
 /* =========================================================
    MOBILE
    ========================================================= */
 
 @media (max-width: 800px) {
 
-  .emotions-home-button {
-    min-height: 46px;
-
-    padding: 0 14px;
-
-    font-size: 10px;
+  .emotions-nav {
+    padding: 16px 18px;
   }
 
+  .emotions-nav .lang-switch button {
+    font-size: 11px;
+  }
+
+  .emotions-home-button {
+    min-height: 42px;
+
+    padding: 7px 12px;
+
+    font-size: 11px;
+
+    letter-spacing: 0.8px;
+  }
 
   .emotion-hero-content {
+    width: 88%;
+
     padding-top: 100px;
   }
-
 
   .emotion-hero h1 {
     font-size: clamp(48px, 13vw, 75px);
   }
 
+  .emotion-hero p {
+    font-size: 16px;
+  }
 
   .emotion-intro {
     min-height: auto;
@@ -941,21 +1595,17 @@
     padding: 120px 20px;
   }
 
-
   .emotion-for-who {
     grid-template-columns: 1fr;
   }
-
 
   .emotion-for-image {
     min-height: 65vh;
   }
 
-
   .emotion-for-text {
     padding: 90px 10%;
   }
-
 
   .emotion-for-text h2 {
     font-size: 48px;
@@ -963,16 +1613,13 @@
     margin-bottom: 35px;
   }
 
-
   .emotion-journey {
     padding: 110px 8%;
   }
 
-
   .emotion-section-heading {
     margin-bottom: 60px;
   }
-
 
   .emotion-step {
     grid-template-columns: 45px 1fr;
@@ -982,11 +1629,9 @@
     padding: 40px 0;
   }
 
-
   .emotion-video-section {
     padding: 80px 7%;
   }
-
 
   .emotion-video-container,
   .emotion-video-container.reverse {
@@ -995,41 +1640,51 @@
     gap: 45px;
   }
 
-
   .emotion-video-info h2 {
     font-size: 48px;
   }
-
 
   .emotion-video-full-wrapper {
     aspect-ratio: 16 / 10;
   }
 
-
   .emotion-pause {
     min-height: 65vh;
   }
-
 
   .emotion-ending {
     min-height: 70vh;
   }
 
+  .donate-modal {
+    padding: 12px;
+  }
 
   .donate-modal-content {
-    padding: 40px 24px;
+    padding: 32px 22px;
+
+    max-height: 92vh;
+
+    border-radius: 14px;
   }
 
+  .donate-modal-content h2 {
+    font-size: 25px;
+  }
 
   .donate-tabs {
-    overflow-x: auto;
-  }
+    gap: 6px;
 
+    overflow-x: visible;
+  }
 
   .donate-tabs .tab-btn {
+    padding: 9px 12px;
+
+    font-size: 11px;
+
     white-space: nowrap;
   }
-
 }
 
 
@@ -1039,59 +1694,52 @@
 
 @media (max-width: 480px) {
 
-  .emotions-home-button {
-    min-height: 42px;
+  .emotions-nav {
+    padding: 14px 14px;
+  }
 
-    padding: 0 12px;
+  .emotions-home-button {
+    min-height: 40px;
+
+    padding: 6px 11px;
 
     font-size: 9px;
 
     letter-spacing: 0.05em;
   }
 
-
   .emotion-hero-content {
     width: 88%;
   }
-
-
-  .emotion-hero p {
-    font-size: 16px;
-  }
-
 
   .emotion-for-image {
     min-height: 55vh;
   }
 
-
   .emotion-for-text {
     padding: 80px 8%;
   }
-
 
   .emotion-for-text h2 {
     font-size: 42px;
   }
 
-
   .emotion-step h3 {
     font-size: 29px;
   }
-
 
   .emotion-video-info h2 {
     font-size: 42px;
   }
 
-
-  .donate-modal {
-    padding: 12px;
+  .donate-modal-content {
+    padding: 30px 18px;
   }
 
+  .donate-tabs .tab-btn {
+    padding: 8px 10px;
 
-  .donate-modal-content {
-    padding: 35px 20px;
+    font-size: 10px;
   }
 
 }
@@ -1116,12 +1764,4 @@
     transition-duration: 0.01ms !important;
   }
 
-}
-
-@media (max-width: 800px) {
-  .emotions-home-button {
-    padding: 7px 12px;
-    font-size: 11px;
-    letter-spacing: 0.8px;
-  }
 }
