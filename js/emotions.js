@@ -4,20 +4,24 @@
 
 document.addEventListener("DOMContentLoaded", () => {
 
+
   /* =======================================================
      LANGUAGE SWITCH
-     ======================================================= */
+  ======================================================= */
+
+  const languageButtons =
+    document.querySelectorAll(
+      ".lang-switch [data-lang]"
+    );
+
+
+  const pages = {
+    uk: document.getElementById("page-uk"),
+    en: document.getElementById("page-en")
+  };
+
 
   window.setLanguage = function (lang) {
-
-    const pages = {
-      uk: document.getElementById("page-uk"),
-      en: document.getElementById("page-en")
-    };
-
-    const switches =
-      document.querySelectorAll(".lang-switch [data-lang]");
-
 
     /* Fallback */
 
@@ -26,27 +30,39 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    /* Show only selected language */
+    /* Show selected language only */
 
-    Object.entries(pages).forEach(([key, page]) => {
+    Object.entries(pages).forEach(
+      ([key, page]) => {
 
-      if (!page) return;
+        if (!page) return;
 
-      page.classList.toggle(
-        "active",
-        key === lang
-      );
+        page.classList.toggle(
+          "active",
+          key === lang
+        );
 
-    });
+      }
+    );
 
 
     /* Update language switch */
 
-    switches.forEach(button => {
+    languageButtons.forEach(button => {
+
+      const isActive =
+        button.dataset.lang === lang;
+
 
       button.classList.toggle(
         "active",
-        button.dataset.lang === lang
+        isActive
+      );
+
+
+      button.setAttribute(
+        "aria-pressed",
+        String(isActive)
       );
 
     });
@@ -55,12 +71,10 @@ document.addEventListener("DOMContentLoaded", () => {
     /* Update HTML language */
 
     document.documentElement.lang =
-      lang === "en"
-        ? "en"
-        : "uk";
+      lang;
 
 
-    /* Remember language */
+    /* Remember selected language */
 
     localStorage.setItem(
       "emotions-language",
@@ -71,11 +85,60 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   /* =======================================================
+     LANGUAGE BUTTON EVENTS
+  ======================================================= */
+
+  languageButtons.forEach(button => {
+
+
+    /* Mouse / touch */
+
+    button.addEventListener(
+      "click",
+      () => {
+
+        window.setLanguage(
+          button.dataset.lang
+        );
+
+      }
+    );
+
+
+    /* Keyboard */
+
+    button.addEventListener(
+      "keydown",
+      event => {
+
+        if (
+          event.key === "Enter" ||
+          event.key === " "
+        ) {
+
+          event.preventDefault();
+
+          window.setLanguage(
+            button.dataset.lang
+          );
+
+        }
+
+      }
+    );
+
+  });
+
+
+  /* =======================================================
      INITIAL LANGUAGE
-     ======================================================= */
+  ======================================================= */
 
   const savedLanguage =
-    localStorage.getItem("emotions-language");
+    localStorage.getItem(
+      "emotions-language"
+    );
+
 
   window.setLanguage(
     savedLanguage === "en"
@@ -86,10 +149,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /* =======================================================
      DONATION MODAL
-     ======================================================= */
+  ======================================================= */
 
   const modal =
     document.getElementById("donateModal");
+
 
   const closeButton =
     document.getElementById("closeModal");
@@ -101,7 +165,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     modal.classList.add("active");
 
-    document.body.classList.add("modal-open");
+    modal.setAttribute(
+      "aria-hidden",
+      "false"
+    );
+
+    document.body.classList.add(
+      "modal-open"
+    );
 
   }
 
@@ -112,14 +183,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
     modal.classList.remove("active");
 
-    document.body.classList.remove("modal-open");
+    modal.setAttribute(
+      "aria-hidden",
+      "true"
+    );
+
+    document.body.classList.remove(
+      "modal-open"
+    );
 
   }
 
 
   /* =======================================================
      SUPPORT BUTTONS
-     ======================================================= */
+  ======================================================= */
 
   document.querySelectorAll(
     "#emotionsDonateBtn, " +
@@ -129,78 +207,93 @@ document.addEventListener("DOMContentLoaded", () => {
     ".open-donate"
   ).forEach(button => {
 
-    button.addEventListener("click", event => {
+    button.addEventListener(
+      "click",
+      event => {
 
-      event.preventDefault();
+        event.preventDefault();
 
-      openDonationModal();
+        openDonationModal();
 
-    });
+      }
+    );
 
   });
 
 
   /* =======================================================
      CLOSE MODAL
-     ======================================================= */
+  ======================================================= */
 
   if (closeButton) {
 
-    closeButton.addEventListener("click", () => {
+    closeButton.addEventListener(
+      "click",
+      () => {
 
-      closeDonationModal();
+        closeDonationModal();
 
-    });
+      }
+    );
 
   }
 
 
   /* =======================================================
      CLICK OUTSIDE MODAL
-     ======================================================= */
+  ======================================================= */
 
   if (modal) {
 
-    modal.addEventListener("click", event => {
+    modal.addEventListener(
+      "click",
+      event => {
 
-      if (event.target === modal) {
+        if (
+          event.target === modal
+        ) {
 
-        closeDonationModal();
+          closeDonationModal();
+
+        }
 
       }
-
-    });
+    );
 
   }
 
 
   /* =======================================================
      ESC
-     ======================================================= */
+  ======================================================= */
 
-  document.addEventListener("keydown", event => {
+  document.addEventListener(
+    "keydown",
+    event => {
 
-    if (
-      event.key === "Escape" &&
-      modal &&
-      modal.classList.contains("active")
-    ) {
+      if (
+        event.key === "Escape" &&
+        modal &&
+        modal.classList.contains("active")
+      ) {
 
-      closeDonationModal();
+        closeDonationModal();
+
+      }
 
     }
-
-  });
+  );
 
 
   /* =======================================================
      DONATION TABS
-     ======================================================= */
+  ======================================================= */
 
   const tabButtons =
     document.querySelectorAll(
       ".donate-tabs .tab-btn"
     );
+
 
   const tabContents =
     document.querySelectorAll(
@@ -210,196 +303,253 @@ document.addEventListener("DOMContentLoaded", () => {
 
   tabButtons.forEach(button => {
 
-    button.addEventListener("click", () => {
+    button.addEventListener(
+      "click",
+      () => {
 
-      const target =
-        button.dataset.tab ||
-        button.dataset.target;
-
-
-      if (!target) return;
-
-
-      /* Deactivate all buttons */
-
-      tabButtons.forEach(btn => {
-
-        btn.classList.remove("active");
-
-      });
+        const target =
+          button.dataset.tab ||
+          button.dataset.target;
 
 
-      /* Hide all contents */
-
-      tabContents.forEach(content => {
-
-        content.classList.remove("active");
-
-      });
+        if (!target) return;
 
 
-      /* Activate selected */
+        /* Deactivate all buttons */
 
-      button.classList.add("active");
+        tabButtons.forEach(btn => {
+
+          btn.classList.remove(
+            "active"
+          );
+
+          btn.setAttribute(
+            "aria-selected",
+            "false"
+          );
+
+        });
 
 
-      const targetElement =
-        document.getElementById(target);
+        /* Hide all contents */
+
+        tabContents.forEach(content => {
+
+          content.classList.remove(
+            "active"
+          );
+
+        });
 
 
-      if (targetElement) {
+        /* Activate selected button */
 
-        targetElement.classList.add("active");
+        button.classList.add(
+          "active"
+        );
+
+        button.setAttribute(
+          "aria-selected",
+          "true"
+        );
+
+
+        /* Activate selected content */
+
+        const targetElement =
+          document.getElementById(
+            target
+          );
+
+
+        if (targetElement) {
+
+          targetElement.classList.add(
+            "active"
+          );
+
+        }
 
       }
-
-    });
+    );
 
   });
 
 
   /* =======================================================
      COPY BUTTONS
-     ======================================================= */
+  ======================================================= */
 
-  document.querySelectorAll(".copy-btn").forEach(button => {
+  document.querySelectorAll(
+    ".copy-btn"
+  ).forEach(button => {
 
-    button.addEventListener("click", async () => {
+    button.addEventListener(
+      "click",
+      async () => {
 
-      let text = "";
-
-
-      /* ---------------------------------------------------
-         Generic data-copy
-      --------------------------------------------------- */
-
-      const targetSelector =
-        button.dataset.copy;
+        let text = "";
 
 
-      if (targetSelector) {
+        /* ---------------------------------------------------
+           Generic data-copy
+        --------------------------------------------------- */
 
-        const element =
-          document.querySelector(targetSelector);
-
-        if (element) {
-
-          text =
-            element.textContent.trim();
-
-        }
-
-      }
+        const targetSelector =
+          button.dataset.copy;
 
 
-      /* ---------------------------------------------------
-         USDT wallet
-      --------------------------------------------------- */
+        if (targetSelector) {
 
-      if (!text && button.id === "copyWallet") {
+          const element =
+            document.querySelector(
+              targetSelector
+            );
 
-        const wallet =
-          document.getElementById("walletAddress");
 
-        if (wallet) {
+          if (element) {
 
-          text =
-            wallet.textContent.trim();
+            text =
+              element.textContent.trim();
+
+          }
 
         }
 
-      }
+
+        /* ---------------------------------------------------
+           USDT wallet
+        --------------------------------------------------- */
+
+        if (
+          !text &&
+          button.id === "copyWallet"
+        ) {
+
+          const wallet =
+            document.getElementById(
+              "walletAddress"
+            );
 
 
-      /* ---------------------------------------------------
-         Wise
-      --------------------------------------------------- */
+          if (wallet) {
 
-      if (!text && button.id === "copyWise") {
+            text =
+              wallet.textContent.trim();
 
-        const wise =
-          document.querySelector(
-            "#wise .card-number"
+          }
+
+        }
+
+
+        /* ---------------------------------------------------
+           Wise
+        --------------------------------------------------- */
+
+        if (
+          !text &&
+          button.id === "copyWise"
+        ) {
+
+          const wise =
+            document.querySelector(
+              "#wise .card-number"
+            );
+
+
+          if (wise) {
+
+            text =
+              wise.textContent.trim();
+
+          }
+
+        }
+
+
+        /* ---------------------------------------------------
+           A-Bank
+        --------------------------------------------------- */
+
+        if (
+          !text &&
+          button.id === "copyCard"
+        ) {
+
+          const card =
+            document.querySelector(
+              "#card .card-number"
+            );
+
+
+          if (card) {
+
+            text =
+              card.textContent.trim();
+
+          }
+
+        }
+
+
+        if (!text) return;
+
+
+        try {
+
+          await navigator.clipboard.writeText(
+            text
           );
 
-        if (wise) {
 
-          text =
-            wise.textContent.trim();
+          const originalText =
+            button.textContent;
 
-        }
-
-      }
-
-
-      /* ---------------------------------------------------
-         A-Bank
-      --------------------------------------------------- */
-
-      if (!text && button.id === "copyCard") {
-
-        const card =
-          document.querySelector(
-            "#card .card-number"
-          );
-
-        if (card) {
-
-          text =
-            card.textContent.trim();
-
-        }
-
-      }
-
-
-      if (!text) return;
-
-
-      try {
-
-        await navigator.clipboard.writeText(text);
-
-
-        const originalText =
-          button.textContent;
-
-
-        button.textContent =
-          "Copied ✓";
-
-
-        setTimeout(() => {
 
           button.textContent =
-            originalText;
-
-        }, 1800);
+            "Copied ✓";
 
 
-      } catch (error) {
+          setTimeout(
+            () => {
 
-        console.error(
-          "Copy failed:",
-          error
-        );
+              button.textContent =
+                originalText;
+
+            },
+            1800
+          );
+
+
+        } catch (error) {
+
+          console.error(
+            "Copy failed:",
+            error
+          );
+
+        }
 
       }
-
-    });
+    );
 
   });
 
 
   /* =======================================================
      SHOW / HIDE WALLET
-     ======================================================= */
+  ======================================================= */
 
   const showWalletButton =
-    document.getElementById("showWallet");
+    document.getElementById(
+      "showWallet"
+    );
+
 
   const walletAddress =
-    document.getElementById("walletAddress");
+    document.getElementById(
+      "walletAddress"
+    );
 
 
   if (
@@ -412,7 +562,8 @@ document.addEventListener("DOMContentLoaded", () => {
       () => {
 
         const isHidden =
-          walletAddress.style.display === "none";
+          walletAddress.style.display ===
+          "none";
 
 
         walletAddress.style.display =
@@ -434,7 +585,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /* =======================================================
      REFLECTION BOXES
-     ======================================================= */
+  ======================================================= */
 
   document.querySelectorAll(
     ".reflection-toggle"
@@ -451,16 +602,18 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!box) return;
 
 
-        box.classList.toggle("open");
+        box.classList.toggle(
+          "open"
+        );
 
 
         const isOpen =
-          box.classList.contains("open");
+          box.classList.contains(
+            "open"
+          );
 
 
-        /*
-         * Detect language from the actual page.
-         */
+        /* Detect current language */
 
         const activePage =
           document.querySelector(
@@ -493,7 +646,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /* =======================================================
      SCROLL ANIMATIONS
-     ======================================================= */
+  ======================================================= */
 
   const animatedElements =
     document.querySelectorAll(
@@ -514,7 +667,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
           entries.forEach(entry => {
 
-            if (!entry.isIntersecting) return;
+            if (
+              !entry.isIntersecting
+            ) {
+
+              return;
+
+            }
 
 
             entry.target.classList.add(
@@ -535,26 +694,34 @@ document.addEventListener("DOMContentLoaded", () => {
       );
 
 
-    animatedElements.forEach(element => {
+    animatedElements.forEach(
+      element => {
 
-      observer.observe(element);
+        observer.observe(
+          element
+        );
 
-    });
+      }
+    );
 
   } else {
 
-    animatedElements.forEach(element => {
+    animatedElements.forEach(
+      element => {
 
-      element.classList.add("visible");
+        element.classList.add(
+          "visible"
+        );
 
-    });
+      }
+    );
 
   }
 
 
   /* =======================================================
      NAVIGATION HIDE ON SCROLL
-     ======================================================= */
+  ======================================================= */
 
   const nav =
     document.querySelector(
@@ -578,7 +745,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
         /* Always show near top */
 
-        if (currentScrollY <= 100) {
+        if (
+          currentScrollY <= 100
+        ) {
 
           nav.classList.remove(
             "nav-hidden"
@@ -625,7 +794,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /* =======================================================
      SMOOTH ANCHOR SCROLL
-     ======================================================= */
+  ======================================================= */
 
   document.querySelectorAll(
     'a[href^="#"]'
@@ -636,7 +805,9 @@ document.addEventListener("DOMContentLoaded", () => {
       event => {
 
         const targetId =
-          link.getAttribute("href");
+          link.getAttribute(
+            "href"
+          );
 
 
         if (
@@ -674,12 +845,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /* =======================================================
      ACCESS REQUEST FORM
-     ======================================================= */
+  ======================================================= */
 
   const accessForm =
     document.getElementById(
       "accessRequestForm"
     );
+
 
   const requestStatus =
     document.getElementById(
@@ -730,6 +902,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
           if (requestStatus) {
 
+            requestStatus.hidden =
+              false;
+
             requestStatus.style.display =
               "block";
 
@@ -757,6 +932,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
         if (requestStatus) {
+
+          requestStatus.hidden =
+            false;
 
           requestStatus.style.display =
             "block";
