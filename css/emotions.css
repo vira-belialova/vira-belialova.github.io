@@ -1474,3 +1474,63 @@ body.modal-open {
 .emotions-page .emotion-hero-content p {
   opacity: 0.9 !important;
 }
+/* =========================================================
+   ACCESS / PAYMENT MODAL — TEXT FIX
+   ========================================================= */
+
+.donate-modal-content,
+.donate-modal-content h2,
+.donate-modal-content h3,
+.donate-modal-content p,
+.donate-modal-content span,
+.donate-modal-content label,
+.donate-modal-content strong,
+.donate-modal-content .donation-note,
+.donate-modal-content .bank-details,
+.donate-modal-content .card-number {
+  color: #171717;
+}
+
+.donate-modal-content {
+  background: #f4f1eb;
+}
+
+.donate-modal-content h2,
+.donate-modal-content h3 {
+  color: #111;
+}
+
+.donate-modal-content p,
+.donate-modal-content .donation-note {
+  color: #4a4742;
+}
+
+.donate-modal-content input,
+.donate-modal-content textarea,
+.donate-modal-content select {
+  color: #171717;
+  background: #fff;
+  border-color: rgba(23, 23, 23, 0.2);
+}
+
+.donate-modal-content input::placeholder,
+.donate-modal-content textarea::placeholder {
+  color: #777;
+}
+
+.donate-modal-content .close-modal {
+  color: #171717;
+}
+
+.donate-modal-content .tab-btn {
+  color: #333;
+}
+
+.donate-modal-content .card-number {
+  color: #111;
+}
+
+.donate-modal-content .copy-btn,
+.donate-modal-content .show-wallet {
+  color: #171717;
+}
