@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
   ======================================================= */
 
   const SUPABASE_FUNCTION_URL =
-    "https://YOUR_PROJECT_REF.supabase.co/functions/v1/access-request";
+    "https://pttolejekzkqbingzzwj.supabase.co/functions/v1/smart-task";
 
 
   /* =======================================================
