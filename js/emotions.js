@@ -529,5 +529,187 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
   });
+  /* =======================================================
+     ACCESS REQUEST FORM
+     ======================================================= */
 
+  const accessRequestForm =
+    document.getElementById("accessRequestForm");
+
+  const requestStatus =
+    document.getElementById("requestStatus");
+
+
+  if (accessRequestForm) {
+
+    accessRequestForm.addEventListener(
+      "submit",
+      async (event) => {
+
+        event.preventDefault();
+
+
+        const name =
+          document.getElementById("requestName")?.value.trim() || "";
+
+        const contact =
+          document.getElementById("requestContact")?.value.trim() || "";
+
+        const paymentMethod =
+          document.getElementById("requestPayment")?.value || "";
+
+        const message =
+          document.getElementById("requestMessage")?.value.trim() || "";
+
+
+        if (!name || !contact || !paymentMethod) {
+
+          if (requestStatus) {
+
+            requestStatus.style.display = "block";
+
+            requestStatus.textContent =
+              "Будь ласка, заповни всі обов'язкові поля.";
+
+          }
+
+          return;
+
+        }
+
+
+        /* ---------------------------------------------------
+           LOADING
+        --------------------------------------------------- */
+
+        const submitButton =
+          accessRequestForm.querySelector(
+            'button[type="submit"]'
+          );
+
+
+        if (submitButton) {
+
+          submitButton.disabled = true;
+
+          submitButton.textContent =
+            "Надсилаємо...";
+
+        }
+
+
+        if (requestStatus) {
+
+          requestStatus.style.display = "block";
+
+          requestStatus.textContent =
+            "Надсилаємо запит...";
+
+        }
+
+
+        try {
+
+          const response =
+            await fetch(
+              "https://pttolejekzkqbingzzwj.supabase.co/functions/v1/smart-task",
+              {
+
+                method: "POST",
+
+                headers: {
+                  "Content-Type": "application/json"
+                },
+
+                body: JSON.stringify({
+
+                  access_request: {
+
+                    name,
+                    contact,
+                    payment_method: paymentMethod,
+                    message
+
+                  }
+
+                })
+
+              }
+            );
+
+
+          const result =
+            await response.json();
+
+
+          if (!response.ok || result.ok === false) {
+
+            throw new Error(
+              result.error ||
+              "Request failed"
+            );
+
+          }
+
+
+          /* -------------------------------------------------
+             SUCCESS
+          ------------------------------------------------- */
+
+          if (requestStatus) {
+
+            requestStatus.style.display = "block";
+
+            requestStatus.textContent =
+              "Запит надіслано 🤍 Ми зв'яжемося з тобою.";
+
+          }
+
+
+          accessRequestForm.reset();
+
+
+          if (submitButton) {
+
+            submitButton.disabled = false;
+
+            submitButton.textContent =
+              "Надіслати запит";
+
+          }
+
+
+        } catch (error) {
+
+          console.error(
+            "Access request failed:",
+            error
+          );
+
+
+          if (requestStatus) {
+
+            requestStatus.style.display = "block";
+
+            requestStatus.textContent =
+              "Не вдалося надіслати запит. Спробуй ще раз.";
+
+          }
+
+
+          if (submitButton) {
+
+            submitButton.disabled = false;
+
+            submitButton.textContent =
+              "Надіслати запит";
+
+          }
+
+        }
+
+      }
+    );
+
+  }
 });
