@@ -30,8 +30,6 @@
     rel="canonical"
     href="https://vira-belialova.github.io/emotions.html">
 
-  <!-- LANGUAGE VERSIONS -->
-
   <link
     rel="alternate"
     hreflang="uk"
@@ -103,6 +101,565 @@
   <link
     rel="stylesheet"
     href="css/emotions.css">
+
+
+  <!-- MODAL OVERRIDES -->
+
+  <style>
+
+    /* =========================================================
+       ACCESS MODAL
+       ========================================================= */
+
+    .donate-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+
+      display: none;
+      align-items: center;
+      justify-content: center;
+
+      padding: 24px;
+
+      background: rgba(10, 10, 10, 0.78);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+
+      opacity: 0;
+      transition: opacity 0.25s ease;
+
+      overflow-y: auto;
+    }
+
+
+    .donate-modal.show,
+    .donate-modal.active {
+      opacity: 1;
+    }
+
+
+    .donate-modal-content {
+      position: relative;
+
+      width: min(620px, 100%);
+      max-height: calc(100vh - 48px);
+      overflow-y: auto;
+
+      padding: 48px;
+
+      background: #171717;
+      color: #f1eee8;
+
+      border: 1px solid rgba(241, 238, 232, 0.16);
+      border-radius: 4px;
+
+      box-shadow:
+        0 30px 100px rgba(0, 0, 0, 0.5);
+
+      transform: translateY(12px);
+      transition: transform 0.3s ease;
+    }
+
+
+    .donate-modal.show .donate-modal-content,
+    .donate-modal.active .donate-modal-content {
+      transform: translateY(0);
+    }
+
+
+    /* CLOSE */
+
+    .close-modal {
+      position: absolute;
+      top: 18px;
+      right: 22px;
+
+      width: 36px;
+      height: 36px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      color: rgba(241, 238, 232, 0.65);
+
+      font-size: 28px;
+      font-weight: 300;
+      line-height: 1;
+
+      cursor: pointer;
+
+      transition:
+        color 0.2s ease,
+        transform 0.2s ease;
+    }
+
+
+    .close-modal:hover {
+      color: #f1eee8;
+      transform: rotate(90deg);
+    }
+
+
+    /* HEADER */
+
+    .access-modal-eyebrow {
+      display: block;
+
+      margin-bottom: 16px;
+
+      color: rgba(241, 238, 232, 0.48);
+
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+
+    .donate-modal-content h2 {
+      margin: 0 0 18px;
+
+      color: #f1eee8;
+
+      font-size: clamp(32px, 5vw, 48px);
+      font-weight: 400;
+      line-height: 1.05;
+      letter-spacing: -0.025em;
+    }
+
+
+    .access-modal-intro {
+      max-width: 500px;
+
+      margin: 0 0 30px;
+
+      color: rgba(241, 238, 232, 0.68);
+
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+
+    /* PRICE */
+
+    .access-price {
+      margin: 0 0 32px;
+      padding: 22px 24px;
+
+      background: rgba(241, 238, 232, 0.045);
+
+      border-left: 2px solid rgba(241, 238, 232, 0.5);
+    }
+
+
+    .access-price-label {
+      display: block;
+
+      margin-bottom: 7px;
+
+      color: rgba(241, 238, 232, 0.45);
+
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+
+    .access-price-value {
+      display: block;
+
+      margin-bottom: 5px;
+
+      color: #f1eee8;
+
+      font-size: 27px;
+      font-weight: 400;
+    }
+
+
+    .access-price-note {
+      color: rgba(241, 238, 232, 0.55);
+
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+
+    /* PAYMENT TABS */
+
+    .donate-tabs {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+
+      gap: 1px;
+
+      margin-bottom: 22px;
+
+      background: rgba(241, 238, 232, 0.12);
+    }
+
+
+    .donate-tabs .tab-btn {
+      min-height: 46px;
+
+      border: 0;
+      border-radius: 0;
+
+      background: #202020;
+      color: rgba(241, 238, 232, 0.5);
+
+      font-family: inherit;
+      font-size: 12px;
+      letter-spacing: 0.04em;
+
+      cursor: pointer;
+
+      transition:
+        background 0.2s ease,
+        color 0.2s ease;
+    }
+
+
+    .donate-tabs .tab-btn:hover {
+      color: #f1eee8;
+      background: #252525;
+    }
+
+
+    .donate-tabs .tab-btn.active {
+      color: #171717;
+      background: #f1eee8;
+    }
+
+
+    /* TAB CONTENT */
+
+    .tab-content {
+      display: none;
+
+      padding: 25px;
+
+      background: #202020;
+
+      border: 1px solid rgba(241, 238, 232, 0.08);
+    }
+
+
+    .tab-content.active {
+      display: block;
+    }
+
+
+    .tab-content > p:first-child {
+      margin-top: 0;
+    }
+
+
+    .donation-note {
+      margin: 16px 0 0;
+
+      color: rgba(241, 238, 232, 0.52);
+
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+
+    /* PAYPAL */
+
+    .donate-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      min-height: 48px;
+      padding: 0 24px;
+
+      background: #f1eee8;
+      color: #171717;
+
+      text-decoration: none;
+
+      font-size: 13px;
+      font-weight: 500;
+
+      transition:
+        opacity 0.2s ease,
+        transform 0.2s ease;
+    }
+
+
+    .donate-link:hover {
+      opacity: 0.88;
+      transform: translateY(-1px);
+    }
+
+
+    /* BANK DETAILS */
+
+    .bank-details {
+      margin: 0;
+    }
+
+
+    .bank-details p {
+      margin: 0 0 8px;
+    }
+
+
+    .bank-details strong {
+      color: rgba(241, 238, 232, 0.5);
+
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+
+    .card-number {
+      display: inline-block;
+
+      margin-top: 4px !important;
+
+      color: #f1eee8;
+
+      font-family: monospace;
+      font-size: 18px;
+      letter-spacing: 0.05em;
+
+      word-break: break-word;
+    }
+
+
+    /* BUTTONS */
+
+    .copy-btn,
+    .show-wallet {
+      min-height: 40px;
+      padding: 0 16px;
+
+      border: 1px solid rgba(241, 238, 232, 0.18);
+      background: transparent;
+      color: rgba(241, 238, 232, 0.78);
+
+      font-family: inherit;
+      font-size: 12px;
+
+      cursor: pointer;
+
+      transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease;
+    }
+
+
+    .copy-btn:hover,
+    .show-wallet:hover {
+      border-color: rgba(241, 238, 232, 0.4);
+      color: #f1eee8;
+      background: rgba(241, 238, 232, 0.05);
+    }
+
+
+    .donate-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+
+      margin-top: 18px;
+    }
+
+
+    /* QR */
+
+    .qr-copy {
+      display: flex;
+      justify-content: center;
+
+      margin-bottom: 18px;
+    }
+
+
+    .donation-qr {
+      display: block;
+
+      width: 190px;
+      height: 190px;
+
+      object-fit: contain;
+
+      background: #fff;
+      padding: 8px;
+    }
+
+
+    .wallet-address {
+      padding: 12px;
+
+      background: rgba(241, 238, 232, 0.04);
+
+      font-family: monospace;
+      font-size: 11px;
+
+      word-break: break-all;
+    }
+
+
+    /* ACCESS FORM */
+
+    .access-form-divider {
+      height: 1px;
+
+      margin: 34px 0 28px;
+
+      background: rgba(241, 238, 232, 0.1);
+    }
+
+
+    .access-form-heading {
+      margin: 0 0 8px;
+
+      color: #f1eee8;
+
+      font-size: 20px;
+      font-weight: 400;
+    }
+
+
+    .access-form-description {
+      margin: 0 0 20px;
+
+      color: rgba(241, 238, 232, 0.52);
+
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+
+    #accessRequestForm {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+
+    #accessRequestForm input,
+    #accessRequestForm select,
+    #accessRequestForm textarea {
+      width: 100%;
+      box-sizing: border-box;
+
+      padding: 14px 15px;
+
+      border: 1px solid rgba(241, 238, 232, 0.14);
+      border-radius: 0;
+
+      outline: none;
+
+      background: #202020;
+      color: #f1eee8;
+
+      font-family: inherit;
+      font-size: 13px;
+
+      transition:
+        border-color 0.2s ease,
+        background 0.2s ease;
+    }
+
+
+    #accessRequestForm input::placeholder,
+    #accessRequestForm textarea::placeholder {
+      color: rgba(241, 238, 232, 0.34);
+    }
+
+
+    #accessRequestForm input:focus,
+    #accessRequestForm select:focus,
+    #accessRequestForm textarea:focus {
+      border-color: rgba(241, 238, 232, 0.42);
+      background: #242424;
+    }
+
+
+    #accessRequestForm select {
+      appearance: none;
+      -webkit-appearance: none;
+    }
+
+
+    #accessRequestForm textarea {
+      min-height: 90px;
+      resize: vertical;
+    }
+
+
+    #accessRequestForm .emotion-button {
+      width: 100%;
+      margin-top: 6px;
+    }
+
+
+    #requestStatus {
+      margin: 5px 0 0;
+
+      color: rgba(241, 238, 232, 0.7);
+
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+
+    /* MOBILE */
+
+    @media (max-width: 600px) {
+
+      .donate-modal {
+        align-items: flex-start;
+
+        padding: 12px;
+      }
+
+
+      .donate-modal-content {
+        max-height: calc(100vh - 24px);
+
+        padding: 38px 22px 26px;
+      }
+
+
+      .donate-modal-content h2 {
+        font-size: 34px;
+      }
+
+
+      .donate-tabs {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+
+      .tab-content {
+        padding: 20px 17px;
+      }
+
+
+      .donation-qr {
+        width: 165px;
+        height: 165px;
+      }
+
+
+      .card-number {
+        font-size: 15px;
+      }
+
+    }
+
+  </style>
 
 
   <!-- ICONS -->
@@ -360,9 +917,7 @@
 
 
           <p>
-            Обери, якщо не знаєш, що саме відчуваєш зараз.
-            М’яке сканування тіла допоможе помітити,
-            яка емоція на поверхні.
+            Обери, якщо не знаєш, що саме відчуваєш зараз. М’яке сканування тіла допоможе помітити, яка емоція на поверхні.
           </p>
 
 
@@ -398,9 +953,7 @@
 
 
           <p>
-            Обери, якщо є конкретна ситуація, яка досі
-            відгукується в тілі — щось незавершене,
-            непрожите. Ми підемо саме до неї.
+            Обери, якщо є конкретна ситуація, яка досі відгукується в тілі — щось незавершене, непрожите. Ми підемо саме до неї.
           </p>
 
 
@@ -424,467 +977,461 @@
   </section>
 
 
+  <div id="protected-content" style="display: none;">
 
-  <!-- PROTECTED CONTENT -->
 
-  <div
-    id="protected-content"
-    style="display: none;">
+  <!-- FEAR -->
 
+  <section class="emotion-video-section">
 
-    <!-- FEAR -->
+    <div class="emotion-video-container">
 
-    <section class="emotion-video-section">
-
-      <div class="emotion-video-container">
-
-        <div class="emotion-video">
-
-          <iframe
-            src="https://www.youtube.com/embed/xGLEsts89uA?modestbranding=1&rel=0"
-            title="Страх — тривога"
-            loading="lazy"
-            allowfullscreen>
-          </iframe>
-
-        </div>
-
-
-        <div class="emotion-video-info">
-
-          <span class="emotion-number">
-            01 · ЕМОЦІЯ
-          </span>
-
-
-          <h2>
-            Страх — тривога
-          </h2>
-
-
-          <p>
-            Страх і тривога можуть відчуватися тілом
-            як напруга, стискання, бажання завмерти
-            або втекти. Практика допомагає помітити
-            ці відчуття та побути з ними через рух.
-          </p>
-
-
-          <button
-            type="button"
-            class="reflection-toggle"
-            onclick="toggleReflection(this)">
-            Зупинитися і записати
-          </button>
-
-
-          <div class="reflection-box">
-
-            <p>
-              Що ти помічаєш у собі зараз?
-            </p>
-
-
-            <textarea
-              placeholder="Кілька слів для себе..."></textarea>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-
-    <!-- ANGER -->
-
-    <section class="emotion-video-section emotion-video-dark">
-
-      <div class="emotion-video-container reverse">
-
-        <div class="emotion-video">
-
-          <iframe
-            src="https://www.youtube.com/embed/i1LCmdo0Qpw?modestbranding=1&rel=0"
-            title="Гнів"
-            loading="lazy"
-            allowfullscreen>
-          </iframe>
-
-        </div>
-
-
-        <div class="emotion-video-info">
-
-          <span class="emotion-number">
-            02 · ЕМОЦІЯ
-          </span>
-
-
-          <h2>
-            Гнів
-          </h2>
-
-
-          <p>
-            Гнів може проявлятися як напруга,
-            стискання, жар, бажання діяти або захистити
-            свої межі. Практика допомагає дати цій енергії
-            простір і помітити, що стоїть за нею.
-          </p>
-
-
-          <button
-            type="button"
-            class="reflection-toggle"
-            onclick="toggleReflection(this)">
-            Зупинитися і записати
-          </button>
-
-
-          <div class="reflection-box">
-
-            <p>
-              Що хоче сказати твій гнів?
-            </p>
-
-
-            <textarea
-              placeholder="Кілька слів для себе..."></textarea>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-
-    <!-- SHAME -->
-
-    <section class="emotion-video-section">
-
-      <div class="emotion-video-container">
-
-        <div class="emotion-video">
-
-          <iframe
-            src="https://www.youtube.com/embed/QT0Ize2L8UE?modestbranding=1&rel=0"
-            title="Сором"
-            loading="lazy"
-            allowfullscreen>
-          </iframe>
-
-        </div>
-
-
-        <div class="emotion-video-info">
-
-          <span class="emotion-number">
-            03 · ЕМОЦІЯ
-          </span>
-
-
-          <h2>
-            Сором
-          </h2>
-
-
-          <p>
-            Сором може стискати тіло всередину —
-            опускати голову, змінювати дихання,
-            створювати бажання сховатися або стати менш помітною.
-            Практика допомагає помітити це стискання
-            і поступово повернути собі більше простору.
-          </p>
-
-
-          <button
-            type="button"
-            class="reflection-toggle"
-            onclick="toggleReflection(this)">
-            Зупинитися і записати
-          </button>
-
-
-          <div class="reflection-box">
-
-            <p>
-              Що відбувається всередині тебе?
-            </p>
-
-
-            <textarea
-              placeholder="Кілька слів для себе..."></textarea>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-
-    <!-- GRIEF -->
-
-    <section class="emotion-video-section emotion-video-dark">
-
-      <div class="emotion-video-container reverse">
-
-        <div class="emotion-video">
-
-          <iframe
-            src="https://www.youtube.com/embed/eyhvzRlIT9U?modestbranding=1&rel=0"
-            title="Горе"
-            loading="lazy"
-            allowfullscreen>
-          </iframe>
-
-        </div>
-
-
-        <div class="emotion-video-info">
-
-          <span class="emotion-number">
-            04 · ЕМОЦІЯ
-          </span>
-
-
-          <h2>
-            Горе
-          </h2>
-
-
-          <p>
-            Горе може жити в грудях і горлі —
-            відчуватися як тяжкість, стискання,
-            бажання зітхнути або сховатися.
-            Практика дає тілу можливість м'яко рухатися,
-            дихати й залишатися поруч із тим, що болить.
-          </p>
-
-
-          <button
-            type="button"
-            class="reflection-toggle"
-            onclick="toggleReflection(this)">
-            Зупинитися і записати
-          </button>
-
-
-          <div class="reflection-box">
-
-            <p>
-              Що ти хочеш дозволити собі прожити?
-            </p>
-
-
-            <textarea
-              placeholder="Кілька слів для себе..."></textarea>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-
-    <!-- JOY -->
-
-    <section class="emotion-video-section">
-
-      <div class="emotion-video-container">
-
-        <div class="emotion-video">
-
-          <iframe
-            src="https://www.youtube.com/embed/jTDl2qSixjk?modestbranding=1&rel=0"
-            title="Радість"
-            loading="lazy"
-            allowfullscreen>
-          </iframe>
-
-        </div>
-
-
-        <div class="emotion-video-info">
-
-          <span class="emotion-number">
-            05 · ЕМОЦІЯ
-          </span>
-
-
-          <h2>
-            Радість
-          </h2>
-
-
-          <p>
-            Радість може відчуватися як більше простору
-            в тілі, вільніше дихання, легкість і бажання рухатися.
-            Практика через вільний і спонтанний рух
-            допомагає помітити та дозволити собі цей стан.
-          </p>
-
-
-          <button
-            type="button"
-            class="reflection-toggle"
-            onclick="toggleReflection(this)">
-            Зупинитися і записати
-          </button>
-
-
-          <div class="reflection-box">
-
-            <p>
-              Де ти відчуваєш радість у своєму тілі?
-            </p>
-
-
-            <textarea
-              placeholder="Кілька слів для себе..."></textarea>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-
-    <!-- THREE EMOTIONS -->
-
-    <section class="emotion-video-section emotion-video-dark">
-
-      <div class="emotion-video-container reverse">
-
-        <div class="emotion-video">
-
-          <iframe
-            src="https://www.youtube.com/embed/d5rJlG49yBM?modestbranding=1&rel=0"
-            title="Страх · Гнів · Сором"
-            loading="lazy"
-            allowfullscreen>
-          </iframe>
-
-        </div>
-
-
-        <div class="emotion-video-info">
-
-          <span class="emotion-number">
-            06 · ПРАКТИКА
-          </span>
-
-
-          <h2>
-            Страх · Гнів · Сором
-          </h2>
-
-
-          <p>
-            Об'єднана практика для глибшого проживання
-            трьох емоцій через рух і тіло.
-          </p>
-
-
-          <button
-            type="button"
-            class="reflection-toggle"
-            onclick="toggleReflection(this)">
-            Зупинитися і записати
-          </button>
-
-
-          <div class="reflection-box">
-
-            <p>
-              Що змінилося у твоєму стані?
-            </p>
-
-
-            <textarea
-              placeholder="Кілька слів для себе..."></textarea>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-
-    <!-- FINAL MEDITATION -->
-
-    <section class="emotion-video-full">
-
-      <div class="emotion-video-full-wrapper">
+      <div class="emotion-video">
 
         <iframe
-          src="https://www.youtube.com/embed/OehWZRHWod8?modestbranding=1&rel=0"
-          title="Завершальна медитація"
+          src="https://www.youtube.com/embed/xGLEsts89uA?modestbranding=1&rel=0"
+          title="Страх — тривога"
           loading="lazy"
           allowfullscreen>
         </iframe>
 
       </div>
 
-    </section>
 
-
-
-    <!-- ENDING -->
-
-    <section class="emotion-ending">
-
-      <div class="emotion-ending-content">
+      <div class="emotion-video-info">
 
         <span class="emotion-number">
-          НА ЗАВЕРШЕННЯ
+          01 · ЕМОЦІЯ
         </span>
 
 
         <h2>
-          Ти можеш<br>
-          повертатися сюди.
+          Страх — тривога
         </h2>
 
 
         <p>
-          Не тільки коли все добре,
-          а в будь-який момент, коли це необхідно —
-          в будь-якому стані й без жодних правил
-          або послідовностей.
+          Страх і тривога можуть відчуватися тілом
+          як напруга, стискання, бажання завмерти
+          або втекти. Практика допомагає помітити
+          ці відчуття та побути з ними через рух.
         </p>
 
 
-        <p class="emotion-ending-small">
-          Бережи себе.
-        </p>
+        <button
+          type="button"
+          class="reflection-toggle"
+          onclick="toggleReflection(this)">
+          Зупинитися і записати
+        </button>
+
+
+        <div class="reflection-box">
+
+          <p>
+            Що ти помічаєш у собі зараз?
+          </p>
+
+
+          <textarea
+            placeholder="Кілька слів для себе..."></textarea>
+
+        </div>
 
       </div>
 
-    </section>
+    </div>
+
+  </section>
+
+
+
+  <!-- ANGER -->
+
+  <section class="emotion-video-section emotion-video-dark">
+
+    <div class="emotion-video-container reverse">
+
+      <div class="emotion-video">
+
+        <iframe
+          src="https://www.youtube.com/embed/i1LCmdo0Qpw?modestbranding=1&rel=0"
+          title="Гнів"
+          loading="lazy"
+          allowfullscreen>
+        </iframe>
+
+      </div>
+
+
+      <div class="emotion-video-info">
+
+        <span class="emotion-number">
+          02 · ЕМОЦІЯ
+        </span>
+
+
+        <h2>
+          Гнів
+        </h2>
+
+
+        <p>
+          Гнів може проявлятися як напруга,
+          стискання, жар, бажання діяти або захистити
+          свої межі. Практика допомагає дати цій енергії
+          простір і помітити, що стоїть за нею.
+        </p>
+
+
+        <button
+          type="button"
+          class="reflection-toggle"
+          onclick="toggleReflection(this)">
+          Зупинитися і записати
+        </button>
+
+
+        <div class="reflection-box">
+
+          <p>
+            Що хоче сказати твій гнів?
+          </p>
+
+
+          <textarea
+            placeholder="Кілька слів для себе..."></textarea>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- SHAME -->
+
+  <section class="emotion-video-section">
+
+    <div class="emotion-video-container">
+
+      <div class="emotion-video">
+
+        <iframe
+          src="https://www.youtube.com/embed/QT0Ize2L8UE?modestbranding=1&rel=0"
+          title="Сором"
+          loading="lazy"
+          allowfullscreen>
+        </iframe>
+
+      </div>
+
+
+      <div class="emotion-video-info">
+
+        <span class="emotion-number">
+          03 · ЕМОЦІЯ
+        </span>
+
+
+        <h2>
+          Сором
+        </h2>
+
+
+        <p>
+          Сором може стискати тіло всередину —
+          опускати голову, змінювати дихання,
+          створювати бажання сховатися або стати менш помітною.
+          Практика допомагає помітити це стискання
+          і поступово повернути собі більше простору.
+        </p>
+
+
+        <button
+          type="button"
+          class="reflection-toggle"
+          onclick="toggleReflection(this)">
+          Зупинитися і записати
+        </button>
+
+
+        <div class="reflection-box">
+
+          <p>
+            Що відбувається всередині тебе?
+          </p>
+
+
+          <textarea
+            placeholder="Кілька слів для себе..."></textarea>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- GRIEF -->
+
+  <section class="emotion-video-section emotion-video-dark">
+
+    <div class="emotion-video-container reverse">
+
+      <div class="emotion-video">
+
+        <iframe
+          src="https://www.youtube.com/embed/eyhvzRlIT9U?modestbranding=1&rel=0"
+          title="Горе"
+          loading="lazy"
+          allowfullscreen>
+        </iframe>
+
+      </div>
+
+
+      <div class="emotion-video-info">
+
+        <span class="emotion-number">
+          04 · ЕМОЦІЯ
+        </span>
+
+
+        <h2>
+          Горе
+        </h2>
+
+
+        <p>
+          Горе може жити в грудях і горлі —
+          відчуватися як тяжкість, стискання,
+          бажання зітхнути або сховатися.
+          Практика дає тілу можливість м'яко рухатися,
+          дихати й залишатися поруч із тим, що болить.
+        </p>
+
+
+        <button
+          type="button"
+          class="reflection-toggle"
+          onclick="toggleReflection(this)">
+          Зупинитися і записати
+        </button>
+
+
+        <div class="reflection-box">
+
+          <p>
+            Що ти хочеш дозволити собі прожити?
+          </p>
+
+
+          <textarea
+            placeholder="Кілька слів для себе..."></textarea>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- JOY -->
+
+  <section class="emotion-video-section">
+
+    <div class="emotion-video-container">
+
+      <div class="emotion-video">
+
+        <iframe
+          src="https://www.youtube.com/embed/jTDl2qSixjk?modestbranding=1&rel=0"
+          title="Радість"
+          loading="lazy"
+          allowfullscreen>
+        </iframe>
+
+      </div>
+
+
+      <div class="emotion-video-info">
+
+        <span class="emotion-number">
+          05 · ЕМОЦІЯ
+        </span>
+
+
+        <h2>
+          Радість
+        </h2>
+
+
+        <p>
+          Радість може відчуватися як більше простору
+          в тілі, вільніше дихання, легкість і бажання рухатися.
+          Практика через вільний і спонтанний рух
+          допомагає помітити та дозволити собі цей стан.
+        </p>
+
+
+        <button
+          type="button"
+          class="reflection-toggle"
+          onclick="toggleReflection(this)">
+          Зупинитися і записати
+        </button>
+
+
+        <div class="reflection-box">
+
+          <p>
+            Де ти відчуваєш радість у своєму тілі?
+          </p>
+
+
+          <textarea
+            placeholder="Кілька слів для себе..."></textarea>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- THREE EMOTIONS -->
+
+  <section class="emotion-video-section emotion-video-dark">
+
+    <div class="emotion-video-container reverse">
+
+      <div class="emotion-video">
+
+        <iframe
+          src="https://www.youtube.com/embed/d5rJlG49yBM?modestbranding=1&rel=0"
+          title="Страх · Гнів · Сором"
+          loading="lazy"
+          allowfullscreen>
+        </iframe>
+
+      </div>
+
+
+      <div class="emotion-video-info">
+
+        <span class="emotion-number">
+          06 · ПРАКТИКА
+        </span>
+
+
+        <h2>
+          Страх · Гнів · Сором
+        </h2>
+
+
+        <p>
+          Об'єднана практика для глибшого проживання
+          трьох емоцій через рух і тіло.
+        </p>
+
+
+        <button
+          type="button"
+          class="reflection-toggle"
+          onclick="toggleReflection(this)">
+          Зупинитися і записати
+        </button>
+
+
+        <div class="reflection-box">
+
+          <p>
+            Що змінилося у твоєму стані?
+          </p>
+
+
+          <textarea
+            placeholder="Кілька слів для себе..."></textarea>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- FINAL MEDITATION -->
+
+  <section class="emotion-video-full">
+
+    <div class="emotion-video-full-wrapper">
+
+      <iframe
+        src="https://www.youtube.com/embed/OehWZRHWod8?modestbranding=1&rel=0"
+        title="Завершальна медитація"
+        loading="lazy"
+        allowfullscreen>
+      </iframe>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- ENDING -->
+
+  <section class="emotion-ending">
+
+    <div class="emotion-ending-content">
+
+      <span class="emotion-number">
+        НА ЗАВЕРШЕННЯ
+      </span>
+
+
+      <h2>
+        Ти можеш<br>
+        повертатися сюди.
+      </h2>
+
+
+      <p>
+        Не тільки коли все добре,
+        а в будь-який момент, коли це необхідно —
+        в будь-якому стані й без жодних правил
+        або послідовностей.
+      </p>
+
+
+      <p class="emotion-ending-small">
+        Бережи себе.
+      </p>
+
+    </div>
+
+  </section>
 
   </div>
 
 
-
-  <!-- ACCESS CTA -->
+  <!-- GET ACCESS -->
 
   <section class="emotion-support">
 
@@ -896,13 +1443,15 @@
 
 
       <h2>
-        Емоційний детокс
+        Продовжити<br>
+        шлях із собою
       </h2>
 
 
       <p>
-        Доступ до повної практики —
-        за добровільним внеском.
+        Отримай доступ до повної версії
+        Emotional Detox і повертайся до практик
+        у своєму темпі.
       </p>
 
 
@@ -918,6 +1467,7 @@
     </div>
 
   </section>
+
 
 </main>
 
@@ -1054,7 +1604,6 @@
 
     <div class="emotion-steps">
 
-
       <article class="emotion-step visible">
 
         <div class="emotion-step-number">
@@ -1070,9 +1619,7 @@
 
 
           <p>
-            Choose this if you’re not sure what you’re feeling right now.
-            A gentle body scan will help notice which emotion
-            is closest to the surface.
+            Choose this if you’re not sure what you’re feeling right now. A gentle body scan will help notice which emotion is closest to the surface.
           </p>
 
 
@@ -1092,7 +1639,6 @@
       </article>
 
 
-
       <article class="emotion-step visible">
 
         <div class="emotion-step-number">
@@ -1108,9 +1654,7 @@
 
 
           <p>
-            Choose this if there’s a specific situation still
-            echoing in your body — something unfinished.
-            We’ll go straight to that.
+            Choose this if there’s a specific situation still echoing in your body — something unfinished. We’ll go straight to that.
           </p>
 
 
@@ -1134,405 +1678,399 @@
   </section>
 
 
+  <div id="protected-content-en" style="display: none;">
 
-  <!-- PROTECTED CONTENT -->
 
-  <div
-    id="protected-content-en"
-    style="display: none;">
+  <!-- FEAR -->
 
+  <section class="emotion-video-section">
 
-    <!-- FEAR -->
+    <div class="emotion-video-container">
 
-    <section class="emotion-video-section">
-
-      <div class="emotion-video-container">
-
-        <div class="emotion-video">
-
-          <iframe
-            src="https://www.youtube.com/embed/5UyP_F-0yXs?modestbranding=1&rel=0"
-            title="Fear"
-            loading="lazy"
-            allowfullscreen>
-          </iframe>
-
-        </div>
-
-
-        <div class="emotion-video-info">
-
-          <span class="emotion-number">
-            01 · EMOTION
-          </span>
-
-
-          <h2>
-            Fear
-          </h2>
-
-
-          <p>
-            Fear and anxiety can be felt in the body
-            as tension, contraction, stillness,
-            or the urge to move away.
-            This practice invites you to notice
-            these sensations through movement.
-          </p>
-
-
-          <button
-            type="button"
-            class="reflection-toggle"
-            onclick="toggleReflection(this)">
-            Pause & reflect
-          </button>
-
-
-          <div class="reflection-box">
-
-            <p>
-              What do you notice in yourself right now?
-            </p>
-
-
-            <textarea
-              placeholder="A few words for yourself..."></textarea>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-
-    <!-- ANGER -->
-
-    <section class="emotion-video-section emotion-video-dark">
-
-      <div class="emotion-video-container reverse">
-
-        <div class="emotion-video">
-
-          <iframe
-            src="https://www.youtube.com/embed/4ALZcuwLGPo?modestbranding=1&rel=0"
-            title="Anger"
-            loading="lazy"
-            allowfullscreen>
-          </iframe>
-
-        </div>
-
-
-        <div class="emotion-video-info">
-
-          <span class="emotion-number">
-            02 · EMOTION
-          </span>
-
-
-          <h2>
-            Anger
-          </h2>
-
-
-          <p>
-            Anger can appear as tension, heat,
-            contraction, the need to act,
-            or the need to protect your boundaries.
-            This practice gives that energy space
-            and invites you to notice what lies beneath it.
-          </p>
-
-
-          <button
-            type="button"
-            class="reflection-toggle"
-            onclick="toggleReflection(this)">
-            Pause & reflect
-          </button>
-
-
-          <div class="reflection-box">
-
-            <p>
-              What does your anger want to say?
-            </p>
-
-
-            <textarea
-              placeholder="A few words for yourself..."></textarea>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-
-    <!-- SHAME -->
-
-    <section class="emotion-video-section">
-
-      <div class="emotion-video-container">
-
-        <div class="emotion-video">
-
-          <iframe
-            src="https://www.youtube.com/embed/zcDHckG3BnA?modestbranding=1&rel=0"
-            title="Shame"
-            loading="lazy"
-            allowfullscreen>
-          </iframe>
-
-        </div>
-
-
-        <div class="emotion-video-info">
-
-          <span class="emotion-number">
-            03 · EMOTION
-          </span>
-
-
-          <h2>
-            Shame
-          </h2>
-
-
-          <p>
-            Shame can make the body contract inward —
-            lowering the head, changing the breath,
-            creating the urge to hide or become smaller.
-            This practice helps you notice that contraction
-            and gradually create more space.
-          </p>
-
-
-          <button
-            type="button"
-            class="reflection-toggle"
-            onclick="toggleReflection(this)">
-            Pause & reflect
-          </button>
-
-
-          <div class="reflection-box">
-
-            <p>
-              What is happening inside you?
-            </p>
-
-
-            <textarea
-              placeholder="A few words for yourself..."></textarea>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-
-    <!-- GRIEF -->
-
-    <section class="emotion-video-section emotion-video-dark">
-
-      <div class="emotion-video-container reverse">
-
-        <div class="emotion-video">
-
-          <iframe
-            src="https://www.youtube.com/embed/Dup5n1ddhPY?modestbranding=1&rel=0"
-            title="Grief"
-            loading="lazy"
-            allowfullscreen>
-          </iframe>
-
-        </div>
-
-
-        <div class="emotion-video-info">
-
-          <span class="emotion-number">
-            04 · EMOTION
-          </span>
-
-
-          <h2>
-            Grief
-          </h2>
-
-
-          <p>
-            Grief can be felt in the chest and throat —
-            as heaviness, tightness, or the desire to sigh.
-            This practice gives the body space to move,
-            breathe, and stay close to what hurts.
-          </p>
-
-
-          <button
-            type="button"
-            class="reflection-toggle"
-            onclick="toggleReflection(this)">
-            Pause & reflect
-          </button>
-
-
-          <div class="reflection-box">
-
-            <p>
-              What would you like to allow yourself to feel?
-            </p>
-
-
-            <textarea
-              placeholder="A few words for yourself..."></textarea>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-
-    <!-- JOY -->
-
-    <section class="emotion-video-section">
-
-      <div class="emotion-video-container">
-
-        <div class="emotion-video">
-
-          <iframe
-            src="https://www.youtube.com/embed/8VbHXGXDVm8?modestbranding=1&rel=0"
-            title="Joy"
-            loading="lazy"
-            allowfullscreen>
-          </iframe>
-
-        </div>
-
-
-        <div class="emotion-video-info">
-
-          <span class="emotion-number">
-            05 · EMOTION
-          </span>
-
-
-          <h2>
-            Joy
-          </h2>
-
-
-          <p>
-            Joy can feel like more space in the body,
-            freer breathing, lightness, and a desire to move.
-            Through free and spontaneous movement,
-            this practice invites you to notice
-            and allow that experience.
-          </p>
-
-
-          <button
-            type="button"
-            class="reflection-toggle"
-            onclick="toggleReflection(this)">
-            Pause & reflect
-          </button>
-
-
-          <div class="reflection-box">
-
-            <p>
-              Where do you feel joy in your body?
-            </p>
-
-
-            <textarea
-              placeholder="A few words for yourself..."></textarea>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-
-    <!-- FINAL MEDITATION -->
-
-    <section class="emotion-video-full">
-
-      <div class="emotion-video-full-wrapper">
+      <div class="emotion-video">
 
         <iframe
-          src="https://www.youtube.com/embed/ATEfmNPqHtM?modestbranding=1&rel=0"
-          title="Final meditation"
+          src="https://www.youtube.com/embed/5UyP_F-0yXs?modestbranding=1&rel=0"
+          title="Fear"
           loading="lazy"
           allowfullscreen>
         </iframe>
 
       </div>
 
-    </section>
 
-
-
-    <!-- ENDING -->
-
-    <section class="emotion-ending">
-
-      <div class="emotion-ending-content">
+      <div class="emotion-video-info">
 
         <span class="emotion-number">
-          TO FINISH
+          01 · EMOTION
         </span>
 
 
         <h2>
-          You can<br>
-          come back here.
+          Fear
         </h2>
 
 
         <p>
-          Not only when everything is fine,
-          but whenever you need it —
-          in any state and without
-          any rules or sequence.
+          Fear and anxiety can be felt in the body
+          as tension, contraction, stillness,
+          or the urge to move away.
+          This practice invites you to notice
+          these sensations through movement.
         </p>
 
 
-        <p class="emotion-ending-small">
-          Take care of yourself.
-        </p>
+        <button
+          type="button"
+          class="reflection-toggle"
+          onclick="toggleReflection(this)">
+          Pause & reflect
+        </button>
+
+
+        <div class="reflection-box">
+
+          <p>
+            What do you notice in yourself right now?
+          </p>
+
+
+          <textarea
+            placeholder="A few words for yourself..."></textarea>
+
+        </div>
 
       </div>
 
-    </section>
+    </div>
+
+  </section>
+
+
+
+  <!-- ANGER -->
+
+  <section class="emotion-video-section emotion-video-dark">
+
+    <div class="emotion-video-container reverse">
+
+      <div class="emotion-video">
+
+        <iframe
+          src="https://www.youtube.com/embed/4ALZcuwLGPo?modestbranding=1&rel=0"
+          title="Anger"
+          loading="lazy"
+          allowfullscreen>
+        </iframe>
+
+      </div>
+
+
+      <div class="emotion-video-info">
+
+        <span class="emotion-number">
+          02 · EMOTION
+        </span>
+
+
+        <h2>
+          Anger
+        </h2>
+
+
+        <p>
+          Anger can appear as tension, heat,
+          contraction, the need to act,
+          or the need to protect your boundaries.
+          This practice gives that energy space
+          and invites you to notice what lies beneath it.
+        </p>
+
+
+        <button
+          type="button"
+          class="reflection-toggle"
+          onclick="toggleReflection(this)">
+          Pause & reflect
+        </button>
+
+
+        <div class="reflection-box">
+
+          <p>
+            What does your anger want to say?
+          </p>
+
+
+          <textarea
+            placeholder="A few words for yourself..."></textarea>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- SHAME -->
+
+  <section class="emotion-video-section">
+
+    <div class="emotion-video-container">
+
+      <div class="emotion-video">
+
+        <iframe
+          src="https://www.youtube.com/embed/zcDHckG3BnA?modestbranding=1&rel=0"
+          title="Shame"
+          loading="lazy"
+          allowfullscreen>
+        </iframe>
+
+      </div>
+
+
+      <div class="emotion-video-info">
+
+        <span class="emotion-number">
+          03 · EMOTION
+        </span>
+
+
+        <h2>
+          Shame
+        </h2>
+
+
+        <p>
+          Shame can make the body contract inward —
+          lowering the head, changing the breath,
+          creating the urge to hide or become smaller.
+          This practice helps you notice that contraction
+          and gradually create more space.
+        </p>
+
+
+        <button
+          type="button"
+          class="reflection-toggle"
+          onclick="toggleReflection(this)">
+          Pause & reflect
+        </button>
+
+
+        <div class="reflection-box">
+
+          <p>
+            What is happening inside you?
+          </p>
+
+
+          <textarea
+            placeholder="A few words for yourself..."></textarea>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- GRIEF -->
+
+  <section class="emotion-video-section emotion-video-dark">
+
+    <div class="emotion-video-container reverse">
+
+      <div class="emotion-video">
+
+        <iframe
+          src="https://www.youtube.com/embed/Dup5n1ddhPY?modestbranding=1&rel=0"
+          title="Grief"
+          loading="lazy"
+          allowfullscreen>
+        </iframe>
+
+      </div>
+
+
+      <div class="emotion-video-info">
+
+        <span class="emotion-number">
+          04 · EMOTION
+        </span>
+
+
+        <h2>
+          Grief
+        </h2>
+
+
+        <p>
+          Grief can be felt in the chest and throat —
+          as heaviness, tightness, or the desire to sigh.
+          This practice gives the body space to move,
+          breathe, and stay close to what hurts.
+        </p>
+
+
+        <button
+          type="button"
+          class="reflection-toggle"
+          onclick="toggleReflection(this)">
+          Pause & reflect
+        </button>
+
+
+        <div class="reflection-box">
+
+          <p>
+            What would you like to allow yourself to feel?
+          </p>
+
+
+          <textarea
+            placeholder="A few words for yourself..."></textarea>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- JOY -->
+
+  <section class="emotion-video-section">
+
+    <div class="emotion-video-container">
+
+      <div class="emotion-video">
+
+        <iframe
+          src="https://www.youtube.com/embed/8VbHXGXDVm8?modestbranding=1&rel=0"
+          title="Joy"
+          loading="lazy"
+          allowfullscreen>
+        </iframe>
+
+      </div>
+
+
+      <div class="emotion-video-info">
+
+        <span class="emotion-number">
+          05 · EMOTION
+        </span>
+
+
+        <h2>
+          Joy
+        </h2>
+
+
+        <p>
+          Joy can feel like more space in the body,
+          freer breathing, lightness, and a desire to move.
+          Through free and spontaneous movement,
+          this practice invites you to notice
+          and allow that experience.
+        </p>
+
+
+        <button
+          type="button"
+          class="reflection-toggle"
+          onclick="toggleReflection(this)">
+          Pause & reflect
+        </button>
+
+
+        <div class="reflection-box">
+
+          <p>
+            Where do you feel joy in your body?
+          </p>
+
+
+          <textarea
+            placeholder="A few words for yourself..."></textarea>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- FINAL MEDITATION -->
+
+  <section class="emotion-video-full">
+
+    <div class="emotion-video-full-wrapper">
+
+      <iframe
+        src="https://www.youtube.com/embed/ATEfmNPqHtM?modestbranding=1&rel=0"
+        title="Final meditation"
+        loading="lazy"
+        allowfullscreen>
+      </iframe>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- ENDING -->
+
+  <section class="emotion-ending">
+
+    <div class="emotion-ending-content">
+
+      <span class="emotion-number">
+        TO FINISH
+      </span>
+
+
+      <h2>
+        You can<br>
+        come back here.
+      </h2>
+
+
+      <p>
+        Not only when everything is fine,
+        but whenever you need it —
+        in any state and without
+        any rules or sequence.
+      </p>
+
+
+      <p class="emotion-ending-small">
+        Take care of yourself.
+      </p>
+
+    </div>
+
+  </section>
 
   </div>
 
 
-
-  <!-- ACCESS CTA -->
+  <!-- GET ACCESS -->
 
   <section class="emotion-support">
 
@@ -1544,13 +2082,15 @@
 
 
       <h2>
-        Emotional Detox
+        Continue<br>
+        your journey
       </h2>
 
 
       <p>
-        Access to the full practice —
-        with a voluntary contribution.
+        Get access to the full Emotional Detox
+        and return to the practices
+        whenever you need them.
       </p>
 
 
@@ -1567,6 +2107,7 @@
 
   </section>
 
+
 </main>
 
 
@@ -1580,383 +2121,232 @@
   class="donate-modal"
   role="dialog"
   aria-modal="true"
-  aria-labelledby="accessModalTitle"
-  aria-hidden="true">
+  aria-labelledby="accessModalTitle">
 
 
   <div class="donate-modal-content">
 
 
-    <button
-      type="button"
+    <span
       id="closeModal"
       class="close-modal"
-      aria-label="Close">
+      aria-label="Close"
+      role="button"
+      tabindex="0">
 
       &times;
 
-    </button>
+    </span>
 
 
-    <!-- =====================================================
-         UKRAINIAN ACCESS MODAL
-    ====================================================== -->
-
-    <div
-      id="access-modal-uk"
-      class="access-modal-language">
+    <span class="access-modal-eyebrow">
+      TO STAY ALIVE · EMOTIONAL DETOX
+    </span>
 
 
-      <span class="emotion-number">
-        ОТРИМАТИ ДОСТУП
+    <h2 id="accessModalTitle">
+      Отримати доступ
+    </h2>
+
+
+    <p class="access-modal-intro">
+      Фіксованої ціни немає. Якщо цей простір тобі відгукується,
+      ти можеш обрати комфортний для себе внесок.
+      Будь-яка сума допомагає проєкту продовжувати існувати
+      та залишатися доступним для інших.
+    </p>
+
+
+    <!-- RECOMMENDED CONTRIBUTION -->
+
+    <div class="access-price">
+
+      <span class="access-price-label">
+        Рекомендований внесок
       </span>
 
 
-      <h2 id="accessModalTitle">
-        Емоційний детокс
-      </h2>
+      <span class="access-price-value">
+        €15
+      </span>
 
 
-      <p class="access-modal-intro">
-        Фіксованої ціни немає.
-        Ти можеш зробити внесок у комфортному для тебе розмірі.
+      <span class="access-price-note">
+        Це лише орієнтир — ти можеш обрати іншу комфортну суму.
+      </span>
+
+    </div>
+
+
+    <!-- PAYMENT TABS -->
+
+    <div class="donate-tabs">
+
+      <button
+        type="button"
+        class="tab-btn active"
+        data-tab="paypal">
+
+        PayPal
+
+      </button>
+
+
+      <button
+        type="button"
+        class="tab-btn"
+        data-tab="wise">
+
+        Wise
+
+      </button>
+
+
+      <button
+        type="button"
+        class="tab-btn"
+        data-tab="crypto">
+
+        USDT
+
+      </button>
+
+
+      <button
+        type="button"
+        class="tab-btn"
+        data-tab="card">
+
+        A-Bank
+
+      </button>
+
+    </div>
+
+
+
+    <!-- PAYPAL -->
+
+    <div
+      class="tab-content active"
+      id="paypal">
+
+      <a
+        href="https://paypal.me/ViraBelialova"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="donate-link">
+
+        Pay via PayPal
+
+      </a>
+
+
+      <p class="donation-note">
+
+        PayPal account or bank card can be used.
+
       </p>
 
+    </div>
 
-      <div class="recommended-contribution">
 
-        <span>
-          РЕКОМЕНДОВАНИЙ ВНЕСОК
-        </span>
 
-        <strong>
-          €25
-        </strong>
+    <!-- WISE -->
 
-      </div>
+    <div
+      class="tab-content"
+      id="wise">
 
-
-      <p class="access-modal-note">
-        Якщо €25 зараз не підходить — це нормально.
-        Обери суму, яка комфортна для тебе.
-      </p>
-
-
-      <!-- PAYMENT TABS -->
-
-      <div class="donate-tabs">
-
-        <button
-          type="button"
-          class="tab-btn active"
-          data-tab="paypal">
-
-          PayPal
-
-        </button>
-
-
-        <button
-          type="button"
-          class="tab-btn"
-          data-tab="wise">
-
-          Wise
-
-        </button>
-
-
-        <button
-          type="button"
-          class="tab-btn"
-          data-tab="crypto">
-
-          USDT
-
-        </button>
-
-
-        <button
-          type="button"
-          class="tab-btn"
-          data-tab="card">
-
-          A-Bank
-
-        </button>
-
-      </div>
-
-
-
-      <!-- PAYPAL -->
-
-      <div
-        class="tab-content active"
-        id="paypal">
-
-        <a
-          href="https://paypal.me/ViraBelialova"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="donate-link">
-
-          Оплатити через PayPal
-
-        </a>
-
-
-        <p class="donation-note">
-          Можна оплатити через PayPal або банківською карткою.
-        </p>
-
-      </div>
-
-
-
-      <!-- WISE -->
-
-      <div
-        class="tab-content"
-        id="wise">
-
-        <div class="bank-details">
-
-          <p>
-            <strong>
-              Wise
-            </strong>
-          </p>
-
-
-          <p class="card-number">
-            BE82 9053 0838 8568
-          </p>
-
-
-          <button
-            type="button"
-            class="copy-btn"
-            id="copyWise">
-
-            Скопіювати реквізити
-
-          </button>
-
-        </div>
-
-
-        <p class="donation-note">
-          Зроби внесок через Wise на вказані реквізити.
-        </p>
-
-      </div>
-
-
-
-      <!-- USDT -->
-
-      <div
-        class="tab-content"
-        id="crypto">
-
-
-        <div class="qr-copy">
-
-          <img
-            src="images/qr-usdt.JPG"
-            alt="USDT QR code"
-            class="donation-qr"
-            loading="lazy">
-
-        </div>
-
-
-        <p
-          class="donation-note wallet-address"
-          id="walletAddress"
-          style="display:none;">
-
-          TLg3NrPEcMphcXSrAWVdmLc9QmAhAwKJ5G
-
-        </p>
-
-
-        <p class="donation-note">
-          USDT. Будь ласка, використовуй мережу <strong>TRC20</strong>.
-        </p>
-
-
-        <div class="donate-actions">
-
-          <button
-            type="button"
-            id="copyWallet"
-            class="copy-btn">
-
-            Скопіювати гаманець
-
-          </button>
-
-
-          <button
-            type="button"
-            id="showWallet"
-            class="show-wallet">
-
-            Показати гаманець
-
-          </button>
-
-        </div>
-
-      </div>
-
-
-
-      <!-- A-BANK -->
-
-      <div
-        class="tab-content"
-        id="card">
-
-        <div class="bank-details">
-
-          <p>
-            <strong>
-              A-Bank
-            </strong>
-          </p>
-
-
-          <p class="card-number">
-            4323 3450 5365 5222
-          </p>
-
-
-          <button
-            type="button"
-            class="copy-btn"
-            id="copyCard">
-
-            Скопіювати номер картки
-
-          </button>
-
-        </div>
-
-
-        <p class="donation-note">
-          Можеш зробити внесок безпосередньо на картку.
-        </p>
-
-      </div>
-
-
-
-      <!-- ACCESS REQUEST -->
-
-      <div class="access-request-form-wrapper">
-
-        <div class="access-request-divider"></div>
-
-
-        <span class="emotion-number">
-          ПІСЛЯ ОПЛАТИ
-        </span>
-
-
-        <h3>
-          Надішли контакт для отримання доступу
-        </h3>
-
+      <div class="bank-details">
 
         <p>
-          Після внеску залиш свій email або Telegram.
-          Ми надішлемо персональне посилання на повну практику.
+          <strong>Wise</strong>
         </p>
 
 
-        <form id="accessRequestForm">
+        <p class="card-number">
+          BE82 9053 0838 8568
+        </p>
 
 
-          <input
-            type="text"
-            id="requestName"
-            name="name"
-            placeholder="Твоє ім'я"
-            autocomplete="name"
-            required>
+        <button
+          type="button"
+          class="copy-btn"
+          id="copyWise">
+
+          Copy Wise details
+
+        </button>
+
+      </div>
 
 
-          <input
-            type="text"
-            id="requestContact"
-            name="contact"
-            placeholder="Email або Telegram"
-            autocomplete="email"
-            required>
+      <p class="donation-note">
+
+        You can make the contribution directly through Wise.
+
+      </p>
+
+    </div>
 
 
-          <select
-            id="requestPayment"
-            name="payment_method"
-            required>
 
-            <option value="">
-              Обери спосіб оплати
-            </option>
+    <!-- USDT -->
 
-            <option value="PayPal">
-              PayPal
-            </option>
-
-            <option value="Wise">
-              Wise
-            </option>
-
-            <option value="USDT">
-              USDT
-            </option>
-
-            <option value="A-Bank">
-              A-Bank
-            </option>
-
-          </select>
+    <div
+      class="tab-content"
+      id="crypto">
 
 
-          <input
-            type="number"
-            id="requestAmount"
-            name="amount"
-            min="0"
-            step="0.01"
-            placeholder="Сума внеску (€), наприклад 25">
+      <div class="qr-copy">
+
+        <img
+          src="images/qr-usdt.JPG"
+          alt="USDT QR code"
+          class="donation-qr"
+          loading="lazy">
+
+      </div>
 
 
-          <textarea
-            id="requestMessage"
-            name="message"
-            placeholder="Повідомлення (необов'язково)"
-            rows="3"></textarea>
+      <p
+        class="donation-note wallet-address"
+        id="walletAddress"
+        style="display:none;">
+
+        TLg3NrPEcMphcXSrAWVdmLc9QmAhAwKJ5G
+
+      </p>
 
 
-          <button
-            type="submit"
-            class="emotion-button">
+      <p class="donation-note">
 
-            Надіслати запит
+        USDT network: TRC20.
 
-          </button>
+      </p>
 
 
-          <p
-            id="requestStatus"
-            style="display:none;">
-          </p>
+      <div class="donate-actions">
 
-        </form>
+        <button
+          type="button"
+          id="copyWallet"
+          class="copy-btn">
+
+          Copy wallet
+
+        </button>
+
+
+        <button
+          type="button"
+          id="showWallet"
+          class="show-wallet">
+
+          Show wallet
+
+        </button>
 
       </div>
 
@@ -1964,370 +2354,133 @@
 
 
 
-    <!-- =====================================================
-         ENGLISH ACCESS MODAL
-    ====================================================== -->
+    <!-- A-BANK -->
 
     <div
-      id="access-modal-en"
-      class="access-modal-language"
-      style="display:none;">
+      class="tab-content"
+      id="card">
 
-
-      <span class="emotion-number">
-        GET ACCESS
-      </span>
-
-
-      <h2>
-        Emotional Detox
-      </h2>
-
-
-      <p class="access-modal-intro">
-        There is no fixed price.
-        You can contribute whatever feels comfortable for you.
-      </p>
-
-
-      <div class="recommended-contribution">
-
-        <span>
-          RECOMMENDED CONTRIBUTION
-        </span>
-
-        <strong>
-          €25
-        </strong>
-
-      </div>
-
-
-      <p class="access-modal-note">
-        If €25 doesn't feel right for you right now, that's completely okay.
-        Choose an amount that feels comfortable.
-      </p>
-
-
-      <!-- PAYMENT TABS -->
-
-      <div class="donate-tabs">
-
-        <button
-          type="button"
-          class="tab-btn active"
-          data-tab="paypal-en">
-
-          PayPal
-
-        </button>
-
-
-        <button
-          type="button"
-          class="tab-btn"
-          data-tab="wise-en">
-
-          Wise
-
-        </button>
-
-
-        <button
-          type="button"
-          class="tab-btn"
-          data-tab="crypto-en">
-
-          USDT
-
-        </button>
-
-
-        <button
-          type="button"
-          class="tab-btn"
-          data-tab="card-en">
-
-          A-Bank
-
-        </button>
-
-      </div>
-
-
-
-      <!-- PAYPAL -->
-
-      <div
-        class="tab-content active"
-        id="paypal-en">
-
-        <a
-          href="https://paypal.me/ViraBelialova"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="donate-link">
-
-          Pay via PayPal
-
-        </a>
-
-
-        <p class="donation-note">
-          You can pay with PayPal or a bank card.
-        </p>
-
-      </div>
-
-
-
-      <!-- WISE -->
-
-      <div
-        class="tab-content"
-        id="wise-en">
-
-        <div class="bank-details">
-
-          <p>
-            <strong>
-              Wise
-            </strong>
-          </p>
-
-
-          <p class="card-number">
-            BE82 9053 0838 8568
-          </p>
-
-
-          <button
-            type="button"
-            class="copy-btn"
-            id="copyWiseEn">
-
-            Copy Wise details
-
-          </button>
-
-        </div>
-
-
-        <p class="donation-note">
-          Contribute directly through Wise using the details above.
-        </p>
-
-      </div>
-
-
-
-      <!-- USDT -->
-
-      <div
-        class="tab-content"
-        id="crypto-en">
-
-
-        <div class="qr-copy">
-
-          <img
-            src="images/qr-usdt.JPG"
-            alt="USDT QR code"
-            class="donation-qr"
-            loading="lazy">
-
-        </div>
-
-
-        <p
-          class="donation-note wallet-address"
-          id="walletAddressEn"
-          style="display:none;">
-
-          TLg3NrPEcMphcXSrAWVdmLc9QmAhAwKJ5G
-
-        </p>
-
-
-        <p class="donation-note">
-          USDT. Please use the <strong>TRC20</strong> network.
-        </p>
-
-
-        <div class="donate-actions">
-
-          <button
-            type="button"
-            id="copyWalletEn"
-            class="copy-btn">
-
-            Copy wallet
-
-          </button>
-
-
-          <button
-            type="button"
-            id="showWalletEn"
-            class="show-wallet">
-
-            Show wallet
-
-          </button>
-
-        </div>
-
-      </div>
-
-
-
-      <!-- A-BANK -->
-
-      <div
-        class="tab-content"
-        id="card-en">
-
-        <div class="bank-details">
-
-          <p>
-            <strong>
-              A-Bank
-            </strong>
-          </p>
-
-
-          <p class="card-number">
-            4323 3450 5365 5222
-          </p>
-
-
-          <button
-            type="button"
-            class="copy-btn"
-            id="copyCardEn">
-
-            Copy card number
-
-          </button>
-
-        </div>
-
-
-        <p class="donation-note">
-          You can contribute directly using the card details above.
-        </p>
-
-      </div>
-
-
-
-      <!-- ACCESS REQUEST -->
-
-      <div class="access-request-form-wrapper">
-
-        <div class="access-request-divider"></div>
-
-
-        <span class="emotion-number">
-          AFTER PAYMENT
-        </span>
-
-
-        <h3>
-          Leave your contact to receive access
-        </h3>
-
+      <div class="bank-details">
 
         <p>
-          After making your contribution, leave your email or Telegram.
-          We will send you a personal link to the full practice.
+          <strong>A-Bank · Card</strong>
         </p>
 
 
-        <form id="accessRequestFormEn">
+        <p class="card-number">
+          4323 3450 5365 5222
+        </p>
 
 
-          <input
-            type="text"
-            id="requestNameEn"
-            name="name"
-            placeholder="Your name"
-            autocomplete="name"
-            required>
+        <button
+          type="button"
+          class="copy-btn"
+          id="copyCard">
 
+          Copy card number
 
-          <input
-            type="text"
-            id="requestContactEn"
-            name="contact"
-            placeholder="Email or Telegram"
-            autocomplete="email"
-            required>
-
-
-          <select
-            id="requestPaymentEn"
-            name="payment_method"
-            required>
-
-            <option value="">
-              Choose payment method
-            </option>
-
-            <option value="PayPal">
-              PayPal
-            </option>
-
-            <option value="Wise">
-              Wise
-            </option>
-
-            <option value="USDT">
-              USDT
-            </option>
-
-            <option value="A-Bank">
-              A-Bank
-            </option>
-
-          </select>
-
-
-          <input
-            type="number"
-            id="requestAmountEn"
-            name="amount"
-            min="0"
-            step="0.01"
-            placeholder="Contribution (€), e.g. 25">
-
-
-          <textarea
-            id="requestMessageEn"
-            name="message"
-            placeholder="Message (optional)"
-            rows="3"></textarea>
-
-
-          <button
-            type="submit"
-            class="emotion-button">
-
-            Send request
-
-          </button>
-
-
-          <p
-            id="requestStatusEn"
-            style="display:none;">
-          </p>
-
-        </form>
+        </button>
 
       </div>
 
+
+      <p class="donation-note">
+
+        You can make the contribution directly using the card details above.
+
+      </p>
+
     </div>
+
+
+
+    <!-- ACCESS REQUEST -->
+
+    <div class="access-form-divider"></div>
+
+
+    <h3 class="access-form-heading">
+      Після оплати
+    </h3>
+
+
+    <p class="access-form-description">
+      Залиш свій контакт і спосіб оплати —
+      ми перевіримо внесок та надішлемо персональне посилання
+      для доступу до Emotional Detox.
+    </p>
+
+
+    <form id="accessRequestForm">
+
+
+      <input
+        type="text"
+        id="requestName"
+        name="name"
+        placeholder="Твоє ім'я"
+        required>
+
+
+      <input
+        type="text"
+        id="requestContact"
+        name="contact"
+        placeholder="Email або Telegram"
+        required>
+
+
+      <select
+        id="requestPayment"
+        name="payment_method"
+        required>
+
+        <option value="">
+          Обери спосіб оплати
+        </option>
+
+        <option value="PayPal">
+          PayPal
+        </option>
+
+        <option value="Wise">
+          Wise
+        </option>
+
+        <option value="USDT">
+          USDT
+        </option>
+
+        <option value="A-Bank">
+          A-Bank
+        </option>
+
+      </select>
+
+
+      <textarea
+        id="requestMessage"
+        name="message"
+        placeholder="Повідомлення або сума внеску (необов'язково)"></textarea>
+
+
+      <button
+        type="submit"
+        class="emotion-button">
+
+        Надіслати запит
+
+      </button>
+
+
+      <p
+        id="requestStatus"
+        style="display:none;">
+      </p>
+
+
+    </form>
+
 
   </div>
 
@@ -2348,8 +2501,7 @@
     <a
       href="https://www.instagram.com/veramandarin"
       target="_blank"
-      rel="noopener noreferrer"
-      aria-label="Instagram">
+      rel="noopener noreferrer">
 
       <i class="fab fa-instagram"></i>
 
@@ -2359,8 +2511,7 @@
     <a
       href="https://www.youtube.com/@verabelialova"
       target="_blank"
-      rel="noopener noreferrer"
-      aria-label="YouTube">
+      rel="noopener noreferrer">
 
       <i class="fab fa-youtube"></i>
 
@@ -2368,8 +2519,7 @@
 
 
     <a
-      href="mailto:veramandarin@gmail.com"
-      aria-label="Email">
+      href="mailto:veramandarin@gmail.com">
 
       <i class="fas fa-envelope"></i>
 
@@ -2390,6 +2540,273 @@
 
 
 <script src="js/emotions.js"></script>
+
+
+<!-- =========================================================
+     MODAL FALLBACK / VISUAL BEHAVIOUR
+========================================================= -->
+
+<script>
+
+  /*
+   * Keeps the modal independent from the page layout.
+   * Existing emotions.js functionality is preserved.
+   */
+
+  document.addEventListener("DOMContentLoaded", function () {
+
+    const modal = document.getElementById("donateModal");
+    const closeButton = document.getElementById("closeModal");
+
+    const openButtons = [
+      document.getElementById("emotionsDonateBtn"),
+      document.getElementById("emotionsDonateBtnEn")
+    ].filter(Boolean);
+
+
+    function openAccessModal() {
+
+      if (!modal) return;
+
+      modal.style.display = "flex";
+
+      requestAnimationFrame(function () {
+        modal.classList.add("show");
+      });
+
+      document.body.style.overflow = "hidden";
+    }
+
+
+    function closeAccessModal() {
+
+      if (!modal) return;
+
+      modal.classList.remove("show");
+
+      setTimeout(function () {
+        modal.style.display = "none";
+      }, 250);
+
+      document.body.style.overflow = "";
+    }
+
+
+    openButtons.forEach(function (button) {
+
+      button.addEventListener("click", function (event) {
+
+        event.preventDefault();
+
+        openAccessModal();
+
+      });
+
+    });
+
+
+    if (closeButton) {
+
+      closeButton.addEventListener("click", closeAccessModal);
+
+      closeButton.addEventListener("keydown", function (event) {
+
+        if (
+          event.key === "Enter" ||
+          event.key === " "
+        ) {
+
+          event.preventDefault();
+
+          closeAccessModal();
+
+        }
+
+      });
+
+    }
+
+
+    if (modal) {
+
+      modal.addEventListener("click", function (event) {
+
+        if (event.target === modal) {
+          closeAccessModal();
+        }
+
+      });
+
+    }
+
+
+    document.addEventListener("keydown", function (event) {
+
+      if (event.key === "Escape") {
+        closeAccessModal();
+      }
+
+    });
+
+
+    /* PAYMENT TABS */
+
+    const tabs = document.querySelectorAll(".donate-tabs .tab-btn");
+    const contents = document.querySelectorAll(".tab-content");
+
+
+    tabs.forEach(function (tab) {
+
+      tab.addEventListener("click", function () {
+
+        const target = tab.dataset.tab;
+
+        tabs.forEach(function (item) {
+          item.classList.remove("active");
+        });
+
+        contents.forEach(function (content) {
+          content.classList.remove("active");
+        });
+
+        tab.classList.add("active");
+
+        const targetContent = document.getElementById(target);
+
+        if (targetContent) {
+          targetContent.classList.add("active");
+        }
+
+      });
+
+    });
+
+
+    /* COPY WISE */
+
+    const copyWise = document.getElementById("copyWise");
+
+    if (copyWise) {
+
+      copyWise.addEventListener("click", async function () {
+
+        try {
+
+          await navigator.clipboard.writeText(
+            "BE82 9053 0838 8568"
+          );
+
+          const originalText = copyWise.textContent;
+
+          copyWise.textContent = "Copied";
+
+          setTimeout(function () {
+            copyWise.textContent = originalText;
+          }, 1500);
+
+        } catch (error) {
+
+          console.error("Could not copy Wise details.", error);
+
+        }
+
+      });
+
+    }
+
+
+    /* COPY CARD */
+
+    const copyCard = document.getElementById("copyCard");
+
+    if (copyCard) {
+
+      copyCard.addEventListener("click", async function () {
+
+        try {
+
+          await navigator.clipboard.writeText(
+            "4323 3450 5365 5222"
+          );
+
+          const originalText = copyCard.textContent;
+
+          copyCard.textContent = "Copied";
+
+          setTimeout(function () {
+            copyCard.textContent = originalText;
+          }, 1500);
+
+        } catch (error) {
+
+          console.error("Could not copy card number.", error);
+
+        }
+
+      });
+
+    }
+
+
+    /* COPY USDT */
+
+    const copyWallet = document.getElementById("copyWallet");
+
+    if (copyWallet) {
+
+      copyWallet.addEventListener("click", async function () {
+
+        try {
+
+          await navigator.clipboard.writeText(
+            "TLg3NrPEcMphcXSrAWVdmLc9QmAhAwKJ5G"
+          );
+
+          const originalText = copyWallet.textContent;
+
+          copyWallet.textContent = "Copied";
+
+          setTimeout(function () {
+            copyWallet.textContent = originalText;
+          }, 1500);
+
+        } catch (error) {
+
+          console.error("Could not copy wallet address.", error);
+
+        }
+
+      });
+
+    }
+
+
+    /* SHOW USDT WALLET */
+
+    const showWallet = document.getElementById("showWallet");
+    const walletAddress = document.getElementById("walletAddress");
+
+    if (showWallet && walletAddress) {
+
+      showWallet.addEventListener("click", function () {
+
+        const isHidden =
+          walletAddress.style.display === "none";
+
+        walletAddress.style.display =
+          isHidden ? "block" : "none";
+
+        showWallet.textContent =
+          isHidden ? "Hide wallet" : "Show wallet";
+
+      });
+
+    }
+
+  });
+
+</script>
+
 
 </body>
 
