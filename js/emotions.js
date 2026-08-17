@@ -24,9 +24,13 @@ document.addEventListener("DOMContentLoaded", () => {
           currentScrollY > lastScrollY &&
           currentScrollY > 120
         ) {
+
           nav.classList.add("nav-hidden");
+
         } else {
+
           nav.classList.remove("nav-hidden");
+
         }
 
         lastScrollY = currentScrollY;
@@ -100,8 +104,10 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 
-  /* Make language function available globally
-     in case there are old inline onclick handlers. */
+  /*
+   * Make language function available globally
+   * for compatibility with old inline onclick handlers.
+   */
 
   window.setLanguage = setLanguage;
 
@@ -118,7 +124,9 @@ document.addEventListener("DOMContentLoaded", () => {
           button.dataset.lang;
 
         if (language) {
+
           setLanguage(language);
+
         }
 
       }
@@ -144,6 +152,7 @@ document.addEventListener("DOMContentLoaded", () => {
     );
 
   }
+
 
   setLanguage(savedLanguage);
 
@@ -176,7 +185,8 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 
-  window.toggleReflection = toggleReflection;
+  window.toggleReflection =
+    toggleReflection;
 
 
   reflectionButtons.forEach(button => {
@@ -226,7 +236,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function openDonationModal() {
 
-      donationModal.classList.add("active");
+      donationModal.classList.add(
+        "active"
+      );
 
       document.body.classList.add(
         "modal-open"
@@ -237,7 +249,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function closeDonationModal() {
 
-      donationModal.classList.remove("active");
+      donationModal.classList.remove(
+        "active"
+      );
 
       document.body.classList.remove(
         "modal-open"
@@ -347,6 +361,7 @@ document.addEventListener("DOMContentLoaded", () => {
         ".donate-tabs .tab-btn"
       );
 
+
     const contents =
       donationModal.querySelectorAll(
         ".tab-content"
@@ -445,7 +460,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
           /*
-           * Backward-compatible support for existing IDs.
+           * Backward-compatible support
+           * for existing button IDs.
            */
 
           if (!targetSelector) {
@@ -614,7 +630,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   /* =======================================================
-     ACCESS REQUEST
+     ACCESS REQUEST PANEL
   ======================================================= */
 
   const accessButton =
@@ -640,6 +656,10 @@ document.addEventListener("DOMContentLoaded", () => {
       "requestStatus"
     );
 
+
+  /* -------------------------------------------------------
+     OPEN / CLOSE REQUEST PANEL
+  ------------------------------------------------------- */
 
   if (
     accessButton &&
@@ -687,13 +707,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /* =======================================================
      ACCESS REQUEST FORM
+     SEND TO SUPABASE
   ======================================================= */
 
   if (accessForm) {
 
     accessForm.addEventListener(
       "submit",
-      event => {
+      async event => {
 
         event.preventDefault();
 
@@ -704,12 +725,167 @@ document.addEventListener("DOMContentLoaded", () => {
             "block";
 
           accessStatus.textContent =
-            "Дякуємо! Запит отримано. Ми зв'яжемося з тобою.";
+            "Надсилаємо запит...";
 
         }
 
 
-        accessForm.reset();
+        /*
+         * Read form fields.
+         *
+         * Expected names:
+         * name
+         * contact
+         * payment_method
+         * message
+         */
+
+        const formData =
+          new FormData(accessForm);
+
+
+        const name =
+          String(
+            formData.get("name") || ""
+          ).trim();
+
+
+        const contact =
+          String(
+            formData.get("contact") || ""
+          ).trim();
+
+
+        const paymentMethod =
+          String(
+            formData.get("payment_method") || ""
+          ).trim();
+
+
+        const message =
+          String(
+            formData.get("message") || ""
+          ).trim();
+
+
+        /* ---------------------------------------------------
+           VALIDATION
+        --------------------------------------------------- */
+
+        if (
+          !name ||
+          !contact
+        ) {
+
+          if (accessStatus) {
+
+            accessStatus.textContent =
+              "Будь ласка, заповни ім'я та контакт.";
+
+          }
+
+          return;
+
+        }
+
+
+        /* ---------------------------------------------------
+           SEND TO SMART TASK
+        --------------------------------------------------- */
+
+        try {
+
+          const response =
+            await fetch(
+              "https://pttolejekzkqbingzzwj.supabase.co/functions/v1/smart-task",
+              {
+
+                method: "POST",
+
+                headers: {
+
+                  "Content-Type":
+                    "application/json"
+
+                },
+
+                body: JSON.stringify({
+
+                  action:
+                    "access_request",
+
+                  name:
+                    name,
+
+                  contact:
+                    contact,
+
+                  payment_method:
+                    paymentMethod,
+
+                  message:
+                    message
+
+                })
+
+              }
+            );
+
+
+          const result =
+            await response.json();
+
+
+          console.log(
+            "Access request result:",
+            result
+          );
+
+
+          if (
+            !response.ok ||
+            !result.ok
+          ) {
+
+            throw new Error(
+              result.error ||
+              "Request failed"
+            );
+
+          }
+
+
+          /* -------------------------------------------------
+             SUCCESS
+          ------------------------------------------------- */
+
+          if (accessStatus) {
+
+            accessStatus.textContent =
+              "Дякуємо 🤍 Запит отримано. Ми зв'яжемося з тобою.";
+
+          }
+
+
+          accessForm.reset();
+
+
+        } catch (error) {
+
+          console.error(
+            "Access request failed:",
+            error
+          );
+
+
+          if (accessStatus) {
+
+            accessStatus.textContent =
+              "Не вдалося надіслати запит. Спробуй ще раз.";
+
+          }
+
+        }
 
       }
     );
