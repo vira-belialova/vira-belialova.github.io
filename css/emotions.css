@@ -1513,7 +1513,7 @@ body.modal-open {
 #donateModal .bank-details,
 #donateModal .bank-details *,
 #donateModal .card-number {
-  color: #111 !important;
+  color: #eceaea !important;
 }
 
 
@@ -1521,33 +1521,33 @@ body.modal-open {
 #donateModal .tab-content,
 #donateModal .tab-content p,
 #donateModal .tab-content span {
-  color: #111 !important;
+  color: #eceaea !important;
 }
 
 
 /* Donation links */
 #donateModal .donate-link,
 #donateModal .tab-content a {
-  color: #111 !important;
+  color: #eceaea !important;
 }
 
 
 /* Tabs */
 #donateModal .donate-tabs .tab-btn {
-  color: #111 !important;
+  color: #eceaea !important;
 }
 
 
 /* Active tab */
 #donateModal .donate-tabs .tab-btn.active {
-  color: #111 !important;
+  color: #eceaea !important;
 }
 
 
 /* Copy / show wallet buttons */
 #donateModal .copy-btn,
 #donateModal .show-wallet {
-  color: #111 !important;
+  color: #eceaea !important;
 }
 
 
