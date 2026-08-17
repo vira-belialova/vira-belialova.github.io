@@ -2518,21 +2518,22 @@ if (
 
 async function checkAccess() {
 
+  const params = new URLSearchParams(
+    window.location.search
+  );
+
+  const token = params.get('access');
+
   const protectedContent =
     document.getElementById('protected-content');
 
   if (!protectedContent) return;
 
-  protectedContent.style.display = 'none';
-
-  const params =
-    new URLSearchParams(window.location.search);
-
-  const token =
-    params.get('access');
-
+  // Нет токена — доступ закрыт
   if (!token) {
+
     console.log('No access token');
+
     return;
   }
 
@@ -2553,20 +2554,14 @@ async function checkAccess() {
       }
     );
 
-    if (!response.ok) {
-      console.error(
-        'Access check HTTP error:',
-        response.status
-      );
-      return;
-    }
-
-    const result =
-      await response.json();
+    const result = await response.json();
 
     console.log('Access check:', result);
 
-    if (result.authorized === true) {
+    if (
+      response.ok &&
+      result.allowed === true
+    ) {
 
       protectedContent.style.display = 'block';
 
