@@ -1453,3 +1453,28 @@ body.modal-open {
   }
 
 }
+/* =========================================================
+   EMOTIONS HERO — TEXT VISIBILITY FIX
+   ========================================================= */
+
+.emotions-page .emotion-hero-content {
+  position: relative;
+  z-index: 10;
+
+  color: #fff !important;
+}
+
+.emotions-page .emotion-hero-content .emotion-eyebrow,
+.emotions-page .emotion-hero-content h1,
+.emotions-page .emotion-hero-content p {
+  color: #fff !important;
+  opacity: 1 !important;
+}
+
+.emotions-page .emotion-hero-content .emotion-eyebrow {
+  opacity: 0.8 !important;
+}
+
+.emotions-page .emotion-hero-content p {
+  opacity: 0.9 !important;
+}
