@@ -4,9 +4,95 @@
 
 document.addEventListener("DOMContentLoaded", () => {
 
+
+  /* =======================================================
+     LANGUAGE SWITCH
+     ======================================================= */
+
+  const pageUK =
+    document.getElementById("page-uk");
+
+  const pageEN =
+    document.getElementById("page-en");
+
+  const languageButtons =
+    document.querySelectorAll(
+      ".lang-switch span[data-lang]"
+    );
+
+
+  function setLanguage(lang) {
+
+    if (!pageUK || !pageEN) return;
+
+
+    if (lang === "en") {
+
+      pageUK.classList.remove("active");
+      pageEN.classList.add("active");
+
+      pageUK.style.display = "none";
+      pageEN.style.display = "block";
+
+      document.documentElement.lang = "en";
+
+    } else {
+
+      pageEN.classList.remove("active");
+      pageUK.classList.add("active");
+
+      pageEN.style.display = "none";
+      pageUK.style.display = "block";
+
+      document.documentElement.lang = "uk";
+
+    }
+
+
+    languageButtons.forEach(button => {
+
+      button.classList.toggle(
+        "active",
+        button.dataset.lang === lang
+      );
+
+    });
+
+
+    window.scrollTo({
+      top: 0,
+      behavior: "auto"
+    });
+
+  }
+
+
+  languageButtons.forEach(button => {
+
+    button.addEventListener("click", (event) => {
+
+      event.preventDefault();
+
+      const lang =
+        button.dataset.lang;
+
+      if (!lang) return;
+
+      setLanguage(lang);
+
+    });
+
+  });
+
+
+  /* DEFAULT LANGUAGE */
+
+  setLanguage("uk");
+
+
   /* =======================================================
      DONATION MODAL
-  ======================================================= */
+     ======================================================= */
 
   const modal = document.querySelector(".donate-modal");
   const closeButton = document.querySelector(".close-modal");
@@ -15,7 +101,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     /* -------------------------------------------------------
        OPEN MODAL
-    ------------------------------------------------------- */
+       ------------------------------------------------------- */
 
     document.querySelectorAll(
       '[data-donate], .donate-button, .open-donate'
@@ -36,7 +122,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     /* -------------------------------------------------------
        CLOSE MODAL
-    ------------------------------------------------------- */
+       ------------------------------------------------------- */
 
     if (closeButton) {
 
@@ -51,7 +137,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     /* -------------------------------------------------------
        CLICK OUTSIDE
-    ------------------------------------------------------- */
+       ------------------------------------------------------- */
 
     modal.addEventListener("click", (event) => {
 
@@ -66,7 +152,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     /* -------------------------------------------------------
        ESC
-    ------------------------------------------------------- */
+       ------------------------------------------------------- */
 
     document.addEventListener("keydown", (event) => {
 
