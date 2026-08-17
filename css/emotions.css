@@ -1765,3 +1765,492 @@ body.modal-open {
   }
 
 }
+
+/* =========================================================
+   EMOTIONS — FINAL OVERRIDES
+   Fix hero text + language switch
+========================================================= */
+
+
+/* =========================================================
+   HERO — TEXT MUST BE ABOVE IMAGE
+========================================================= */
+
+.emotion-hero {
+  position: relative !important;
+  isolation: isolate;
+}
+
+.emotion-hero-image {
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: -3 !important;
+}
+
+.emotion-hero-overlay {
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: -2 !important;
+
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.18) 0%,
+      rgba(0, 0, 0, 0.30) 35%,
+      rgba(0, 0, 0, 0.72) 100%
+    ) !important;
+}
+
+.emotion-hero-content {
+  position: relative !important;
+  z-index: 10 !important;
+
+  color: #fff !important;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.35);
+}
+
+.emotion-hero-content .emotion-eyebrow {
+  color: #fff !important;
+  opacity: 0.85 !important;
+}
+
+.emotion-hero-content h1 {
+  color: #fff !important;
+
+  font-weight: 400 !important;
+  opacity: 1 !important;
+
+  text-shadow:
+    0 3px 30px rgba(0, 0, 0, 0.45),
+    0 1px 5px rgba(0, 0, 0, 0.35);
+}
+
+.emotion-hero-content p {
+  color: #fff !important;
+  opacity: 0.92 !important;
+
+  text-shadow:
+    0 2px 15px rgba(0, 0, 0, 0.5);
+}
+
+.emotion-hero-content .emotion-button {
+  position: relative;
+  z-index: 20;
+
+  color: #fff !important;
+  border-color: rgba(255,255,255,0.75) !important;
+  background: rgba(0,0,0,0.08) !important;
+}
+
+.emotion-hero-content .emotion-button:hover {
+  background: #fff !important;
+  color: #111 !important;
+}
+
+
+/* =========================================================
+   LANGUAGE SWITCH
+========================================================= */
+
+.emotions-nav .lang-switch {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+
+  padding: 0 !important;
+
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+.emotions-nav .lang-switch button {
+  appearance: none !important;
+  -webkit-appearance: none !important;
+
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  width: auto !important;
+  min-width: 34px !important;
+  height: 28px !important;
+
+  padding: 0 5px !important;
+
+  margin: 0 !important;
+
+  border: 0 !important;
+  border-radius: 0 !important;
+
+  background: transparent !important;
+
+  color: rgba(255,255,255,0.55) !important;
+
+  font-family: inherit !important;
+  font-size: 11px !important;
+  font-weight: 400 !important;
+
+  line-height: 1 !important;
+  letter-spacing: 0.12em !important;
+
+  cursor: pointer !important;
+
+  opacity: 1 !important;
+
+  transition:
+    color 0.25s ease,
+    opacity 0.25s ease !important;
+}
+
+.emotions-nav .lang-switch button:hover {
+  color: #fff !important;
+  background: transparent !important;
+}
+
+.emotions-nav .lang-switch button.active {
+  color: #fff !important;
+  background: transparent !important;
+
+  font-weight: 500 !important;
+}
+
+.emotions-nav .lang-switch span {
+  color: rgba(255,255,255,0.35) !important;
+
+  font-size: 10px !important;
+
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   NAV — KEEP IT OVER HERO
+========================================================= */
+
+.emotions-nav {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+
+  z-index: 1000 !important;
+
+  color: #fff !important;
+}
+
+.emotions-nav * {
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   HOME BUTTON — CLEAN
+========================================================= */
+
+.emotions-nav .emotions-home-button {
+  color: #fff !important;
+
+  background: rgba(0,0,0,0.08) !important;
+
+  border: 1px solid rgba(255,255,255,0.55) !important;
+
+  box-shadow: none !important;
+}
+
+.emotions-nav .emotions-home-button:hover {
+  color: #111 !important;
+
+  background: #fff !important;
+
+  border-color: #fff !important;
+}
+
+
+/* =========================================================
+   PROTECT HERO FROM GLOBAL LINK / TEXT STYLES
+========================================================= */
+
+.emotion-hero a,
+.emotion-hero a:visited {
+  color: #fff !important;
+}
+
+.emotion-hero h1,
+.emotion-hero h2,
+.emotion-hero h3,
+.emotion-hero p,
+.emotion-hero span {
+  position: relative;
+  z-index: 10;
+}
+
+
+/* =========================================================
+   MODAL — KEEP NEW STYLE
+========================================================= */
+
+.donate-modal {
+  position: fixed !important;
+  inset: 0 !important;
+
+  z-index: 99999 !important;
+
+  display: flex !important;
+
+  align-items: center !important;
+  justify-content: center !important;
+
+  padding: 24px !important;
+
+  background: rgba(0,0,0,0.65) !important;
+
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  transition:
+    opacity 0.25s ease,
+    visibility 0.25s ease !important;
+}
+
+.donate-modal.active {
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+}
+
+.donate-modal-content {
+  position: relative !important;
+
+  width: 100% !important;
+  max-width: 520px !important;
+  max-height: 90vh !important;
+
+  overflow-y: auto !important;
+
+  padding: 40px !important;
+
+  background: #f7f4ef !important;
+  color: #222 !important;
+
+  border-radius: 18px !important;
+
+  box-shadow: 0 25px 80px rgba(0,0,0,0.25) !important;
+
+  transform: translateY(20px) scale(0.98);
+
+  transition: transform 0.25s ease;
+}
+
+.donate-modal.active .donate-modal-content {
+  transform: translateY(0) scale(1);
+}
+
+
+/* =========================================================
+   MODAL — TEXT
+========================================================= */
+
+.donate-modal-content h2,
+.donate-modal-content h3,
+.donate-modal-content p,
+.donate-modal-content span,
+.donate-modal-content label {
+  color: #222 !important;
+}
+
+.donate-modal-content h2 {
+  margin: 0 45px 28px 0 !important;
+
+  font-size: 30px !important;
+  line-height: 1.15 !important;
+}
+
+
+/* =========================================================
+   MODAL — CLOSE
+========================================================= */
+
+.donate-modal .close-modal {
+  position: absolute !important;
+
+  top: 16px !important;
+  right: 20px !important;
+
+  width: 36px !important;
+  height: 36px !important;
+
+  padding: 0 !important;
+  margin: 0 !important;
+
+  border: 0 !important;
+  background: transparent !important;
+
+  color: #222 !important;
+
+  font-size: 28px !important;
+  line-height: 1 !important;
+
+  opacity: 0.55 !important;
+
+  cursor: pointer !important;
+}
+
+.donate-modal .close-modal:hover {
+  background: transparent !important;
+  color: #222 !important;
+  opacity: 1 !important;
+}
+
+
+/* =========================================================
+   MODAL — TABS
+========================================================= */
+
+.donate-modal .donate-tabs {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 8px !important;
+
+  margin-bottom: 24px !important;
+
+  border: 0 !important;
+}
+
+.donate-modal .donate-tabs .tab-btn {
+  width: auto !important;
+  min-width: 0 !important;
+  height: auto !important;
+
+  padding: 10px 16px !important;
+  margin: 0 !important;
+
+  border: none !important;
+  border-radius: 999px !important;
+
+  background: rgba(0,0,0,0.07) !important;
+  color: #222 !important;
+
+  font-family: inherit !important;
+  font-size: 13px !important;
+
+  cursor: pointer !important;
+}
+
+.donate-modal .donate-tabs .tab-btn.active {
+  background: #222 !important;
+  color: #fff !important;
+}
+
+
+/* =========================================================
+   MODAL — CONTENT
+========================================================= */
+
+.donate-modal .tab-content {
+  display: none !important;
+}
+
+.donate-modal .tab-content.active {
+  display: block !important;
+}
+
+.donate-modal .donate-link {
+  display: inline-block !important;
+
+  padding: 14px 20px !important;
+
+  border: 0 !important;
+  border-radius: 10px !important;
+
+  background: #222 !important;
+  color: #fff !important;
+
+  text-decoration: none !important;
+}
+
+.donate-modal .bank-details {
+  padding: 20px !important;
+
+  border-radius: 12px !important;
+
+  background: rgba(0,0,0,0.05) !important;
+}
+
+.donate-modal .card-number {
+  color: #222 !important;
+
+  font-family: monospace !important;
+  font-size: 18px !important;
+
+  word-break: break-word;
+}
+
+.donate-modal .copy-btn,
+.donate-modal .show-wallet {
+  border: 0 !important;
+  border-radius: 8px !important;
+
+  padding: 10px 14px !important;
+
+  background: #222 !important;
+  color: #fff !important;
+
+  cursor: pointer !important;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 800px) {
+
+  .emotions-nav .lang-switch button {
+    min-width: 30px !important;
+    font-size: 10px !important;
+  }
+
+  .emotion-hero-content {
+    width: 88% !important;
+    padding-top: 100px !important;
+  }
+
+  .emotion-hero-content h1 {
+    font-size: clamp(48px, 13vw, 75px) !important;
+  }
+
+  .emotion-hero-content p {
+    font-size: 16px !important;
+  }
+
+  .donate-modal-content {
+    padding: 32px 22px !important;
+    max-height: 92vh !important;
+    border-radius: 14px !important;
+  }
+
+}
+
+
+/* =========================================================
+   SMALL PHONES
+========================================================= */
+
+@media (max-width: 480px) {
+
+  .emotions-nav .lang-switch {
+    gap: 4px !important;
+  }
+
+  .emotions-nav .lang-switch button {
+    min-width: 28px !important;
+    padding: 0 3px !important;
+    font-size: 9px !important;
+  }
+
+}
