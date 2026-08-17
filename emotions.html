@@ -1827,87 +1827,117 @@
 
 <!-- CLOSE DONATION MODAL -->
 
-  <div class="access-request">
+  <!-- =========================================================
+     ACCESS REQUEST
+========================================================= -->
 
-  <span class="emotion-number">
-    ОТРИМАТИ ДОСТУП
-  </span>
+<div class="access-request">
 
-  <h3>
-    Хочеш пройти Emotional Detox?
-  </h3>
+  <button
+    type="button"
+    class="emotion-button"
+    id="openAccessRequest">
 
-  <p>
-    Залиш свої контакти — ми надішлемо тобі персональне посилання після оплати.
-  </p>
+    Отримати доступ
 
-  <form id="accessRequestForm">
+  </button>
 
-    <input
-      type="text"
-      id="requestName"
-      name="name"
-      placeholder="Твоє ім'я"
-      required
-    >
 
-    <input
-      type="text"
-      id="requestContact"
-      name="contact"
-      placeholder="Telegram або email"
-      required
-    >
+  <div
+    id="accessRequestPanel"
+    class="access-request-panel"
+    style="display:none;">
 
-    <select
-      id="requestPayment"
-      name="payment_method"
-      required
-    >
+    <span class="emotion-number">
+      ОТРИМАТИ ДОСТУП
+    </span>
 
-      <option value="">
-        Обери спосіб оплати
-      </option>
+    <h3>
+      Хочеш пройти Emotional Detox?
+    </h3>
 
-      <option value="Wise">
-        Wise
-      </option>
+    <p>
+      Залиш свої контакти — ми зв'яжемося з тобою
+      та надішлемо персональне посилання після оплати.
+    </p>
 
-      <option value="PayPal">
-        PayPal
-      </option>
 
-      <option value="USDT">
-        USDT
-      </option>
+    <form id="accessRequestForm">
 
-      <option value="A-Bank">
-        A-Bank
-      </option>
+      <input
+        type="text"
+        id="requestName"
+        name="name"
+        placeholder="Твоє ім'я"
+        required
+      >
 
-    </select>
 
-    <textarea
-      id="requestMessage"
-      name="message"
-      placeholder="Повідомлення (необов'язково)"
-    ></textarea>
+      <input
+        type="text"
+        id="requestContact"
+        name="contact"
+        placeholder="Email або Telegram"
+        required
+      >
 
-    <button
-      type="submit"
-      class="emotion-button"
-    >
-      Надіслати запит
-    </button>
 
-    <p
-      id="requestStatus"
-      style="display:none;"
-    ></p>
+      <select
+        id="requestPayment"
+        name="payment_method"
+        required
+      >
 
-  </form>
+        <option value="">
+          Обери спосіб оплати
+        </option>
+
+        <option value="Wise">
+          Wise
+        </option>
+
+        <option value="PayPal">
+          PayPal
+        </option>
+
+        <option value="USDT">
+          USDT
+        </option>
+
+        <option value="A-Bank">
+          A-Bank
+        </option>
+
+      </select>
+
+
+      <textarea
+        id="requestMessage"
+        name="message"
+        placeholder="Повідомлення (необов'язково)"
+      ></textarea>
+
+
+      <button
+        type="submit"
+        class="emotion-button">
+
+        Надіслати запит
+
+      </button>
+
+
+      <p
+        id="requestStatus"
+        style="display:none;">
+      </p>
+
+    </form>
+
+  </div>
 
 </div>
+  
 
 </div>
 
