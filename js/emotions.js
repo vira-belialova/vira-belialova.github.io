@@ -4,36 +4,57 @@
 
 document.addEventListener("DOMContentLoaded", () => {
 
+
+  /* =======================================================
+     CONFIG
+  ======================================================= */
+
+  const SUPABASE_FUNCTION_URL =
+    "https://YOUR_PROJECT_REF.supabase.co/functions/v1/access-request";
+
+
   /* =======================================================
      NAVIGATION HIDE / SHOW
   ======================================================= */
 
-  const nav = document.querySelector(".emotions-nav");
+  const nav =
+    document.querySelector(".emotions-nav");
+
 
   if (nav) {
 
-    let lastScrollY = window.scrollY;
+    let lastScrollY =
+      window.scrollY;
+
 
     window.addEventListener(
       "scroll",
       () => {
 
-        const currentScrollY = window.scrollY;
+        const currentScrollY =
+          window.scrollY;
+
 
         if (
           currentScrollY > lastScrollY &&
           currentScrollY > 120
         ) {
 
-          nav.classList.add("nav-hidden");
+          nav.classList.add(
+            "nav-hidden"
+          );
 
         } else {
 
-          nav.classList.remove("nav-hidden");
+          nav.classList.remove(
+            "nav-hidden"
+          );
 
         }
 
-        lastScrollY = currentScrollY;
+
+        lastScrollY =
+          currentScrollY;
 
       },
       { passive: true }
@@ -46,43 +67,68 @@ document.addEventListener("DOMContentLoaded", () => {
      LANGUAGE SWITCH
   ======================================================= */
 
-  const pageUK = document.getElementById("page-uk");
-  const pageEN = document.getElementById("page-en");
+  const pageUK =
+    document.getElementById(
+      "page-uk"
+    );
 
-  const langButtons = document.querySelectorAll(
-    ".lang-switch [data-lang]"
-  );
+  const pageEN =
+    document.getElementById(
+      "page-en"
+    );
+
+  const langButtons =
+    document.querySelectorAll(
+      ".lang-switch [data-lang]"
+    );
 
 
   function setLanguage(language) {
 
-    if (!pageUK || !pageEN) {
+    if (
+      !pageUK ||
+      !pageEN
+    ) {
+
       return;
+
     }
 
-    if (language === "en") {
 
-      pageUK.style.display = "none";
-      pageEN.style.display = "block";
+    if (
+      language === "en"
+    ) {
+
+      pageUK.style.display =
+        "none";
+
+      pageEN.style.display =
+        "block";
 
     } else {
 
-      pageUK.style.display = "block";
-      pageEN.style.display = "none";
+      pageUK.style.display =
+        "block";
 
-      language = "uk";
+      pageEN.style.display =
+        "none";
+
+      language =
+        "uk";
 
     }
 
 
-    langButtons.forEach(button => {
+    langButtons.forEach(
+      button => {
 
-      button.classList.toggle(
-        "active",
-        button.dataset.lang === language
-      );
+        button.classList.toggle(
+          "active",
+          button.dataset.lang === language
+        );
 
-    });
+      }
+    );
 
 
     try {
@@ -104,38 +150,42 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 
-  /*
-   * Make language function available globally
-   * for compatibility with old inline onclick handlers.
-   */
-
-  window.setLanguage = setLanguage;
+  window.setLanguage =
+    setLanguage;
 
 
-  langButtons.forEach(button => {
+  langButtons.forEach(
+    button => {
 
-    button.addEventListener(
-      "click",
-      event => {
+      button.addEventListener(
+        "click",
+        event => {
 
-        event.preventDefault();
+          event.preventDefault();
 
-        const language =
-          button.dataset.lang;
 
-        if (language) {
+          const language =
+            button.dataset.lang;
 
-          setLanguage(language);
+
+          if (language) {
+
+            setLanguage(
+              language
+            );
+
+          }
 
         }
+      );
 
-      }
-    );
-
-  });
+    }
+  );
 
 
-  let savedLanguage = "uk";
+  let savedLanguage =
+    "uk";
+
 
   try {
 
@@ -154,7 +204,9 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 
-  setLanguage(savedLanguage);
+  setLanguage(
+    savedLanguage
+  );
 
 
   /* =======================================================
@@ -167,20 +219,27 @@ document.addEventListener("DOMContentLoaded", () => {
     );
 
 
-  function toggleReflection(button) {
+  function toggleReflection(
+    button
+  ) {
 
     if (!button) {
       return;
     }
 
+
     const target =
       button.nextElementSibling;
+
 
     if (!target) {
       return;
     }
 
-    target.classList.toggle("open");
+
+    target.classList.toggle(
+      "open"
+    );
 
   }
 
@@ -189,20 +248,24 @@ document.addEventListener("DOMContentLoaded", () => {
     toggleReflection;
 
 
-  reflectionButtons.forEach(button => {
+  reflectionButtons.forEach(
+    button => {
 
-    button.addEventListener(
-      "click",
-      event => {
+      button.addEventListener(
+        "click",
+        event => {
 
-        event.preventDefault();
+          event.preventDefault();
 
-        toggleReflection(button);
+          toggleReflection(
+            button
+          );
 
-      }
-    );
+        }
+      );
 
-  });
+    }
+  );
 
 
   /* =======================================================
@@ -210,7 +273,9 @@ document.addEventListener("DOMContentLoaded", () => {
   ======================================================= */
 
   const donationModal =
-    document.getElementById("donateModal");
+    document.getElementById(
+      "donateModal"
+    );
 
 
   if (donationModal) {
@@ -220,10 +285,6 @@ document.addEventListener("DOMContentLoaded", () => {
         ".close-modal"
       );
 
-
-    /* -------------------------------------------------------
-       OPEN DONATION MODAL
-    ------------------------------------------------------- */
 
     const donationButtons =
       document.querySelectorAll(
@@ -236,13 +297,31 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function openDonationModal() {
 
-      donationModal.classList.add(
-        "active"
+      donationModal.style.display =
+        "flex";
+
+
+      requestAnimationFrame(
+        () => {
+
+          donationModal.classList.add(
+            "active"
+          );
+
+          donationModal.classList.add(
+            "show"
+          );
+
+        }
       );
+
 
       document.body.classList.add(
         "modal-open"
       );
+
+      document.body.style.overflow =
+        "hidden";
 
     }
 
@@ -253,27 +332,59 @@ document.addEventListener("DOMContentLoaded", () => {
         "active"
       );
 
+      donationModal.classList.remove(
+        "show"
+      );
+
+
+      setTimeout(
+        () => {
+
+          if (
+            !donationModal.classList.contains(
+              "active"
+            ) &&
+            !donationModal.classList.contains(
+              "show"
+            )
+          ) {
+
+            donationModal.style.display =
+              "none";
+
+          }
+
+        },
+        250
+      );
+
+
       document.body.classList.remove(
         "modal-open"
       );
 
+      document.body.style.overflow =
+        "";
+
     }
 
 
-    donationButtons.forEach(button => {
+    donationButtons.forEach(
+      button => {
 
-      button.addEventListener(
-        "click",
-        event => {
+        button.addEventListener(
+          "click",
+          event => {
 
-          event.preventDefault();
+            event.preventDefault();
 
-          openDonationModal();
+            openDonationModal();
 
-        }
-      );
+          }
+        );
 
-    });
+      }
+    );
 
 
     if (closeButton) {
@@ -311,16 +422,13 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    /* -------------------------------------------------------
-       CLICK OUTSIDE
-    ------------------------------------------------------- */
-
     donationModal.addEventListener(
       "click",
       event => {
 
         if (
-          event.target === donationModal
+          event.target ===
+          donationModal
         ) {
 
           closeDonationModal();
@@ -330,10 +438,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     );
 
-
-    /* -------------------------------------------------------
-       ESC
-    ------------------------------------------------------- */
 
     document.addEventListener(
       "keydown",
@@ -341,7 +445,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (
           event.key === "Escape" &&
-          donationModal.classList.contains("active")
+          donationModal.classList.contains(
+            "active"
+          )
         ) {
 
           closeDonationModal();
@@ -352,15 +458,14 @@ document.addEventListener("DOMContentLoaded", () => {
     );
 
 
-    /* =======================================================
+    /* =====================================================
        DONATION TABS
-    ======================================================= */
+    ===================================================== */
 
     const tabs =
       donationModal.querySelectorAll(
         ".donate-tabs .tab-btn"
       );
-
 
     const contents =
       donationModal.querySelectorAll(
@@ -368,78 +473,86 @@ document.addEventListener("DOMContentLoaded", () => {
       );
 
 
-    tabs.forEach(tab => {
+    tabs.forEach(
+      tab => {
 
-      tab.addEventListener(
-        "click",
-        event => {
+        tab.addEventListener(
+          "click",
+          event => {
 
-          event.preventDefault();
-
-          const target =
-            tab.dataset.tab;
-
-          if (!target) {
-            return;
-          }
+            event.preventDefault();
 
 
-          tabs.forEach(item => {
+            const target =
+              tab.dataset.tab;
 
-            item.classList.remove(
+
+            if (!target) {
+              return;
+            }
+
+
+            tabs.forEach(
+              item => {
+
+                item.classList.remove(
+                  "active"
+                );
+
+              }
+            );
+
+
+            contents.forEach(
+              content => {
+
+                content.classList.remove(
+                  "active"
+                );
+
+              }
+            );
+
+
+            tab.classList.add(
               "active"
             );
 
-          });
 
-
-          contents.forEach(content => {
-
-            content.classList.remove(
-              "active"
-            );
-
-          });
-
-
-          tab.classList.add(
-            "active"
-          );
-
-
-          let targetContent =
-            donationModal.querySelector(
-              `.tab-content[data-tab-content="${target}"]`
-            );
-
-
-          if (!targetContent) {
-
-            targetContent =
+            let targetContent =
               donationModal.querySelector(
-                `#${target}`
+                `.tab-content[data-tab-content="${target}"]`
               );
 
+
+            if (!targetContent) {
+
+              targetContent =
+                donationModal.querySelector(
+                  `#${target}`
+                );
+
+            }
+
+
+            if (targetContent) {
+
+              targetContent.classList.add(
+                "active"
+              );
+
+            }
+
           }
+        );
+
+      }
+    );
 
 
-          if (targetContent) {
-
-            targetContent.classList.add(
-              "active"
-            );
-
-          }
-
-        }
-      );
-
-    });
-
-
-    /* =======================================================
+    /* =====================================================
        COPY BUTTONS
-    ======================================================= */
+    ===================================================== */
 
     const copyButtons =
       donationModal.querySelectorAll(
@@ -447,115 +560,116 @@ document.addEventListener("DOMContentLoaded", () => {
       );
 
 
-    copyButtons.forEach(button => {
+    copyButtons.forEach(
+      button => {
 
-      button.addEventListener(
-        "click",
-        async event => {
+        button.addEventListener(
+          "click",
+          async event => {
 
-          event.preventDefault();
-
-          let targetSelector =
-            button.dataset.copy;
+            event.preventDefault();
 
 
-          /*
-           * Backward-compatible support
-           * for existing button IDs.
-           */
+            let targetSelector =
+              button.dataset.copy;
 
-          if (!targetSelector) {
 
-            if (
-              button.id === "copyWallet"
-            ) {
+            if (!targetSelector) {
 
-              targetSelector =
-                "#walletAddress";
+              if (
+                button.id ===
+                "copyWallet"
+              ) {
 
-            } else if (
-              button.id === "copyWise"
-            ) {
+                targetSelector =
+                  "#walletAddress";
 
-              targetSelector =
-                ".tab-content#wise .card-number";
+              } else if (
+                button.id ===
+                "copyWise"
+              ) {
 
-            } else if (
-              button.id === "copyCard"
-            ) {
+                targetSelector =
+                  ".tab-content#wise .card-number";
 
-              targetSelector =
-                ".tab-content#card .card-number";
+              } else if (
+                button.id ===
+                "copyCard"
+              ) {
+
+                targetSelector =
+                  ".tab-content#card .card-number";
+
+              }
+
+            }
+
+
+            if (!targetSelector) {
+              return;
+            }
+
+
+            const target =
+              donationModal.querySelector(
+                targetSelector
+              );
+
+
+            if (!target) {
+              return;
+            }
+
+
+            const text =
+              target.textContent.trim();
+
+
+            try {
+
+              await navigator.clipboard.writeText(
+                text
+              );
+
+
+              const originalText =
+                button.textContent;
+
+
+              button.textContent =
+                "Copied ✓";
+
+
+              setTimeout(
+                () => {
+
+                  button.textContent =
+                    originalText;
+
+                },
+                1500
+              );
+
+
+            } catch (error) {
+
+              console.error(
+                "Copy failed:",
+                error
+              );
 
             }
 
           }
+        );
+
+      }
+    );
 
 
-          if (!targetSelector) {
-            return;
-          }
-
-
-          const target =
-            donationModal.querySelector(
-              targetSelector
-            );
-
-
-          if (!target) {
-            return;
-          }
-
-
-          const text =
-            target.textContent.trim();
-
-
-          try {
-
-            await navigator.clipboard.writeText(
-              text
-            );
-
-
-            const originalText =
-              button.textContent;
-
-
-            button.textContent =
-              "Copied ✓";
-
-
-            setTimeout(
-              () => {
-
-                button.textContent =
-                  originalText;
-
-              },
-              1500
-            );
-
-
-          } catch (error) {
-
-            console.error(
-              "Copy failed:",
-              error
-            );
-
-          }
-
-        }
-      );
-
-    });
-
-
-    /* =======================================================
+    /* =====================================================
        SHOW WALLET
-    ======================================================= */
+    ===================================================== */
 
     const walletButtons =
       donationModal.querySelectorAll(
@@ -563,68 +677,76 @@ document.addEventListener("DOMContentLoaded", () => {
       );
 
 
-    walletButtons.forEach(button => {
+    walletButtons.forEach(
+      button => {
 
-      button.addEventListener(
-        "click",
-        event => {
+        button.addEventListener(
+          "click",
+          event => {
 
-          event.preventDefault();
-
-          let targetSelector =
-            button.dataset.target;
+            event.preventDefault();
 
 
-          if (!targetSelector) {
+            let targetSelector =
+              button.dataset.target;
 
-            if (
-              button.id === "showWallet"
-            ) {
 
-              targetSelector =
-                "#walletAddress";
+            if (!targetSelector) {
+
+              if (
+                button.id ===
+                "showWallet"
+              ) {
+
+                targetSelector =
+                  "#walletAddress";
+
+              }
 
             }
 
+
+            if (!targetSelector) {
+              return;
+            }
+
+
+            const target =
+              donationModal.querySelector(
+                targetSelector
+              );
+
+
+            if (!target) {
+              return;
+            }
+
+
+            const isHidden =
+              target.style.display ===
+                "none" ||
+              getComputedStyle(
+                target
+              ).display ===
+                "none";
+
+
+            target.style.display =
+              isHidden
+                ? "block"
+                : "none";
+
+
+            button.textContent =
+              isHidden
+                ? "Hide wallet"
+                : "Show wallet";
+
           }
+        );
 
-
-          if (!targetSelector) {
-            return;
-          }
-
-
-          const target =
-            donationModal.querySelector(
-              targetSelector
-            );
-
-
-          if (!target) {
-            return;
-          }
-
-
-          const isHidden =
-            target.style.display === "none" ||
-            getComputedStyle(target).display === "none";
-
-
-          target.style.display =
-            isHidden
-              ? "block"
-              : "none";
-
-
-          button.textContent =
-            isHidden
-              ? "Hide wallet"
-              : "Show wallet";
-
-        }
-      );
-
-    });
+      }
+    );
 
   }
 
@@ -638,28 +760,11 @@ document.addEventListener("DOMContentLoaded", () => {
       "openAccessRequest"
     );
 
-
   const accessPanel =
     document.getElementById(
       "accessRequestPanel"
     );
 
-
-  const accessForm =
-    document.getElementById(
-      "accessRequestForm"
-    );
-
-
-  const accessStatus =
-    document.getElementById(
-      "requestStatus"
-    );
-
-
-  /* -------------------------------------------------------
-     OPEN / CLOSE REQUEST PANEL
-  ------------------------------------------------------- */
 
   if (
     accessButton &&
@@ -672,9 +777,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
         event.preventDefault();
 
+
         const isHidden =
-          accessPanel.style.display === "none" ||
-          getComputedStyle(accessPanel).display === "none";
+          accessPanel.style.display ===
+            "none" ||
+          getComputedStyle(
+            accessPanel
+          ).display ===
+            "none";
 
 
         accessPanel.style.display =
@@ -707,8 +817,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /* =======================================================
      ACCESS REQUEST FORM
-     SEND TO SUPABASE
   ======================================================= */
+
+  const accessForm =
+    document.getElementById(
+      "accessRequestForm"
+    );
+
+  const accessStatus =
+    document.getElementById(
+      "requestStatus"
+    );
+
 
   if (accessForm) {
 
@@ -717,6 +837,72 @@ document.addEventListener("DOMContentLoaded", () => {
       async event => {
 
         event.preventDefault();
+
+
+        const submitButton =
+          accessForm.querySelector(
+            'button[type="submit"]'
+          );
+
+
+        const name =
+          document.getElementById(
+            "requestName"
+          )?.value.trim();
+
+
+        const contact =
+          document.getElementById(
+            "requestContact"
+          )?.value.trim();
+
+
+        const paymentMethod =
+          document.getElementById(
+            "requestPayment"
+          )?.value;
+
+
+        const message =
+          document.getElementById(
+            "requestMessage"
+          )?.value.trim();
+
+
+        if (
+          !name ||
+          !contact ||
+          !paymentMethod
+        ) {
+
+          if (accessStatus) {
+
+            accessStatus.style.display =
+              "block";
+
+            accessStatus.textContent =
+              "Будь ласка, заповни ім'я, контакт і спосіб оплати.";
+
+          }
+
+          return;
+
+        }
+
+
+        /* ---------------------------------------------------
+           UI: SENDING
+        --------------------------------------------------- */
+
+        if (submitButton) {
+
+          submitButton.disabled =
+            true;
+
+          submitButton.textContent =
+            "Надсилання...";
+
+        }
 
 
         if (accessStatus) {
@@ -730,74 +916,11 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
 
-        /*
-         * Read form fields.
-         *
-         * Expected names:
-         * name
-         * contact
-         * payment_method
-         * message
-         */
-
-        const formData =
-          new FormData(accessForm);
-
-
-        const name =
-          String(
-            formData.get("name") || ""
-          ).trim();
-
-
-        const contact =
-          String(
-            formData.get("contact") || ""
-          ).trim();
-
-
-        const paymentMethod =
-          String(
-            formData.get("payment_method") || ""
-          ).trim();
-
-
-        const message =
-          String(
-            formData.get("message") || ""
-          ).trim();
-
-
-        /* ---------------------------------------------------
-           VALIDATION
-        --------------------------------------------------- */
-
-        if (
-          !name ||
-          !contact
-        ) {
-
-          if (accessStatus) {
-
-            accessStatus.textContent =
-              "Будь ласка, заповни ім'я та контакт.";
-
-          }
-
-          return;
-
-        }
-
-
-        /* ---------------------------------------------------
-           SEND TO SMART TASK
-        --------------------------------------------------- */
-
         try {
 
           const response =
             await fetch(
-              "https://pttolejekzkqbingzzwj.supabase.co/functions/v1/smart-task",
+              SUPABASE_FUNCTION_URL,
               {
 
                 method: "POST",
@@ -811,20 +934,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 body: JSON.stringify({
 
-                  action:
+                  type:
                     "access_request",
 
-                  name:
-                    name,
+                  name,
 
-                  contact:
-                    contact,
+                  contact,
 
                   payment_method:
                     paymentMethod,
 
-                  message:
-                    message
+                  message
 
                 })
 
@@ -834,12 +954,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
           const result =
             await response.json();
-
-
-          console.log(
-            "Access request result:",
-            result
-          );
 
 
           if (
@@ -861,8 +975,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
           if (accessStatus) {
 
+            accessStatus.style.display =
+              "block";
+
             accessStatus.textContent =
-              "Дякуємо 🤍 Запит отримано. Ми зв'яжемося з тобою.";
+              "Дякуємо! Запит отримано. Ми зв'яжемося з тобою.";
 
           }
 
@@ -873,15 +990,30 @@ document.addEventListener("DOMContentLoaded", () => {
         } catch (error) {
 
           console.error(
-            "Access request failed:",
+            "Access request error:",
             error
           );
 
 
           if (accessStatus) {
 
+            accessStatus.style.display =
+              "block";
+
             accessStatus.textContent =
-              "Не вдалося надіслати запит. Спробуй ще раз.";
+              "Не вдалося надіслати запит. Спробуй ще раз або напиши нам напряму.";
+
+          }
+
+        } finally {
+
+          if (submitButton) {
+
+            submitButton.disabled =
+              false;
+
+            submitButton.textContent =
+              "Надіслати запит";
 
           }
 
@@ -914,19 +1046,21 @@ document.addEventListener("DOMContentLoaded", () => {
       new IntersectionObserver(
         entries => {
 
-          entries.forEach(entry => {
+          entries.forEach(
+            entry => {
 
-            if (
-              entry.isIntersecting
-            ) {
+              if (
+                entry.isIntersecting
+              ) {
 
-              entry.target.classList.add(
-                "visible"
-              );
+                entry.target.classList.add(
+                  "visible"
+                );
+
+              }
 
             }
-
-          });
+          );
 
         },
         {
@@ -937,7 +1071,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     animatedElements.forEach(
       element =>
-        observer.observe(element)
+        observer.observe(
+          element
+        )
     );
 
   } else {
@@ -960,15 +1096,20 @@ document.addEventListener("DOMContentLoaded", () => {
     .querySelectorAll(
       ".emotion-hero-content"
     )
-    .forEach(element => {
+    .forEach(
+      element => {
 
-      element.classList.add(
-        "visible"
-      );
+        element.classList.add(
+          "visible"
+        );
 
-      element.style.opacity = "1";
-      element.style.visibility = "visible";
+        element.style.opacity =
+          "1";
 
-    });
+        element.style.visibility =
+          "visible";
+
+      }
+    );
 
 });
