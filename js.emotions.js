@@ -1,0 +1,447 @@
+/* =========================================================
+   EMOTIONS PAGE — JS
+   ========================================================= */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+  /* =======================================================
+     DONATION MODAL
+  ======================================================= */
+
+  const modal = document.querySelector(".donate-modal");
+  const closeButton = document.querySelector(".close-modal");
+
+  if (modal) {
+
+    /* -------------------------------------------------------
+       OPEN MODAL
+    ------------------------------------------------------- */
+
+    document.querySelectorAll(
+      '[data-donate], .donate-button, .open-donate'
+    ).forEach(button => {
+
+      button.addEventListener("click", (event) => {
+
+        event.preventDefault();
+
+        modal.classList.add("active");
+
+        document.body.classList.add("modal-open");
+
+      });
+
+    });
+
+
+    /* -------------------------------------------------------
+       CLOSE MODAL
+    ------------------------------------------------------- */
+
+    if (closeButton) {
+
+      closeButton.addEventListener("click", () => {
+
+        closeDonationModal();
+
+      });
+
+    }
+
+
+    /* -------------------------------------------------------
+       CLICK OUTSIDE
+    ------------------------------------------------------- */
+
+    modal.addEventListener("click", (event) => {
+
+      if (event.target === modal) {
+
+        closeDonationModal();
+
+      }
+
+    });
+
+
+    /* -------------------------------------------------------
+       ESC
+    ------------------------------------------------------- */
+
+    document.addEventListener("keydown", (event) => {
+
+      if (
+        event.key === "Escape" &&
+        modal.classList.contains("active")
+      ) {
+
+        closeDonationModal();
+
+      }
+
+    });
+
+  }
+
+
+  function closeDonationModal() {
+
+    if (!modal) return;
+
+    modal.classList.remove("active");
+
+    document.body.classList.remove("modal-open");
+
+  }
+
+
+  /* =======================================================
+     DONATION TABS
+     ======================================================= */
+
+  const tabButtons =
+    document.querySelectorAll(".donate-tabs .tab-btn");
+
+  const tabContents =
+    document.querySelectorAll(".donate-modal .tab-content");
+
+
+  tabButtons.forEach(button => {
+
+    button.addEventListener("click", () => {
+
+      const target =
+        button.dataset.tab ||
+        button.getAttribute("data-target");
+
+
+      if (!target) return;
+
+
+      /* deactivate buttons */
+
+      tabButtons.forEach(btn => {
+
+        btn.classList.remove("active");
+
+      });
+
+
+      /* hide contents */
+
+      tabContents.forEach(content => {
+
+        content.classList.remove("active");
+
+      });
+
+
+      /* activate selected */
+
+      button.classList.add("active");
+
+
+      const targetElement =
+        document.getElementById(target);
+
+
+      if (targetElement) {
+
+        targetElement.classList.add("active");
+
+      }
+
+    });
+
+  });
+
+
+  /* =======================================================
+     COPY BUTTON
+     ======================================================= */
+
+  document.querySelectorAll(".copy-btn").forEach(button => {
+
+    button.addEventListener("click", async () => {
+
+      const targetSelector =
+        button.dataset.copy;
+
+      let text = "";
+
+
+      if (targetSelector) {
+
+        const element =
+          document.querySelector(targetSelector);
+
+        if (element) {
+
+          text =
+            element.textContent.trim();
+
+        }
+
+      } else {
+
+        const wallet =
+          document.querySelector(".wallet-address");
+
+        if (wallet) {
+
+          text =
+            wallet.textContent.trim();
+
+        }
+
+      }
+
+
+      if (!text) return;
+
+
+      try {
+
+        await navigator.clipboard.writeText(text);
+
+        const originalText =
+          button.textContent;
+
+        button.textContent =
+          "Copied ✓";
+
+
+        setTimeout(() => {
+
+          button.textContent =
+            originalText;
+
+        }, 1800);
+
+
+      } catch (error) {
+
+        console.error(
+          "Copy failed:",
+          error
+        );
+
+      }
+
+    });
+
+  });
+
+
+  /* =======================================================
+     SHOW / HIDE WALLET
+     ======================================================= */
+
+  document.querySelectorAll(".show-wallet").forEach(button => {
+
+    button.addEventListener("click", () => {
+
+      const wallet =
+        document.querySelector(".wallet-address");
+
+      if (!wallet) return;
+
+
+      wallet.hidden =
+        !wallet.hidden;
+
+
+      button.textContent =
+        wallet.hidden
+          ? "Show wallet"
+          : "Hide wallet";
+
+    });
+
+  });
+
+
+  /* =======================================================
+     REFLECTION BOXES
+     ======================================================= */
+
+  document.querySelectorAll(".reflection-toggle").forEach(button => {
+
+    button.addEventListener("click", () => {
+
+      const box =
+        button.nextElementSibling;
+
+      if (!box) return;
+
+
+      box.classList.toggle("open");
+
+
+      const isOpen =
+        box.classList.contains("open");
+
+
+      button.textContent =
+        isOpen
+          ? "Close reflection"
+          : "Write a reflection";
+
+    });
+
+  });
+
+
+  /* =======================================================
+     SCROLL ANIMATIONS
+     ======================================================= */
+
+  const animatedElements =
+    document.querySelectorAll(
+      ".emotion-step, " +
+      ".emotion-video-container, " +
+      ".emotion-ending-content, " +
+      ".emotion-support-content"
+    );
+
+
+  if (
+    "IntersectionObserver" in window
+  ) {
+
+    const observer =
+      new IntersectionObserver(
+        (entries) => {
+
+          entries.forEach(entry => {
+
+            if (entry.isIntersecting) {
+
+              entry.target.classList.add(
+                "visible"
+              );
+
+              observer.unobserve(
+                entry.target
+              );
+
+            }
+
+          });
+
+        },
+        {
+          threshold: 0.15
+        }
+      );
+
+
+    animatedElements.forEach(element => {
+
+      observer.observe(element);
+
+    });
+
+  } else {
+
+    animatedElements.forEach(element => {
+
+      element.classList.add("visible");
+
+    });
+
+  }
+
+
+  /* =======================================================
+     NAVIGATION HIDE ON SCROLL
+     ======================================================= */
+
+  const nav =
+    document.querySelector(".emotions-nav");
+
+
+  if (nav) {
+
+    let lastScrollY =
+      window.scrollY;
+
+
+    window.addEventListener(
+      "scroll",
+      () => {
+
+        const currentScrollY =
+          window.scrollY;
+
+
+        if (
+          currentScrollY > lastScrollY &&
+          currentScrollY > 100
+        ) {
+
+          nav.classList.add(
+            "nav-hidden"
+          );
+
+        } else {
+
+          nav.classList.remove(
+            "nav-hidden"
+          );
+
+        }
+
+
+        lastScrollY =
+          currentScrollY;
+
+      },
+      {
+        passive: true
+      }
+    );
+
+  }
+
+
+  /* =======================================================
+     SMOOTH ANCHOR SCROLL
+     ======================================================= */
+
+  document.querySelectorAll(
+    'a[href^="#"]'
+  ).forEach(link => {
+
+    link.addEventListener("click", (event) => {
+
+      const targetId =
+        link.getAttribute("href");
+
+
+      if (
+        !targetId ||
+        targetId === "#"
+      ) return;
+
+
+      const target =
+        document.querySelector(targetId);
+
+
+      if (!target) return;
+
+
+      event.preventDefault();
+
+
+      target.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+
+    });
+
+  });
+
+});
