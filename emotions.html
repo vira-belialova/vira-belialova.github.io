@@ -2513,15 +2513,23 @@ if (
 
 
 </script>
+  
 <script>
 
 async function checkAccess() {
 
-  const params = new URLSearchParams(
-    window.location.search
-  );
+  const protectedContent =
+    document.getElementById('protected-content');
 
-  const token = params.get('access');
+  if (!protectedContent) return;
+
+  protectedContent.style.display = 'none';
+
+  const params =
+    new URLSearchParams(window.location.search);
+
+  const token =
+    params.get('access');
 
   if (!token) {
     console.log('No access token');
@@ -2545,9 +2553,30 @@ async function checkAccess() {
       }
     );
 
-    const result = await response.json();
+    if (!response.ok) {
+      console.error(
+        'Access check HTTP error:',
+        response.status
+      );
+      return;
+    }
+
+    const result =
+      await response.json();
 
     console.log('Access check:', result);
+
+    if (result.authorized === true) {
+
+      protectedContent.style.display = 'block';
+
+      console.log('Access granted');
+
+    } else {
+
+      console.log('Access denied');
+
+    }
 
   } catch (error) {
 
