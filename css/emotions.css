@@ -1482,7 +1482,6 @@ body.modal-open {
 .donate-modal-content h2,
 .donate-modal-content h3,
 .donate-modal-content p,
-.donate-modal-content span,
 .donate-modal-content label,
 .donate-modal-content strong,
 .donate-modal-content .donation-note,
@@ -1502,7 +1501,7 @@ body.modal-open {
 
 .donate-modal-content p,
 .donate-modal-content .donation-note {
-  color: #4a4742;
+  color: #f4f1eb;
 }
 
 .donate-modal-content input,
@@ -1524,10 +1523,6 @@ body.modal-open {
 
 .donate-modal-content .tab-btn {
   color: #333;
-}
-
-.donate-modal-content .card-number {
-  color: #111;
 }
 
 .donate-modal-content .copy-btn,
