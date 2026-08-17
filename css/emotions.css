@@ -1705,3 +1705,17 @@ body.modal-open {
   }
 
 }
+
+/* =========================================================
+   LANGUAGE SWITCH
+========================================================= */
+
+#page-uk,
+#page-en {
+  display: none;
+}
+
+#page-uk.active,
+#page-en.active {
+  display: block;
+}
