@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="uk">
 
@@ -205,7 +206,8 @@
     <span
       class="active"
       data-lang="uk"
-      onclick="setLanguage('uk')"
+      role="button"
+      tabindex="0"
     >
       UA
     </span>
@@ -214,7 +216,8 @@
 
     <span
       data-lang="en"
-      onclick="setLanguage('en')"
+      role="button"
+      tabindex="0"
     >
       EN
     </span>
@@ -475,7 +478,6 @@
           <button
             type="button"
             class="reflection-toggle"
-            onclick="toggleReflection(this)"
           >
             Зупинитися і записати
           </button>
@@ -536,7 +538,6 @@
           <button
             type="button"
             class="reflection-toggle"
-            onclick="toggleReflection(this)"
           >
             Зупинитися і записати
           </button>
@@ -598,7 +599,6 @@
           <button
             type="button"
             class="reflection-toggle"
-            onclick="toggleReflection(this)"
           >
             Зупинитися і записати
           </button>
@@ -660,7 +660,6 @@
           <button
             type="button"
             class="reflection-toggle"
-            onclick="toggleReflection(this)"
           >
             Зупинитися і записати
           </button>
@@ -721,7 +720,6 @@
           <button
             type="button"
             class="reflection-toggle"
-            onclick="toggleReflection(this)"
           >
             Зупинитися і записати
           </button>
@@ -780,7 +778,6 @@
           <button
             type="button"
             class="reflection-toggle"
-            onclick="toggleReflection(this)"
           >
             Зупинитися і записати
           </button>
@@ -962,6 +959,7 @@
           src="https://www.youtube.com/embed/UPxPCXpuX54?modestbranding=1&rel=0"
           title="Introduction — Emotional Detox"
           loading="lazy"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           allowfullscreen
         ></iframe>
 
@@ -1134,9 +1132,8 @@
           <button
             type="button"
             class="reflection-toggle"
-            onclick="toggleReflection(this)"
           >
-            Pause & reflect
+            Pause &amp; reflect
           </button>
 
           <div class="reflection-box">
@@ -1196,9 +1193,8 @@
           <button
             type="button"
             class="reflection-toggle"
-            onclick="toggleReflection(this)"
           >
-            Pause & reflect
+            Pause &amp; reflect
           </button>
 
           <div class="reflection-box">
@@ -1258,9 +1254,8 @@
           <button
             type="button"
             class="reflection-toggle"
-            onclick="toggleReflection(this)"
           >
-            Pause & reflect
+            Pause &amp; reflect
           </button>
 
           <div class="reflection-box">
@@ -1319,9 +1314,8 @@
           <button
             type="button"
             class="reflection-toggle"
-            onclick="toggleReflection(this)"
           >
-            Pause & reflect
+            Pause &amp; reflect
           </button>
 
           <div class="reflection-box">
@@ -1381,9 +1375,8 @@
           <button
             type="button"
             class="reflection-toggle"
-            onclick="toggleReflection(this)"
           >
-            Pause & reflect
+            Pause &amp; reflect
           </button>
 
           <div class="reflection-box">
@@ -1502,35 +1495,41 @@
   class="donate-modal"
   role="dialog"
   aria-modal="true"
-  aria-label="Donation information"
+  aria-labelledby="donateModalTitle"
+  aria-hidden="true"
 >
 
   <div class="donate-modal-content">
 
-    <span
+    <button
+      type="button"
       id="closeModal"
       class="close-modal"
       aria-label="Close donation window"
-      role="button"
-      tabindex="0"
     >
       &times;
-    </span>
+    </button>
 
 
-    <h2>
+    <h2 id="donateModalTitle">
       Support the Project
     </h2>
 
 
     <!-- TABS -->
 
-    <div class="donate-tabs">
+    <div
+      class="donate-tabs"
+      role="tablist"
+      aria-label="Donation methods"
+    >
 
       <button
         type="button"
         class="tab-btn active"
         data-tab="paypal"
+        role="tab"
+        aria-selected="true"
       >
         PayPal
       </button>
@@ -1539,6 +1538,8 @@
         type="button"
         class="tab-btn"
         data-tab="wise"
+        role="tab"
+        aria-selected="false"
       >
         Wise
       </button>
@@ -1547,6 +1548,8 @@
         type="button"
         class="tab-btn"
         data-tab="crypto"
+        role="tab"
+        aria-selected="false"
       >
         USDT
       </button>
@@ -1555,6 +1558,8 @@
         type="button"
         class="tab-btn"
         data-tab="card"
+        role="tab"
+        aria-selected="false"
       >
         A-Bank
       </button>
@@ -1567,6 +1572,7 @@
     <div
       class="tab-content active"
       id="paypal"
+      role="tabpanel"
     >
 
       <a
@@ -1590,6 +1596,7 @@
     <div
       class="tab-content"
       id="wise"
+      role="tabpanel"
     >
 
       <div class="bank-details">
@@ -1598,7 +1605,7 @@
           <strong>Wise</strong>
         </p>
 
-        <p class="card-number">
+        <p class="card-number" id="wiseDetails">
           BE82 9053 0838 8568
         </p>
 
@@ -1606,6 +1613,7 @@
           type="button"
           class="copy-btn"
           id="copyWise"
+          data-copy="#wiseDetails"
         >
           Copy Wise details
         </button>
@@ -1624,6 +1632,7 @@
     <div
       class="tab-content"
       id="crypto"
+      role="tabpanel"
     >
 
       <div class="qr-copy">
@@ -1640,7 +1649,7 @@
       <p
         class="donation-note wallet-address"
         id="walletAddress"
-        style="display:none;"
+        hidden
       >
         TLg3NrPEcMphcXSrAWVdmLc9QmAhAwKJ5G
       </p>
@@ -1655,6 +1664,7 @@
           type="button"
           id="copyWallet"
           class="copy-btn"
+          data-copy="#walletAddress"
         >
           Copy wallet
         </button>
@@ -1677,6 +1687,7 @@
     <div
       class="tab-content"
       id="card"
+      role="tabpanel"
     >
 
       <p>
@@ -1689,7 +1700,10 @@
           <strong>Card number</strong>
         </p>
 
-        <p class="card-number">
+        <p
+          class="card-number"
+          id="cardNumber"
+        >
           4323 3450 5365 5222
         </p>
 
@@ -1697,6 +1711,7 @@
           type="button"
           class="copy-btn"
           id="copyCard"
+          data-copy="#cardNumber"
         >
           Copy card number
         </button>
@@ -1734,6 +1749,7 @@
           id="requestName"
           name="name"
           placeholder="Твоє ім'я"
+          autocomplete="name"
           required
         >
 
@@ -1742,6 +1758,7 @@
           id="requestContact"
           name="contact"
           placeholder="Telegram або email"
+          autocomplete="email"
           required
         >
 
@@ -1788,7 +1805,8 @@
 
         <p
           id="requestStatus"
-          style="display:none;"
+          hidden
+          aria-live="polite"
         ></p>
 
       </form>
@@ -1812,10 +1830,7 @@
   >
 
     <a
-      href="https://www.instagram.com/veramandarin"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
+      href="https://www.instagram.com/veramandarin" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
       <i class="fab fa-instagram"></i>
     </a>
 
@@ -1823,13 +1838,11 @@
       href="https://www.youtube.com/@verabelialova"
       target="_blank"
       rel="noopener noreferrer"
-    >
+      aria-label="YouTube" >
       <i class="fab fa-youtube"></i>
     </a>
 
-    <a href="mailto:veramandarin@gmail.com">
-      <i class="fas fa-envelope"></i>
-    </a>
+    <a href="mailto:veramandarin@gmail.com"  aria-label="Email" > <i class="fas fa-envelope"></i> </a>
 
   </div>
 
@@ -1851,3 +1864,4 @@
 </body>
 
 </html>
+```
