@@ -1475,57 +1475,83 @@ body.modal-open {
   opacity: 0.9 !important;
 }
 /* =========================================================
-   ACCESS / PAYMENT MODAL — TEXT FIX
+   DONATION MODAL — FINAL TEXT COLORS
    ========================================================= */
 
-.donate-modal-content,
-.donate-modal-content h2,
-.donate-modal-content h3,
-.donate-modal-content p,
-.donate-modal-content label,
-.donate-modal-content strong,
-.donate-modal-content .donation-note,
-.donate-modal-content .bank-details,
-.donate-modal-content .card-number {
-  color: #f4f1eb;
+/* Main modal */
+#donateModal .donate-modal-content {
+  color: #111 !important;
 }
 
-.donate-modal-content {
-  background: #f4f1eb;
+/* Main text */
+#donateModal .donate-modal-content h2,
+#donateModal .donate-modal-content h3,
+#donateModal .donate-modal-content p,
+#donateModal .donate-modal-content span,
+#donateModal .donate-modal-content strong,
+#donateModal .donate-modal-content label {
+  color: #111 !important;
 }
 
-.donate-modal-content h2,
-.donate-modal-content h3 {
-  color: #111;
+
+/* Description / notes */
+#donateModal .donation-note {
+  color: #333 !important;
 }
 
-.donate-modal-content p,
-.donate-modal-content .donation-note {
-  color: #f4f1eb;
+
+/* Recommended amount */
+#donateModal .recommended-amount,
+#donateModal .recommended-amount *,
+#donateModal .donation-amount,
+#donateModal .donation-amount * {
+  color: #111 !important;
 }
 
-.donate-modal-content input,
-.donate-modal-content textarea,
-.donate-modal-content select {
-  color: #171717;
-  background: #fff;
-  border-color: rgba(23, 23, 23, 0.2);
+
+/* Bank details */
+#donateModal .bank-details,
+#donateModal .bank-details *,
+#donateModal .card-number {
+  color: #111 !important;
 }
 
-.donate-modal-content input::placeholder,
-.donate-modal-content textarea::placeholder {
-  color: #777;
+
+/* Wise / PayPal / USDT text */
+#donateModal .tab-content,
+#donateModal .tab-content p,
+#donateModal .tab-content span {
+  color: #111 !important;
 }
 
-.donate-modal-content .close-modal {
-  color: #171717;
+
+/* Donation links */
+#donateModal .donate-link,
+#donateModal .tab-content a {
+  color: #111 !important;
 }
 
-.donate-modal-content .tab-btn {
-  color: #333;
+
+/* Tabs */
+#donateModal .donate-tabs .tab-btn {
+  color: #111 !important;
 }
 
-.donate-modal-content .copy-btn,
-.donate-modal-content .show-wallet {
-  color: #171717;
+
+/* Active tab */
+#donateModal .donate-tabs .tab-btn.active {
+  color: #111 !important;
+}
+
+
+/* Copy / show wallet buttons */
+#donateModal .copy-btn,
+#donateModal .show-wallet {
+  color: #111 !important;
+}
+
+
+/* Close button */
+#donateModal .close-modal {
+  color: #111 !important;
 }
