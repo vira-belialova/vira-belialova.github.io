@@ -1534,37 +1534,3 @@ body.modal-open {
 .donate-modal-content .show-wallet {
   color: #171717;
 }
-
-/* =========================================================
-   DONATION MODAL — TEXT
-   ========================================================= */
-
-.donate-modal-content {
-  color: #111;
-}
-
-.donate-modal-content h2,
-.donate-modal-content p,
-.donate-modal-content strong,
-.donate-modal-content .card-number,
-.donate-modal-content .donation-note,
-.donate-modal-content .bank-details {
-  color: #111;
-}
-
-.donate-modal-content .tab-content {
-  color: #111;
-}
-
-.donate-modal-content .tab-content p {
-  color: #111;
-}
-
-.donate-modal-content .donation-note {
-  color: #444;
-}
-
-.donate-modal-content .card-number {
-  color: #111;
-  font-weight: 600;
-}
