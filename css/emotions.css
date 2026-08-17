@@ -1085,7 +1085,7 @@
 
   padding: 14px 22px;
 
-  border: 0;
+  border: 0;-
 
   border-radius: 10px;
 
@@ -1488,7 +1488,7 @@ body.modal-open {
 .donate-modal-content .donation-note,
 .donate-modal-content .bank-details,
 .donate-modal-content .card-number {
-  color: #171717;
+  color: #f4f1eb;
 }
 
 .donate-modal-content {
