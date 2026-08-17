@@ -5,81 +5,60 @@
 document.addEventListener("DOMContentLoaded", () => {
 
   /* =======================================================
+     LANGUAGE SWITCH
+     ======================================================= */
+
+  window.setLanguage = function (lang) {
+
+    const pages = {
+      uk: document.getElementById("page-uk"),
+      en: document.getElementById("page-en")
+    };
+
+    const switches =
+      document.querySelectorAll(".lang-switch [data-lang]");
+
+    Object.entries(pages).forEach(([key, page]) => {
+
+      if (!page) return;
+
+      page.classList.toggle("active", key === lang);
+
+    });
+
+    switches.forEach(button => {
+
+      button.classList.toggle(
+        "active",
+        button.dataset.lang === lang
+      );
+
+    });
+
+    document.documentElement.lang =
+      lang === "en" ? "en" : "uk";
+
+  };
+
+
+  /* =======================================================
      DONATION MODAL
-  ======================================================= */
+     ======================================================= */
 
-  const modal = document.querySelector(".donate-modal");
-  const closeButton = document.querySelector(".close-modal");
+  const modal =
+    document.getElementById("donateModal");
 
-  if (modal) {
-
-    /* -------------------------------------------------------
-       OPEN MODAL
-    ------------------------------------------------------- */
-
-    document.querySelectorAll(
-      '[data-donate], .donate-button, .open-donate'
-    ).forEach(button => {
-
-      button.addEventListener("click", (event) => {
-
-        event.preventDefault();
-
-        modal.classList.add("active");
-
-        document.body.classList.add("modal-open");
-
-      });
-
-    });
+  const closeButton =
+    document.getElementById("closeModal");
 
 
-    /* -------------------------------------------------------
-       CLOSE MODAL
-    ------------------------------------------------------- */
+  function openDonationModal() {
 
-    if (closeButton) {
+    if (!modal) return;
 
-      closeButton.addEventListener("click", () => {
+    modal.classList.add("active");
 
-        closeDonationModal();
-
-      });
-
-    }
-
-
-    /* -------------------------------------------------------
-       CLICK OUTSIDE
-    ------------------------------------------------------- */
-
-    modal.addEventListener("click", (event) => {
-
-      if (event.target === modal) {
-
-        closeDonationModal();
-
-      }
-
-    });
-
-
-    /* -------------------------------------------------------
-       ESC
-    ------------------------------------------------------- */
-
-    document.addEventListener("keydown", (event) => {
-
-      if (
-        event.key === "Escape" &&
-        modal.classList.contains("active")
-      ) {
-
-        closeDonationModal();
-
-      }
-
-    });
+    document.body.classList.add("modal-open");
 
   }
 
@@ -95,15 +74,102 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 
+  /*
+   * Support buttons
+   *
+   * Supports:
+   * - #emotionsDonateBtn
+   * - #emotionsDonateBtnEn
+   * - [data-donate]
+   * - .donate-button
+   * - .open-donate
+   */
+
+  document.querySelectorAll(
+    "#emotionsDonateBtn, " +
+    "#emotionsDonateBtnEn, " +
+    "[data-donate], " +
+    ".donate-button, " +
+    ".open-donate"
+  ).forEach(button => {
+
+    button.addEventListener("click", event => {
+
+      event.preventDefault();
+
+      openDonationModal();
+
+    });
+
+  });
+
+
+  /* =======================================================
+     CLOSE MODAL
+     ======================================================= */
+
+  if (closeButton) {
+
+    closeButton.addEventListener("click", () => {
+
+      closeDonationModal();
+
+    });
+
+  }
+
+
+  /* =======================================================
+     CLICK OUTSIDE MODAL
+     ======================================================= */
+
+  if (modal) {
+
+    modal.addEventListener("click", event => {
+
+      if (event.target === modal) {
+
+        closeDonationModal();
+
+      }
+
+    });
+
+  }
+
+
+  /* =======================================================
+     ESC
+     ======================================================= */
+
+  document.addEventListener("keydown", event => {
+
+    if (
+      event.key === "Escape" &&
+      modal &&
+      modal.classList.contains("active")
+    ) {
+
+      closeDonationModal();
+
+    }
+
+  });
+
+
   /* =======================================================
      DONATION TABS
      ======================================================= */
 
   const tabButtons =
-    document.querySelectorAll(".donate-tabs .tab-btn");
+    document.querySelectorAll(
+      ".donate-tabs .tab-btn"
+    );
 
   const tabContents =
-    document.querySelectorAll(".donate-modal .tab-content");
+    document.querySelectorAll(
+      ".donate-modal .tab-content"
+    );
 
 
   tabButtons.forEach(button => {
@@ -112,13 +178,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const target =
         button.dataset.tab ||
-        button.getAttribute("data-target");
+        button.dataset.target;
 
 
       if (!target) return;
 
-
-      /* deactivate buttons */
 
       tabButtons.forEach(btn => {
 
@@ -127,16 +191,12 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
 
-      /* hide contents */
-
       tabContents.forEach(content => {
 
         content.classList.remove("active");
 
       });
 
-
-      /* activate selected */
 
       button.classList.add("active");
 
@@ -157,17 +217,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   /* =======================================================
-     COPY BUTTON
+     COPY BUTTONS
      ======================================================= */
 
   document.querySelectorAll(".copy-btn").forEach(button => {
 
     button.addEventListener("click", async () => {
 
+      let text = "";
+
+
+      /*
+       * Preferred:
+       *
+       * <button data-copy="#someElement">
+       */
+
       const targetSelector =
         button.dataset.copy;
-
-      let text = "";
 
 
       if (targetSelector) {
@@ -182,15 +249,56 @@ document.addEventListener("DOMContentLoaded", () => {
 
         }
 
-      } else {
+      }
+
+
+      /*
+       * Special IDs
+       */
+
+      if (!text && button.id === "copyWallet") {
 
         const wallet =
-          document.querySelector(".wallet-address");
+          document.getElementById("walletAddress");
 
         if (wallet) {
 
           text =
             wallet.textContent.trim();
+
+        }
+
+      }
+
+
+      if (!text && button.id === "copyWise") {
+
+        const wise =
+          document.querySelector(
+            "#wise .card-number"
+          );
+
+        if (wise) {
+
+          text =
+            wise.textContent.trim();
+
+        }
+
+      }
+
+
+      if (!text && button.id === "copyCard") {
+
+        const card =
+          document.querySelector(
+            "#card .card-number"
+          );
+
+        if (card) {
+
+          text =
+            card.textContent.trim();
 
         }
 
@@ -204,8 +312,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
         await navigator.clipboard.writeText(text);
 
+
         const originalText =
           button.textContent;
+
 
         button.textContent =
           "Copied ✓";
@@ -237,57 +347,93 @@ document.addEventListener("DOMContentLoaded", () => {
      SHOW / HIDE WALLET
      ======================================================= */
 
-  document.querySelectorAll(".show-wallet").forEach(button => {
+  const showWalletButton =
+    document.getElementById("showWallet");
 
-    button.addEventListener("click", () => {
-
-      const wallet =
-        document.querySelector(".wallet-address");
-
-      if (!wallet) return;
+  const walletAddress =
+    document.getElementById("walletAddress");
 
 
-      wallet.hidden =
-        !wallet.hidden;
+  if (
+    showWalletButton &&
+    walletAddress
+  ) {
+
+    showWalletButton.addEventListener(
+      "click",
+      () => {
+
+        const isHidden =
+          walletAddress.style.display === "none";
 
 
-      button.textContent =
-        wallet.hidden
-          ? "Show wallet"
-          : "Hide wallet";
+        walletAddress.style.display =
+          isHidden ? "block" : "none";
 
-    });
 
-  });
+        showWalletButton.textContent =
+          isHidden
+            ? "Hide wallet"
+            : "Show wallet";
+
+      }
+    );
+
+  }
 
 
   /* =======================================================
      REFLECTION BOXES
      ======================================================= */
 
-  document.querySelectorAll(".reflection-toggle").forEach(button => {
+  document.querySelectorAll(
+    ".reflection-toggle"
+  ).forEach(button => {
 
-    button.addEventListener("click", () => {
+    button.addEventListener(
+      "click",
+      () => {
 
-      const box =
-        button.nextElementSibling;
-
-      if (!box) return;
-
-
-      box.classList.toggle("open");
-
-
-      const isOpen =
-        box.classList.contains("open");
+        const box =
+          button.nextElementSibling;
 
 
-      button.textContent =
-        isOpen
-          ? "Close reflection"
-          : "Write a reflection";
+        if (!box) return;
 
-    });
+
+        box.classList.toggle("open");
+
+
+        const isOpen =
+          box.classList.contains("open");
+
+
+        /*
+         * Preserve language of the button.
+         */
+
+        const isEnglish =
+          document.documentElement.lang === "en" ||
+          button.textContent
+            .toLowerCase()
+            .includes("reflect");
+
+
+        button.textContent =
+          isOpen
+            ? (
+                isEnglish
+                  ? "Close reflection"
+                  : "Закрити"
+              )
+            : (
+                isEnglish
+                  ? "Pause & reflect"
+                  : "Зупинитися і записати"
+              );
+
+      }
+    );
 
   });
 
@@ -311,21 +457,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const observer =
       new IntersectionObserver(
-        (entries) => {
+        entries => {
 
           entries.forEach(entry => {
 
-            if (entry.isIntersecting) {
+            if (!entry.isIntersecting) return;
 
-              entry.target.classList.add(
-                "visible"
-              );
 
-              observer.unobserve(
-                entry.target
-              );
+            entry.target.classList.add(
+              "visible"
+            );
 
-            }
+
+            observer.unobserve(
+              entry.target
+            );
 
           });
 
@@ -358,7 +504,9 @@ document.addEventListener("DOMContentLoaded", () => {
      ======================================================= */
 
   const nav =
-    document.querySelector(".emotions-nav");
+    document.querySelector(
+      ".emotions-nav"
+    );
 
 
   if (nav) {
@@ -375,16 +523,39 @@ document.addEventListener("DOMContentLoaded", () => {
           window.scrollY;
 
 
-        if (
-          currentScrollY > lastScrollY &&
-          currentScrollY > 100
+        /*
+         * Always show navigation near top.
+         */
+
+        if (currentScrollY <= 100) {
+
+          nav.classList.remove(
+            "nav-hidden"
+          );
+
+        }
+
+
+        /*
+         * Scrolling down → hide.
+         */
+
+        else if (
+          currentScrollY > lastScrollY
         ) {
 
           nav.classList.add(
             "nav-hidden"
           );
 
-        } else {
+        }
+
+
+        /*
+         * Scrolling up → show.
+         */
+
+        else {
 
           nav.classList.remove(
             "nav-hidden"
@@ -413,35 +584,152 @@ document.addEventListener("DOMContentLoaded", () => {
     'a[href^="#"]'
   ).forEach(link => {
 
-    link.addEventListener("click", (event) => {
+    link.addEventListener(
+      "click",
+      event => {
 
-      const targetId =
-        link.getAttribute("href");
-
-
-      if (
-        !targetId ||
-        targetId === "#"
-      ) return;
+        const targetId =
+          link.getAttribute("href");
 
 
-      const target =
-        document.querySelector(targetId);
+        if (
+          !targetId ||
+          targetId === "#"
+        ) {
+
+          return;
+
+        }
 
 
-      if (!target) return;
+        const target =
+          document.querySelector(
+            targetId
+          );
 
 
-      event.preventDefault();
+        if (!target) return;
 
 
-      target.scrollIntoView({
-        behavior: "smooth",
-        block: "start"
-      });
+        event.preventDefault();
 
-    });
+
+        target.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+
+      }
+    );
 
   });
+
+
+  /* =======================================================
+     ACCESS REQUEST FORM
+     ======================================================= */
+
+  const accessForm =
+    document.getElementById(
+      "accessRequestForm"
+    );
+
+  const requestStatus =
+    document.getElementById(
+      "requestStatus"
+    );
+
+
+  if (accessForm) {
+
+    accessForm.addEventListener(
+      "submit",
+      event => {
+
+        event.preventDefault();
+
+
+        const name =
+          document.getElementById(
+            "requestName"
+          )?.value.trim();
+
+
+        const contact =
+          document.getElementById(
+            "requestContact"
+          )?.value.trim();
+
+
+        const payment =
+          document.getElementById(
+            "requestPayment"
+          )?.value;
+
+
+        const message =
+          document.getElementById(
+            "requestMessage"
+          )?.value.trim();
+
+
+        if (
+          !name ||
+          !contact ||
+          !payment
+        ) {
+
+          if (requestStatus) {
+
+            requestStatus.style.display =
+              "block";
+
+            requestStatus.textContent =
+              "Будь ласка, заповни всі обов'язкові поля.";
+
+          }
+
+          return;
+
+        }
+
+
+        /*
+         * Temporary front-end handling.
+         *
+         * IMPORTANT:
+         * This does not send data anywhere yet.
+         * Backend / Formspree / Apps Script /
+         * Supabase integration can be connected here.
+         */
+
+        console.log(
+          "Access request:",
+          {
+            name,
+            contact,
+            payment,
+            message
+          }
+        );
+
+
+        if (requestStatus) {
+
+          requestStatus.style.display =
+            "block";
+
+          requestStatus.textContent =
+            "Дякуємо! Запит отримано.";
+
+        }
+
+
+        accessForm.reset();
+
+      }
+    );
+
+  }
 
 });
