@@ -1,42 +1,55 @@
 /* =========================================================
-   EMOTIONS PAGE
+   EMOTIONS PAGE — JS
    ========================================================= */
 
-document.addEventListener("DOMContentLoaded", function () {
-
-  /* =========================================================
-     LANGUAGE
-  ========================================================= */
-
-  const pageUk = document.getElementById("page-uk");
-  const pageEn = document.getElementById("page-en");
-
-  const languageButtons = document.querySelectorAll(
-    ".lang-switch [data-lang]"
-  );
+document.addEventListener("DOMContentLoaded", () => {
 
 
-  window.setLanguage = function (lang) {
+  /* =======================================================
+     LANGUAGE SWITCH
+     ======================================================= */
 
-    if (!pageUk || !pageEn) return;
+  const pageUK =
+    document.getElementById("page-uk");
+
+  const pageEN =
+    document.getElementById("page-en");
+
+  const languageButtons =
+    document.querySelectorAll(
+      ".lang-switch span[data-lang]"
+    );
+
+
+  function setLanguage(lang) {
+
+    if (!pageUK || !pageEN) return;
+
 
     if (lang === "en") {
 
-      pageUk.classList.remove("active");
-      pageEn.classList.add("active");
+      pageUK.classList.remove("active");
+      pageEN.classList.add("active");
+
+      pageUK.style.display = "none";
+      pageEN.style.display = "block";
+
+      document.documentElement.lang = "en";
 
     } else {
 
-      pageEn.classList.remove("active");
-      pageUk.classList.add("active");
+      pageEN.classList.remove("active");
+      pageUK.classList.add("active");
 
-      lang = "uk";
+      pageEN.style.display = "none";
+      pageUK.style.display = "block";
+
+      document.documentElement.lang = "uk";
+
     }
 
 
-    /* Update language switch */
-
-    languageButtons.forEach(function (button) {
+    languageButtons.forEach(button => {
 
       button.classList.toggle(
         "active",
@@ -46,248 +59,131 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 
-    /* Remember language */
+    window.scrollTo({
+      top: 0,
+      behavior: "auto"
+    });
 
-    try {
-      localStorage.setItem("emotionsLanguage", lang);
-    } catch (error) {
-      /* localStorage may be unavailable */
-    }
-
-
-    /* Update document language */
-
-    document.documentElement.lang = lang;
-
-
-    /* Close modal when switching language */
-
-    closeDonationModal();
-  };
-
-
-  /* =========================================================
-     INITIAL LANGUAGE
-  ========================================================= */
-
-  let savedLanguage = "uk";
-
-  try {
-
-    const storedLanguage =
-      localStorage.getItem("emotionsLanguage");
-
-    if (storedLanguage === "en" || storedLanguage === "uk") {
-      savedLanguage = storedLanguage;
-    }
-
-  } catch (error) {
-    /* use Ukrainian by default */
   }
 
 
-  window.setLanguage(savedLanguage);
+  languageButtons.forEach(button => {
+
+    button.addEventListener("click", (event) => {
+
+      event.preventDefault();
+
+      const lang =
+        button.dataset.lang;
+
+      if (!lang) return;
+
+      setLanguage(lang);
+
+    });
+
+  });
 
 
+  /* DEFAULT LANGUAGE */
 
-  /* =========================================================
-     REFLECTION BOXES
-  ========================================================= */
-
-  window.toggleReflection = function (button) {
-
-    if (!button) return;
-
-    const box = button.nextElementSibling;
-
-    if (!box || !box.classList.contains("reflection-box")) {
-      return;
-    }
+  setLanguage("uk");
 
 
-    const isOpen = box.classList.contains("open");
-
-    box.classList.toggle("open", !isOpen);
-
-    button.classList.toggle("active", !isOpen);
-
-
-    if (!isOpen) {
-
-      setTimeout(function () {
-
-        const textarea = box.querySelector("textarea");
-
-        if (textarea) {
-          textarea.focus();
-        }
-
-      }, 100);
-
-    }
-
-  };
-
-
-
-  /* =========================================================
+  /* =======================================================
      DONATION MODAL
-  ========================================================= */
+     ======================================================= */
 
-  const donateModal =
-    document.getElementById("donateModal");
+  const modal = document.querySelector(".donate-modal");
+  const closeButton = document.querySelector(".close-modal");
 
-  const closeModalButton =
-    document.getElementById("closeModal");
+  if (modal) {
 
-  const donateButtonUk =
-    document.getElementById("emotionsDonateBtn");
+    /* -------------------------------------------------------
+       OPEN MODAL
+       ------------------------------------------------------- */
 
-  const donateButtonEn =
-    document.getElementById("emotionsDonateBtnEn");
+    document.querySelectorAll(
+      '[data-donate], .donate-button, .open-donate'
+    ).forEach(button => {
 
+      button.addEventListener("click", (event) => {
 
-  function openDonationModal() {
+        event.preventDefault();
 
-    if (!donateModal) return;
+        modal.classList.add("active");
 
-    donateModal.classList.add("active");
+        document.body.classList.add("modal-open");
 
-    document.body.classList.add("modal-open");
+      });
 
-
-    /* Always open first tab */
-
-    activateDonationTab("paypal");
-
-
-    /* Prevent background scroll */
-
-    document.body.style.overflow = "hidden";
-
-  }
+    });
 
 
-  window.openDonationModal = openDonationModal;
+    /* -------------------------------------------------------
+       CLOSE MODAL
+       ------------------------------------------------------- */
+
+    if (closeButton) {
+
+      closeButton.addEventListener("click", () => {
+
+        closeDonationModal();
+
+      });
+
+    }
 
 
+    /* -------------------------------------------------------
+       CLICK OUTSIDE
+       ------------------------------------------------------- */
 
-  function closeDonationModal() {
+    modal.addEventListener("click", (event) => {
 
-    if (!donateModal) return;
+      if (event.target === modal) {
 
-    donateModal.classList.remove("active");
-
-    document.body.classList.remove("modal-open");
-
-    document.body.style.overflow = "";
-
-  }
-
-
-  window.closeDonationModal = closeDonationModal;
-
-
-
-  /* Donation buttons */
-
-  if (donateButtonUk) {
-
-    donateButtonUk.addEventListener(
-      "click",
-      openDonationModal
-    );
-
-  }
-
-
-  if (donateButtonEn) {
-
-    donateButtonEn.addEventListener(
-      "click",
-      openDonationModal
-    );
-
-  }
-
-
-
-  /* =========================================================
-     CLOSE MODAL
-  ========================================================= */
-
-  if (closeModalButton) {
-
-    closeModalButton.addEventListener(
-      "click",
-      closeDonationModal
-    );
-
-
-    closeModalButton.addEventListener(
-      "keydown",
-      function (event) {
-
-        if (
-          event.key === "Enter" ||
-          event.key === " "
-        ) {
-
-          event.preventDefault();
-          closeDonationModal();
-
-        }
+        closeDonationModal();
 
       }
-    );
 
-  }
-
+    });
 
 
-  /* Close by clicking outside */
+    /* -------------------------------------------------------
+       ESC
+       ------------------------------------------------------- */
 
-  if (donateModal) {
-
-    donateModal.addEventListener(
-      "click",
-      function (event) {
-
-        if (event.target === donateModal) {
-          closeDonationModal();
-        }
-
-      }
-    );
-
-  }
-
-
-
-  /* Close by Escape */
-
-  document.addEventListener(
-    "keydown",
-    function (event) {
+    document.addEventListener("keydown", (event) => {
 
       if (
         event.key === "Escape" &&
-        donateModal &&
-        donateModal.classList.contains("active")
+        modal.classList.contains("active")
       ) {
 
         closeDonationModal();
 
       }
 
-    }
-  );
+    });
+
+  }
 
 
+  function closeDonationModal() {
 
-  /* =========================================================
+    if (!modal) return;
+
+    modal.classList.remove("active");
+
+    document.body.classList.remove("modal-open");
+
+  }
+
+
+  /* =======================================================
      DONATION TABS
-  ========================================================= */
+     ======================================================= */
 
   const tabButtons =
     document.querySelectorAll(".donate-tabs .tab-btn");
@@ -296,462 +192,524 @@ document.addEventListener("DOMContentLoaded", function () {
     document.querySelectorAll(".donate-modal .tab-content");
 
 
-  function activateDonationTab(tabName) {
+  tabButtons.forEach(button => {
 
-    tabButtons.forEach(function (button) {
+    button.addEventListener("click", () => {
 
-      button.classList.toggle(
-        "active",
-        button.dataset.tab === tabName
-      );
-
-    });
+      const target =
+        button.dataset.tab ||
+        button.getAttribute("data-target");
 
 
-    tabContents.forEach(function (content) {
-
-      content.classList.toggle(
-        "active",
-        content.id === tabName
-      );
-
-    });
-
-  }
+      if (!target) return;
 
 
-  tabButtons.forEach(function (button) {
+      /* deactivate buttons */
 
-    button.addEventListener(
-      "click",
-      function () {
+      tabButtons.forEach(btn => {
 
-        const tabName = button.dataset.tab;
+        btn.classList.remove("active");
 
-        if (tabName) {
-          activateDonationTab(tabName);
-        }
+      });
+
+
+      /* hide contents */
+
+      tabContents.forEach(content => {
+
+        content.classList.remove("active");
+
+      });
+
+
+      /* activate selected */
+
+      button.classList.add("active");
+
+
+      const targetElement =
+        document.getElementById(target);
+
+
+      if (targetElement) {
+
+        targetElement.classList.add("active");
 
       }
-    );
+
+    });
 
   });
 
 
+  /* =======================================================
+     COPY BUTTON
+     ======================================================= */
 
-  /* =========================================================
-     COPY BUTTONS
-  ========================================================= */
+  document.querySelectorAll(".copy-btn").forEach(button => {
 
-  async function copyText(text, button) {
+    button.addEventListener("click", async () => {
 
-    if (!text) return;
+      const targetSelector =
+        button.dataset.copy;
 
-    try {
+      let text = "";
 
-      await navigator.clipboard.writeText(text);
 
-      showCopySuccess(button);
+      if (targetSelector) {
 
-    } catch (error) {
+        const element =
+          document.querySelector(targetSelector);
 
-      /* Fallback for older browsers */
+        if (element) {
 
-      const textarea =
-        document.createElement("textarea");
+          text =
+            element.textContent.trim();
 
-      textarea.value = text;
+        }
 
-      textarea.style.position = "fixed";
-      textarea.style.opacity = "0";
+      } else {
 
-      document.body.appendChild(textarea);
+        const wallet =
+          document.querySelector(".wallet-address");
 
-      textarea.select();
+        if (wallet) {
+
+          text =
+            wallet.textContent.trim();
+
+        }
+
+      }
+
+
+      if (!text) return;
+
 
       try {
-        document.execCommand("copy");
-        showCopySuccess(button);
-      } catch (copyError) {
-        console.error("Copy failed:", copyError);
-      }
 
-      document.body.removeChild(textarea);
+        await navigator.clipboard.writeText(text);
 
-    }
+        const originalText =
+          button.textContent;
 
-  }
+        button.textContent =
+          "Copied ✓";
 
 
+        setTimeout(() => {
 
-  function showCopySuccess(button) {
+          button.textContent =
+            originalText;
 
-    if (!button) return;
-
-    const originalText =
-      button.dataset.originalText ||
-      button.textContent;
-
-    button.dataset.originalText = originalText;
-
-    button.textContent = "Copied ✓";
-
-    button.classList.add("copied");
+        }, 1800);
 
 
-    setTimeout(function () {
+      } catch (error) {
 
-      button.textContent = originalText;
-
-      button.classList.remove("copied");
-
-    }, 1800);
-
-  }
-
-
-
-  /* Wise */
-
-  const copyWise =
-    document.getElementById("copyWise");
-
-
-  if (copyWise) {
-
-    copyWise.addEventListener(
-      "click",
-      function () {
-
-        const details =
-          "BE82 9053 0838 8568";
-
-        copyText(details, copyWise);
+        console.error(
+          "Copy failed:",
+          error
+        );
 
       }
+
+    });
+
+  });
+
+
+  /* =======================================================
+     SHOW / HIDE WALLET
+     ======================================================= */
+
+  document.querySelectorAll(".show-wallet").forEach(button => {
+
+    button.addEventListener("click", () => {
+
+      const wallet =
+        document.querySelector(".wallet-address");
+
+      if (!wallet) return;
+
+
+      wallet.hidden =
+        !wallet.hidden;
+
+
+      button.textContent =
+        wallet.hidden
+          ? "Show wallet"
+          : "Hide wallet";
+
+    });
+
+  });
+
+
+  /* =======================================================
+     REFLECTION BOXES
+     ======================================================= */
+
+  document.querySelectorAll(".reflection-toggle").forEach(button => {
+
+    button.addEventListener("click", () => {
+
+      const box =
+        button.nextElementSibling;
+
+      if (!box) return;
+
+
+      box.classList.toggle("open");
+
+
+      const isOpen =
+        box.classList.contains("open");
+
+
+      button.textContent =
+        isOpen
+          ? "Close reflection"
+          : "Write a reflection";
+
+    });
+
+  });
+
+
+  /* =======================================================
+     SCROLL ANIMATIONS
+     ======================================================= */
+
+  const animatedElements =
+    document.querySelectorAll(
+      ".emotion-step, " +
+      ".emotion-video-container, " +
+      ".emotion-ending-content, " +
+      ".emotion-support-content"
     );
 
-  }
+
+  if (
+    "IntersectionObserver" in window
+  ) {
+
+    const observer =
+      new IntersectionObserver(
+        (entries) => {
+
+          entries.forEach(entry => {
+
+            if (entry.isIntersecting) {
+
+              entry.target.classList.add(
+                "visible"
+              );
+
+              observer.unobserve(
+                entry.target
+              );
+
+            }
+
+          });
+
+        },
+        {
+          threshold: 0.15
+        }
+      );
 
 
+    animatedElements.forEach(element => {
 
-  /* Card */
+      observer.observe(element);
 
-  const copyCard =
-    document.getElementById("copyCard");
+    });
 
+  } else {
 
-  if (copyCard) {
+    animatedElements.forEach(element => {
 
-    copyCard.addEventListener(
-      "click",
-      function () {
+      element.classList.add("visible");
 
-        const cardNumber =
-          "4323 3450 5365 5222";
-
-        copyText(cardNumber, copyCard);
-
-      }
-    );
-
-  }
-
-
-
-  /* =========================================================
-     CRYPTO WALLET
-  ========================================================= */
-
-  const copyWallet =
-    document.getElementById("copyWallet");
-
-  const showWallet =
-    document.getElementById("showWallet");
-
-  const walletAddress =
-    document.getElementById("walletAddress");
-
-
-  const wallet =
-    "TLg3NrPEcMphcXSrAWVdmLc9QmAhAwKJ5G";
-
-
-  if (copyWallet) {
-
-    copyWallet.addEventListener(
-      "click",
-      function () {
-
-        copyText(wallet, copyWallet);
-
-      }
-    );
+    });
 
   }
 
 
-  if (showWallet && walletAddress) {
+  /* =======================================================
+     NAVIGATION HIDE ON SCROLL
+     ======================================================= */
 
-    showWallet.addEventListener(
-      "click",
-      function () {
-
-        const isHidden =
-          walletAddress.style.display === "none";
+  const nav =
+    document.querySelector(".emotions-nav");
 
 
-        if (isHidden) {
+  if (nav) {
 
-          walletAddress.style.display = "block";
+    let lastScrollY =
+      window.scrollY;
 
-          showWallet.textContent = "Hide wallet";
+
+    window.addEventListener(
+      "scroll",
+      () => {
+
+        const currentScrollY =
+          window.scrollY;
+
+
+        if (
+          currentScrollY > lastScrollY &&
+          currentScrollY > 100
+        ) {
+
+          nav.classList.add(
+            "nav-hidden"
+          );
 
         } else {
 
-          walletAddress.style.display = "none";
-
-          showWallet.textContent = "Show wallet";
+          nav.classList.remove(
+            "nav-hidden"
+          );
 
         }
 
+
+        lastScrollY =
+          currentScrollY;
+
+      },
+      {
+        passive: true
       }
     );
 
   }
 
 
+  /* =======================================================
+     SMOOTH ANCHOR SCROLL
+     ======================================================= */
 
-  /* =========================================================
-     ACCESS REQUEST
-  ========================================================= */
+  document.querySelectorAll(
+    'a[href^="#"]'
+  ).forEach(link => {
 
-  const openAccessRequest =
-    document.getElementById("openAccessRequest");
+    link.addEventListener("click", (event) => {
 
-  const accessRequestPanel =
-    document.getElementById("accessRequestPanel");
-
-
-  if (openAccessRequest && accessRequestPanel) {
-
-    openAccessRequest.addEventListener(
-      "click",
-      function () {
-
-        const isOpen =
-          accessRequestPanel.style.display !== "none";
+      const targetId =
+        link.getAttribute("href");
 
 
-        if (isOpen) {
-
-          accessRequestPanel.style.display = "none";
-
-          openAccessRequest.textContent =
-            "Отримати доступ";
-
-        } else {
-
-          accessRequestPanel.style.display = "block";
-
-          openAccessRequest.textContent =
-            "Сховати";
-
-          setTimeout(function () {
-
-            accessRequestPanel.scrollIntoView({
-              behavior: "smooth",
-              block: "center"
-            });
-
-          }, 50);
-
-        }
-
-      }
-    );
-
-  }
+      if (
+        !targetId ||
+        targetId === "#"
+      ) return;
 
 
+      const target =
+        document.querySelector(targetId);
 
-  /* =========================================================
+
+      if (!target) return;
+
+
+      event.preventDefault();
+
+
+      target.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+
+    });
+
+  });
+  /* =======================================================
      ACCESS REQUEST FORM
-  ========================================================= */
+     ======================================================= */
 
-  const accessForm =
+  const accessRequestForm =
     document.getElementById("accessRequestForm");
 
   const requestStatus =
     document.getElementById("requestStatus");
 
 
-  if (accessForm) {
+  if (accessRequestForm) {
 
-    accessForm.addEventListener(
+    accessRequestForm.addEventListener(
       "submit",
-      async function (event) {
+      async (event) => {
 
         event.preventDefault();
 
 
         const name =
-          document.getElementById("requestName")?.value.trim();
+          document.getElementById("requestName")?.value.trim() || "";
 
         const contact =
-          document.getElementById("requestContact")?.value.trim();
+          document.getElementById("requestContact")?.value.trim() || "";
 
-        const payment =
-          document.getElementById("requestPayment")?.value;
+        const paymentMethod =
+          document.getElementById("requestPayment")?.value || "";
 
         const message =
-          document.getElementById("requestMessage")?.value.trim();
+          document.getElementById("requestMessage")?.value.trim() || "";
 
 
-        if (!name || !contact || !payment) {
+        if (!name || !contact || !paymentMethod) {
 
-          showRequestStatus(
-            "Будь ласка, заповни обов'язкові поля.",
-            "error"
+          if (requestStatus) {
+
+            requestStatus.style.display = "block";
+
+            requestStatus.textContent =
+              "Будь ласка, заповни всі обов'язкові поля.";
+
+          }
+
+          return;
+
+        }
+
+
+        /* ---------------------------------------------------
+           LOADING
+        --------------------------------------------------- */
+
+        const submitButton =
+          accessRequestForm.querySelector(
+            'button[type="submit"]'
           );
 
-          return;
+
+        if (submitButton) {
+
+          submitButton.disabled = true;
+
+          submitButton.textContent =
+            "Надсилаємо...";
 
         }
 
 
-        /*
-         * IMPORTANT:
-         * Тут поки немає backend/API.
-         *
-         * Тому форма не відправляє дані нікуди.
-         * Якщо у тебе вже є endpoint — вставимо його сюди.
-         */
+        if (requestStatus) {
+
+          requestStatus.style.display = "block";
+
+          requestStatus.textContent =
+            "Надсилаємо запит...";
+
+        }
 
 
-        console.log(
-          "Access request:",
-          {
-            name,
-            contact,
-            payment,
-            message
+        try {
+
+          const response =
+            await fetch(
+              "https://pttolejekzkqbingzzwj.supabase.co/functions/v1/smart-task",
+              {
+
+                method: "POST",
+
+                headers: {
+                  "Content-Type": "application/json"
+                },
+
+                body: JSON.stringify({
+
+                  access_request: {
+
+                    name,
+                    contact,
+                    payment_method: paymentMethod,
+                    message
+
+                  }
+
+                })
+
+              }
+            );
+
+
+          const result =
+            await response.json();
+
+
+          if (!response.ok || result.ok === false) {
+
+            throw new Error(
+              result.error ||
+              "Request failed"
+            );
+
           }
-        );
 
 
-        showRequestStatus(
-          "Дякуємо! Запит отримано.",
-          "success"
-        );
+          /* -------------------------------------------------
+             SUCCESS
+          ------------------------------------------------- */
+
+          if (requestStatus) {
+
+            requestStatus.style.display = "block";
+
+            requestStatus.textContent =
+              "Запит надіслано 🤍 Ми зв'яжемося з тобою.";
+
+          }
 
 
-        accessForm.reset();
+          accessRequestForm.reset();
+
+
+          if (submitButton) {
+
+            submitButton.disabled = false;
+
+            submitButton.textContent =
+              "Надіслати запит";
+
+          }
+
+
+        } catch (error) {
+
+          console.error(
+            "Access request failed:",
+            error
+          );
+
+
+          if (requestStatus) {
+
+            requestStatus.style.display = "block";
+
+            requestStatus.textContent =
+              "Не вдалося надіслати запит. Спробуй ще раз.";
+
+          }
+
+
+          if (submitButton) {
+
+            submitButton.disabled = false;
+
+            submitButton.textContent =
+              "Надіслати запит";
+
+          }
+
+        }
 
       }
     );
 
   }
-
-
-
-  function showRequestStatus(message, type) {
-
-    if (!requestStatus) return;
-
-    requestStatus.textContent = message;
-
-    requestStatus.style.display = "block";
-
-    requestStatus.classList.remove(
-      "success",
-      "error"
-    );
-
-    requestStatus.classList.add(type);
-
-  }
-
-
-
-  /* =========================================================
-     PROTECTED CONTENT
-  ========================================================= */
-
-  /*
-   * There are TWO #protected-content elements in the HTML:
-   * one inside UA and one inside EN.
-   *
-   * Therefore we intentionally use querySelectorAll()
-   * instead of getElementById().
-   */
-
-  const protectedBlocks =
-    document.querySelectorAll("#protected-content");
-
-
-  window.setProtectedContentVisible = function (visible) {
-
-    protectedBlocks.forEach(function (block) {
-
-      block.style.display =
-        visible ? "" : "none";
-
-    });
-
-  };
-
-
-
-  /* =========================================================
-     SMOOTH SCROLL
-  ========================================================= */
-
-  document.querySelectorAll(
-    'a[href^="#"]'
-  ).forEach(function (link) {
-
-    link.addEventListener(
-      "click",
-      function (event) {
-
-        const targetId =
-          link.getAttribute("href");
-
-        if (!targetId || targetId === "#") {
-          return;
-        }
-
-
-        const target =
-          document.querySelector(targetId);
-
-        if (!target) {
-          return;
-        }
-
-
-        event.preventDefault();
-
-
-        target.scrollIntoView({
-          behavior: "smooth",
-          block: "start"
-        });
-
-      }
-    );
-
-  });
-
-
-
-  /* =========================================================
-     FINAL INITIALIZATION
-  ========================================================= */
-
-  console.log(
-    "Emotions page initialized."
-  );
-
 });
