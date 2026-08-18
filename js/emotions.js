@@ -998,7 +998,15 @@ document.addEventListener("DOMContentLoaded", () => {
           )?.value.trim();
 
 
-        const contact =
+        /*
+         * The form may use requestEmail or,
+         * for compatibility with the current HTML,
+         * requestContact as the email field.
+         */
+        const email =
+          document.getElementById(
+            "requestEmail"
+          )?.value.trim() ||
           document.getElementById(
             "requestContact"
           )?.value.trim();
@@ -1041,7 +1049,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
 
-        if (!contact) {
+        if (!email) {
 
           if (accessStatus) {
 
@@ -1058,7 +1066,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
 
-        if (!emailPattern.test(contact)) {
+        if (!emailPattern.test(email)) {
 
           if (accessStatus) {
 
@@ -1141,11 +1149,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
                   name,
 
-                  email:
-                    contact,
+                  email,
 
                   contact:
-                    contact,
+                    "",
 
                   payment_method:
                     paymentMethod,
