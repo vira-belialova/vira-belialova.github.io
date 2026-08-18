@@ -952,14 +952,37 @@ document.addEventListener("DOMContentLoaded", () => {
             );
 
 
-          const result =
-            await response.json();
+          const responseText =
+  await response.text();
+
+let result;
+
+try {
+
+  result =
+    JSON.parse(responseText);
+
+} catch {
+
+  result = {
+    ok: false,
+    error: responseText
+  };
+
+}
 
 
-          if (
-            !response.ok ||
-            !result.ok
-          ) {
+console.log(
+  "SUPABASE RESPONSE:",
+  response.status,
+  result
+);
+
+
+if (
+  !response.ok ||
+  !result.ok
+) {
 
             throw new Error(
               result.error ||
@@ -987,25 +1010,26 @@ document.addEventListener("DOMContentLoaded", () => {
           accessForm.reset();
 
 
-        } catch (error) {
+       } catch (error) {
 
-          console.error(
-            "Access request error:",
-            error
-          );
+  console.error(
+    "Access request error:",
+    error
+  );
 
 
-          if (accessStatus) {
+  if (accessStatus) {
 
-            accessStatus.style.display =
-              "block";
+    accessStatus.style.display =
+      "block";
 
-            accessStatus.textContent =
-              "Не вдалося надіслати запит. Спробуй ще раз або напиши нам напряму.";
+    accessStatus.textContent =
+      "Помилка: " +
+      (error?.message || String(error));
 
-          }
+  }
 
-        } finally {
+} finally {
 
           if (submitButton) {
 
