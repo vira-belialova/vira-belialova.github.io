@@ -14,8 +14,273 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   /* =======================================================
+     ACCESS TOKEN / PROTECTED CONTENT
+     ======================================================= */
+
+  async function checkPersonalAccess() {
+
+    const params =
+      new URLSearchParams(
+        window.location.search
+      );
+
+    const token =
+      params.get("access");
+
+
+    /*
+     * No token:
+     * keep the normal public page state.
+     */
+    if (!token) {
+      return;
+    }
+
+
+    try {
+
+      const response =
+        await fetch(
+          SUPABASE_FUNCTION_URL,
+          {
+
+            method: "POST",
+
+            headers: {
+              "Content-Type":
+                "application/json"
+            },
+
+            body: JSON.stringify({
+              token
+            })
+
+          }
+        );
+
+
+      const responseText =
+        await response.text();
+
+
+      let result;
+
+      try {
+
+        result =
+          JSON.parse(
+            responseText
+          );
+
+      } catch {
+
+        result = {
+          allowed: false,
+          reason: "invalid_response"
+        };
+
+      }
+
+
+      console.log(
+        "ACCESS CHECK:",
+        response.status,
+        result
+      );
+
+
+      /*
+       * ACCESS GRANTED
+       */
+      if (
+        response.ok &&
+        result.allowed === true
+      ) {
+
+        document.body.classList.add(
+          "access-granted"
+        );
+
+
+        /*
+         * Reveal any elements marked
+         * as protected.
+         */
+        document
+          .querySelectorAll(
+            "[data-protected], " +
+            ".protected-content, " +
+            "#protectedContent"
+          )
+          .forEach(
+            element => {
+
+              element.style.display =
+                "";
+
+              element.classList.add(
+                "access-visible"
+              );
+
+            }
+          );
+
+
+        /*
+         * Explicitly reveal emotion videos.
+         */
+        document
+          .querySelectorAll(
+            ".emotion-video-container"
+          )
+          .forEach(
+            element => {
+
+              element.style.display =
+                "";
+
+              element.classList.add(
+                "access-visible"
+              );
+
+            }
+          );
+
+
+        /*
+         * Reveal video / iframe elements
+         * if their parent was hidden.
+         */
+        document
+          .querySelectorAll(
+            ".emotion-video-container video, " +
+            ".emotion-video-container iframe"
+          )
+          .forEach(
+            element => {
+
+              element.style.display =
+                "";
+
+            }
+          );
+
+
+        /*
+         * Optional personalized greeting.
+         * Only works if such element exists.
+         */
+        document
+          .querySelectorAll(
+            "[data-client-name]"
+          )
+          .forEach(
+            element => {
+
+              if (result.client_name) {
+
+                element.textContent =
+                  result.client_name;
+
+              }
+
+            }
+          );
+
+
+        /*
+         * Remove access parameter from the
+         * visible browser URL after validation.
+         *
+         * Token remains valid in the database.
+         */
+        try {
+
+          const cleanUrl =
+            window.location.pathname +
+            window.location.hash;
+
+          window.history.replaceState(
+            {},
+            document.title,
+            cleanUrl
+          );
+
+        } catch (error) {
+
+          console.warn(
+            "Could not clean access URL:",
+            error
+          );
+
+        }
+
+
+        return;
+
+      }
+
+
+      /*
+       * ACCESS DENIED
+       */
+      console.warn(
+        "Access denied:",
+        result
+      );
+
+
+      document.body.classList.add(
+        "access-denied"
+      );
+
+
+      /*
+       * Hide protected content.
+       */
+      document
+        .querySelectorAll(
+          "[data-protected], " +
+          ".protected-content, " +
+          "#protectedContent, " +
+          ".emotion-video-container"
+        )
+        .forEach(
+          element => {
+
+            element.style.display =
+              "none";
+
+          }
+        );
+
+
+    } catch (error) {
+
+      console.error(
+        "Access check failed:",
+        error
+      );
+
+
+      document.body.classList.add(
+        "access-error"
+      );
+
+    }
+
+  }
+
+
+  /*
+   * Run access check first.
+   */
+  checkPersonalAccess();
+
+
+  /* =======================================================
      NAVIGATION HIDE / SHOW
-  ======================================================= */
+     ======================================================= */
 
   const nav =
     document.querySelector(".emotions-nav");
@@ -65,7 +330,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /* =======================================================
      LANGUAGE SWITCH
-  ======================================================= */
+     ======================================================= */
 
   const pageUK =
     document.getElementById(
@@ -211,7 +476,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /* =======================================================
      REFLECTION TOGGLES
-  ======================================================= */
+     ======================================================= */
 
   const reflectionButtons =
     document.querySelectorAll(
@@ -270,7 +535,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /* =======================================================
      DONATION MODAL
-  ======================================================= */
+     ======================================================= */
 
   const donationModal =
     document.getElementById(
@@ -753,7 +1018,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /* =======================================================
      ACCESS REQUEST PANEL
-  ======================================================= */
+     ======================================================= */
 
   const accessButton =
     document.getElementById(
@@ -817,7 +1082,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /* =======================================================
      ACCESS REQUEST FORM
-  ======================================================= */
+     ======================================================= */
 
   const accessForm =
     document.getElementById(
@@ -851,6 +1116,12 @@ document.addEventListener("DOMContentLoaded", () => {
           )?.value.trim();
 
 
+        const email =
+          document.getElementById(
+            "requestEmail"
+          )?.value.trim();
+
+
         const contact =
           document.getElementById(
             "requestContact"
@@ -869,8 +1140,12 @@ document.addEventListener("DOMContentLoaded", () => {
           )?.value.trim();
 
 
+        /*
+         * EMAIL IS REQUIRED
+         */
         if (
           !name ||
+          !email ||
           !contact ||
           !paymentMethod
         ) {
@@ -881,7 +1156,33 @@ document.addEventListener("DOMContentLoaded", () => {
               "block";
 
             accessStatus.textContent =
-              "Будь ласка, заповни ім'я, контакт і спосіб оплати.";
+              "Будь ласка, заповни ім'я, email, контакт і спосіб оплати.";
+
+          }
+
+          return;
+
+        }
+
+
+        /*
+         * Basic email validation
+         */
+        const emailPattern =
+          /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+
+        if (
+          !emailPattern.test(email)
+        ) {
+
+          if (accessStatus) {
+
+            accessStatus.style.display =
+              "block";
+
+            accessStatus.textContent =
+              "Будь ласка, введи коректний email.";
 
           }
 
@@ -939,6 +1240,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
                   name,
 
+                  email,
+
                   contact,
 
                   payment_method:
@@ -953,36 +1256,40 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
           const responseText =
-  await response.text();
-
-let result;
-
-try {
-
-  result =
-    JSON.parse(responseText);
-
-} catch {
-
-  result = {
-    ok: false,
-    error: responseText
-  };
-
-}
+            await response.text();
 
 
-console.log(
-  "SUPABASE RESPONSE:",
-  response.status,
-  result
-);
+          let result;
 
 
-if (
-  !response.ok ||
-  !result.ok
-) {
+          try {
+
+            result =
+              JSON.parse(
+                responseText
+              );
+
+          } catch {
+
+            result = {
+              ok: false,
+              error: responseText
+            };
+
+          }
+
+
+          console.log(
+            "SUPABASE RESPONSE:",
+            response.status,
+            result
+          );
+
+
+          if (
+            !response.ok ||
+            !result.ok
+          ) {
 
             throw new Error(
               result.error ||
@@ -1010,26 +1317,29 @@ if (
           accessForm.reset();
 
 
-       } catch (error) {
+        } catch (error) {
 
-  console.error(
-    "Access request error:",
-    error
-  );
+          console.error(
+            "Access request error:",
+            error
+          );
 
 
-  if (accessStatus) {
+          if (accessStatus) {
 
-    accessStatus.style.display =
-      "block";
+            accessStatus.style.display =
+              "block";
 
-    accessStatus.textContent =
-      "Помилка: " +
-      (error?.message || String(error));
+            accessStatus.textContent =
+              "Помилка: " +
+              (
+                error?.message ||
+                String(error)
+              );
 
-  }
+          }
 
-} finally {
+        } finally {
 
           if (submitButton) {
 
@@ -1051,7 +1361,7 @@ if (
 
   /* =======================================================
      SIMPLE SCROLL REVEALS
-  ======================================================= */
+     ======================================================= */
 
   const animatedElements =
     document.querySelectorAll(
@@ -1114,7 +1424,7 @@ if (
 
   /* =======================================================
      HERO — ALWAYS VISIBLE
-  ======================================================= */
+     ======================================================= */
 
   document
     .querySelectorAll(
