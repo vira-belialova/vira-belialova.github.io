@@ -1,0 +1,228 @@
+🛠️ Emotions — roadmap
+🔴 Этап 1 — Access / безопасность
+
+1. Скрытие protected content до проверки
+
+ Проверить CSS/HTML: protected-контент изначально display:none
+ Проверить valid token → контент раскрывается
+ Проверить invalid token → контент остаётся скрытым
+ Проверить отсутствие token → публичная страница работает
+
+2. Очистка token из URL
+
+ После успешной проверки убрать ?access=TOKEN
+ Проверить, что доступ после этого не ломается
+ Проверить reload
+
+3. Повторное использование token
+
+ Проверить старый token
+ Проверить новый token
+ Определиться: token одноразовый или постоянный
+ При необходимости добавить invalidation на Supabase
+
+4. Ошибки backend
+
+ invalid token
+ Supabase 500
+ network error
+ timeout
+ Понятное состояние UI для каждого сценария
+🟠 Этап 2 — Access Request
+
+5. Форма
+
+ Name validation
+ Email validation
+ Payment validation
+ Message optional
+ Ошибки показываются правильно
+
+6. Supabase request
+
+ Проверить payload
+ name
+ email
+ contact
+ payment_method
+ message
+
+7. Защита от повторной отправки
+
+ Double click
+ Network delay
+ Failed request
+ Button возвращается в нормальное состояние
+
+8. После успешной отправки
+
+ Success message
+ Form reset
+ Запись реально появилась в Supabase
+ Можно обработать следующий запрос
+🟡 Этап 3 — Language
+
+9. UA / EN
+
+ UA → EN
+ EN → UA
+ Reload сохраняет язык
+ Empty localStorage → UA
+ Protected UA
+ Protected EN
+
+10. Language + Access
+
+ Valid token + UA
+ Valid token + EN
+ Access → switch language
+ Access → reload
+ Token cleanup → language всё ещё работает
+🟡 Этап 4 — Donation Modal
+
+11. Open / close
+
+ Donate UA
+ Donate EN
+ X
+ Escape
+ Background click
+ Body scroll restored
+
+12. Tabs
+
+ Wise
+ Card
+ Crypto
+ Active state
+ Correct content
+
+13. Copy
+
+ Copy Wise
+ Copy Card
+ Copy Wallet
+ Correct clipboard value
+ Copied ✓
+ Button возвращается
+
+14. Wallet
+
+ Show
+ Hide
+ Close modal
+ Reopen modal
+ Wallet не остаётся случайно открытым
+🟢 Этап 5 — UX / animation
+
+15. Navigation
+
+ Scroll down → hide
+ Scroll up → show
+ Top of page
+ Modal interaction
+
+16. Scroll reveal
+
+ Emotion steps
+ Videos
+ Ending
+ Support
+ Hero всегда visible
+
+17. Protected videos
+
+ Hidden before access
+ Visible after access
+ IntersectionObserver
+ iframe/video реально загружается
+🔵 Этап 6 — SEO
+
+18. Technical SEO
+
+ <title>
+ meta description
+ canonical
+ robots meta
+ lang
+ favicon
+
+19. Social preview
+
+ og:title
+ og:description
+ og:image
+ og:url
+ Twitter card
+
+20. Crawlers
+
+ robots.txt
+ sitemap.xml
+ sitemap содержит только public URLs
+ access URLs не попадают в sitemap
+ token не остаётся в URL
+
+21. Structured data
+
+ JSON-LD
+ Проверить подходящий Schema.org type
+ Google Rich Results validation
+⚡ Этап 7 — Performance
+
+Это я бы делал после функциональных фиксов, чтобы не смешивать проблемы.
+
+22. Images
+
+ WebP/AVIF
+ width / height
+ lazy loading
+ hero image priority
+
+23. JavaScript
+
+ Проверить размер JS
+ defer
+ убрать лишнее
+ проверить long tasks
+
+24. YouTube / iframe
+
+ Не грузить YouTube сразу
+ lazy/embed-on-click при необходимости
+ проверить mobile performance
+
+25. Core Web Vitals
+
+ LCP
+ CLS
+ INP
+ PageSpeed mobile
+ PageSpeed desktop
+📋 Финальный regression test
+
+Когда всё это закроем:
+
+Public
+
+fresh → UA → EN → reload → scroll → modal → close
+
+Request
+
+form → validation → submit → Supabase → success
+
+Access
+
+token → verify → protected → clean URL → EN → reload
+
+Invalid
+
+bad token → no protected content
+
+Mobile
+
+iPhone/Android → language → form → modal → video
+
+SEO
+
+robots → sitemap → metadata → canonical → structured data
