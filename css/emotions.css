@@ -252,7 +252,7 @@
 
   border: 1px solid rgba(255,255,255,0.65);
 
-  color: #fff !important;
+  color: #211919 !important;
   background: transparent !important;
 
   text-decoration: none;
@@ -1540,7 +1540,7 @@ body.modal-open {
 
 /* Active tab */
 #donateModal .donate-tabs .tab-btn.active {
-  color: #5f4040 !important;
+  color: #fff !important;
 }
 
 
