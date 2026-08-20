@@ -912,68 +912,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 
-  /* =======================================================
-     ACCESS REQUEST PANEL
-  ======================================================= */
-
-  const accessButton =
-    document.getElementById(
-      "openAccessRequest"
-    );
-
-  const accessPanel =
-    document.getElementById(
-      "accessRequestPanel"
-    );
-
-
-  if (
-    accessButton &&
-    accessPanel
-  ) {
-
-    accessButton.addEventListener(
-      "click",
-      event => {
-
-        event.preventDefault();
-
-
-        const isHidden =
-          accessPanel.style.display ===
-            "none" ||
-          getComputedStyle(
-            accessPanel
-          ).display ===
-            "none";
-
-
-        accessPanel.style.display =
-          isHidden
-            ? "block"
-            : "none";
-
-
-        if (isHidden) {
-
-          setTimeout(
-            () => {
-
-              accessPanel.scrollIntoView({
-                behavior: "smooth",
-                block: "center"
-              });
-
-            },
-            50
-          );
-
-        }
-
-      }
-    );
-
-  }
 
 
   /* =======================================================
