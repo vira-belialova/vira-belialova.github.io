@@ -392,8 +392,21 @@ document.addEventListener("DOMContentLoaded", () => {
           "block";
 
       }
-
-
+      /* ---------------------------------------------------
+         USER HAS ACCESS
+         Hide "Get access" CTA
+      --------------------------------------------------- */
+      
+      document
+        .querySelectorAll(".emotion-support")
+        .forEach(section => {
+      
+          section.style.display =
+            "none";
+      
+        });
+      
+      
       return true;
 
 
