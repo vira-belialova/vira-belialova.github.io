@@ -1555,3 +1555,7 @@ body.modal-open {
 #donateModal .close-modal {
   color: #111 !important;
 }
+
+.emotion-support.access-hidden {
+  display: none;
+}
