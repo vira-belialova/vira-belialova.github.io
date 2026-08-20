@@ -1023,6 +1023,11 @@ document.addEventListener("DOMContentLoaded", () => {
             "requestMessage"
           )?.value.trim();
 
+        const currentLanguage =
+           document.getElementById("page-en")?.style.display !== "none"
+             ? "en"
+             : "uk"; 
+
 
         /* ---------------------------------------------------
            EMAIL VALIDATION
@@ -1157,8 +1162,11 @@ document.addEventListener("DOMContentLoaded", () => {
                   payment_method:
                     paymentMethod,
 
-                  message
+                  message,
 
+                  language:
+                   currentLanguage
+                   
                 })
 
               }
