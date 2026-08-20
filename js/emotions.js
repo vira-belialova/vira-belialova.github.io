@@ -401,8 +401,9 @@ document.addEventListener("DOMContentLoaded", () => {
         .querySelectorAll(".emotion-support")
         .forEach(section => {
       
-          section.style.display =
-            "none";
+          section.classList.add(
+           "access-hidden"
+         );
       
         });
       
