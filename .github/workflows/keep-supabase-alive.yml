@@ -2,14 +2,15 @@ name: Keep Supabase Alive
 
 on:
   schedule:
-    # Every day at 09:00 UTC
-    - cron: "0 9 * * *"
-
+    - cron: "17 6 * * *"
+    - cron: "17 14 * * *"
+    - cron: "17 22 * * *"
   workflow_dispatch:
 
 jobs:
   keep-alive:
     runs-on: ubuntu-latest
+    timeout-minutes: 5
 
     steps:
       - name: Query Supabase database
@@ -17,21 +18,29 @@ jobs:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
         run: |
+          set -e
+
+          if [ -z "$SUPABASE_URL" ] || [ -z "$SUPABASE_SERVICE_ROLE_KEY" ]; then
+            echo "Missing required GitHub Secrets."
+            exit 1
+          fi
+
           echo "Checking Supabase database activity..."
 
-          RESPONSE=$(curl -sS -w "\n%{http_code}" \
+          HTTP_CODE=$(curl -sS \
+            --connect-timeout 10 \
+            --max-time 30 \
+            -o /tmp/response.txt \
+            -w "%{http_code}" \
             "${SUPABASE_URL}/rest/v1/access_requests?select=id&limit=1" \
             -H "apikey: ${SUPABASE_SERVICE_ROLE_KEY}" \
             -H "Authorization: Bearer ${SUPABASE_SERVICE_ROLE_KEY}")
 
-          HTTP_CODE=$(echo "$RESPONSE" | tail -n 1)
-          BODY=$(echo "$RESPONSE" | sed '$d')
-
           echo "HTTP status: $HTTP_CODE"
-          echo "Database response: $BODY"
+          cat /tmp/response.txt
 
           if [ "$HTTP_CODE" -lt 200 ] || [ "$HTTP_CODE" -ge 300 ]; then
-            echo "Supabase database query failed."
+            echo "Supabase query failed."
             exit 1
           fi
 
